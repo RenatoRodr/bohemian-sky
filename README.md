@@ -31,9 +31,9 @@ for this routing to work.
 This pack does not include the live `PORTFOLIO.md`, `LESSONS.md`, proposals,
 project files, hook source, installed tool configuration, or historical
 archives. `MEMORY-CONTRACT.md` keeps its seven-column `## The stores` table and
-its current writer rules. The current source table has no `Jev shadow telemetry`
-row, so the pack does not add one: Jev shadow telemetry is not authorized or
-enabled by these current rules. The public copy omits local hook installation,
+its current writer rules. The current source table does not authorize an
+optional classification-telemetry store, so the pack does not add one or enable
+that telemetry. The public copy omits local hook installation,
 bypass, and weakness instructions; consult the private local enforcement
 documentation for the actual configured controls and their limits.
 

@@ -33,10 +33,10 @@ Weight can move up mid-project (light → standard splits the inline sections ou
 
 | Archetype | Folder emphasis | Plan style | Default delegates | Default autonomy |
 |---|---|---|---|---|
-| review-consolidate (documents in, comments/replies out — a technical document review pattern) | inputs/, reviews/roundN/, handoffs/ | Rounds, each round a step block | Bulk drafting: ChatGPT; independent review: Gemini | 2 |
-| build-artifact (a deliverable is made: document, deck, tool) | work/ → outputs/; code/ if software | Milestones with acceptance criteria | Codex for code; Claude for documents | 2 |
-| research-decide (question in, recommendation out) | inputs/, work/; outputs/ holds the recommendation | Questions to close, then a decision step | Web-capable LLMs for gathering; a different model for the counter-argument step | 2 |
-| operate-admin (filings, moves, applications, life ops) | Light weight almost always; inputs/ for received paperwork | Checklist; steps are tasks, not workstreams | Usually none; Claude only | 1 (external parties and irreversible submissions everywhere) |
+| review-consolidate (documents in, comments/replies out — a technical document review pattern) | inputs/, reviews/roundN/, handoffs/ | Rounds, each round a step block | Bulk drafting: assistant selected by the user; independent review: a different assistant | 2 |
+| build-artifact (a deliverable is made: document, deck, tool) | work/ → outputs/; code/ if software | Milestones with acceptance criteria | Implementation: assistant selected for the artifact; independent review: a different assistant | 2 |
+| research-decide (question in, recommendation out) | inputs/, work/; outputs/ holds the recommendation | Questions to close, then a decision step | Gathering: web-capable assistant selected for the task; counter-argument: a different assistant | 2 |
+| operate-admin (filings, moves, applications, life ops) | Light weight almost always; inputs/ for received paperwork | Checklist; steps are tasks, not workstreams | Usually none; otherwise assistant selected by the user | 1 (external parties and irreversible submissions everywhere) |
 
 Defaults are proposals. INSTRUCTIONS.md records deviations per project; a deviation that keeps recurring is a lesson (tag: archetype) and eventually a change to this file.
 
