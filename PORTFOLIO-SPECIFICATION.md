@@ -1,6 +1,6 @@
 # Portfolio specification
 
-> Store: operating rules. Writers: human only. See `MEMORY-CONTRACT.md`.
+> Shared operating rule. Changes go through a reviewed GitHub pull request. See `MEMORY-CONTRACT.md`.
 
 PORTFOLIO.md is the one high-level file. Everything above a single project reads it; every project writes to it. It exists so that an AI chief of staff (or the user, or any LLM handed the file) knows in one read what is going on, what is stuck, and what would collide with what.
 

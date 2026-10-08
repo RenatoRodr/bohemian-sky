@@ -1,6 +1,6 @@
 # Project archetypes
 
-> Store: operating rules. Writers: human only. See `MEMORY-CONTRACT.md`.
+> Shared operating rule. Changes go through a reviewed GitHub pull request. See `MEMORY-CONTRACT.md`.
 
 The architecture is not always the same. Choose a shape autonomously when
 managed structure is useful. The four safeguards in SECURITY-AND-AUTHORITY.md

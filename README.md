@@ -45,6 +45,8 @@ provide the skill or agents.
 ## Change control
 
 Review changes to the shared rules in a pull request before merging `main`.
-Keep private overlay material in Drive. A repository merge updates the shared
-manual-only rules; it does not install local hooks, change private configuration,
-or grant an agent write authority over live operating files.
+Keep private overlay material in Drive. Codex may refresh local runtime copies
+from a reviewed merge using a versioned procedure that preserves private text
+and stops on conflicts. The local Git checkout supplies the last verified copy
+when offline. A repository merge does not install hooks or change private
+configuration by itself.

@@ -1,6 +1,6 @@
 # Project factory — blueprint
 
-> Store: operating rules. Writers: human only. See `MEMORY-CONTRACT.md`.
+> Shared operating rule. Changes go through a reviewed GitHub pull request. See `MEMORY-CONTRACT.md`.
 
 This folder is the factory root. The factory is the layer above any single project: it births projects adapted to their goal, keeps one portfolio file every project reports into, and improves its own templates from recorded lessons. The per-project machinery (control files, conductor skill, dashboard) is the chassis. Its retained build package is in `conductor-build-v1/`; the active procedure is the installed `conductor` skill.
 
@@ -8,16 +8,16 @@ This folder is the factory root. The factory is the layer above any single proje
 
 | File | Role | Written by |
 |---|---|---|
-| AGENTS.md | Persistent ChatGPT/Codex operating rules for this local project | Human-approved edits only |
-| CHATGPT-SETUP.md | How to run the factory in ChatGPT desktop, Goal mode, and scheduled tasks | Human-approved edits only |
-| FACTORY-BLUEPRINT.md | This document; includes the factory changelog | Human-approved edits only |
+| AGENTS.md | Persistent ChatGPT/Codex operating rules for this local project | Reviewed GitHub pull request |
+| CHATGPT-SETUP.md | How to run the factory in ChatGPT desktop, Goal mode, and scheduled tasks | Reviewed GitHub pull request |
+| FACTORY-BLUEPRINT.md | This document; includes the factory changelog | Reviewed GitHub pull request |
 | PORTFOLIO.md | Live register: one row per project. The chief-of-staff view. | Each project's close routine (own row only); portfolio review (whole file) |
 | LESSONS.md | Append-only friction log feeding factory improvements | Any project's retro routine |
-| PROJECT-ARCHETYPES.md | How a project's architecture flexes with its goal | Human-approved edits only |
-| PORTFOLIO-SPECIFICATION.md | Format and rules for PORTFOLIO.md | Human-approved edits only |
-| MASTER-PROMPTS.md | Ready-to-copy prompts: quick task, intake, resume, delegate, review, retro, briefing | Human-approved edits only |
-| SECURITY-AND-AUTHORITY.md | Autonomy levels, approval gates, secrets, and preservation rules | Human-approved edits only |
-| MEMORY-CONTRACT.md | Which store is which: writers, readers, retention, authority, promotion path | Human-approved edits only |
+| PROJECT-ARCHETYPES.md | How a project's architecture flexes with its goal | Reviewed GitHub pull request |
+| PORTFOLIO-SPECIFICATION.md | Format and rules for PORTFOLIO.md | Reviewed GitHub pull request |
+| MASTER-PROMPTS.md | Ready-to-copy prompts: quick task, intake, resume, delegate, review, retro, briefing | Reviewed GitHub pull request |
+| SECURITY-AND-AUTHORITY.md | Autonomy levels, approval gates, secrets, and preservation rules | Reviewed GitHub pull request |
+| MEMORY-CONTRACT.md | Which store is which: writers, readers, retention, authority, promotion path | Reviewed GitHub pull request |
 | proposals/ | Quarantine. Proposed changes to stores the proposer may not write. Nothing here is in force. | A review pass (portfolio review, retro, audit) |
 
 For ChatGPT local-project work, new projects live under `projects/` unless the user names another attached writable folder. Existing projects may remain elsewhere. Each project's PROJECT.md frontmatter carries the portfolio path, so a session inside any project can find its way back here. A scheduled or unattended task can work only where its sandbox has write access.
@@ -67,7 +67,7 @@ In-project, immediate: the conductor validates structure at resume and close, na
 
 Factory-level, deliberate: LESSONS.md accumulates tagged entries (template | skill | prompt | archetype | process). During a portfolio review, when the same tag+problem appears twice or more, the chief-of-staff proposes a concrete change to the relevant factory file or the conductor skill. The human approves; the change is made once, centrally; the changelog below records it. Lessons never edit the factory automatically — a factory that rewrites itself unsupervised will drift faster than it improves.
 
-From 2026-09-16, `MEMORY-CONTRACT.md` declares which agent may write which store, and local hook checks supplement those rules. Their coverage depends on the local installation and should not be treated as complete enforcement. A review pass that wants to change an operating rule writes a proposal into `proposals/` instead, and the change happens here, at portfolio review, with approval.
+From 2026-09-16, `MEMORY-CONTRACT.md` declares which agent may write which store, and local hook checks supplement those rules. Their coverage depends on the local installation and should not be treated as complete enforcement. A review pass that wants to change a shared operating rule prepares a GitHub pull request. After Renato merges it, Codex may refresh local runtime copies through the versioned sync procedure, preserving private additions and stopping on conflicts. The private overlay stays outside this repository.
 
 ## Where problems get logged
 
