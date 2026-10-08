@@ -1,9 +1,9 @@
-# Factory rules — GitHub shadow pack
+# Project factory — shared rules
 
-This is a **non-authoritative, cleaned shadow copy** prepared for a GitHub trial.
-The Google Drive Project factory remains the canonical source during the trial.
-Do not use this pack to change live factory rules or infer that GitHub is already
-the source of truth.
+This repository is the canonical source for the shared, manual-only factory
+rules after this change is merged into `main`. Private operating data and local
+tool configuration remain in the Google Drive Project factory. A branch or
+pull request does not replace the active `main` rules.
 
 ## Included
 
@@ -19,7 +19,7 @@ filenames:
 - `CHATGPT-SETUP.md`
 - `MEMORY-CONTRACT.md`
 
-## Cleanup and exclusions
+## Local setup and exclusions
 
 Personal names, identifiable project examples, absolute local paths, scheduled
 task names, and personal changelog triggers have been generalized. Tool and
@@ -31,15 +31,20 @@ for this routing to work.
 This pack does not include the live `PORTFOLIO.md`, `LESSONS.md`, proposals,
 project files, hook source, installed tool configuration, or historical
 archives. `MEMORY-CONTRACT.md` keeps its seven-column `## The stores` table and
-its current writer rules. The current source table has no `Jev shadow telemetry`
-row, so the pack does not add one: Jev shadow telemetry is not authorized or
-enabled by these current rules. The public copy omits local hook installation,
+its current writer rules. The current source table does not authorize an
+optional classification-telemetry store, so the pack does not add one or enable
+that telemetry. The public copy omits local hook installation,
 bypass, and weakness instructions; consult the private local enforcement
 documentation for the actual configured controls and their limits.
 
-## Trial guardrail
+The `factory-build` skill, `build-agents-v1/codex/README.md`, and `.codex/agents/`
+mentioned in `AGENTS.md` are local build-crew components. Install them from the
+private factory before using that workflow. The public rules alone do not
+provide the skill or agents.
 
-The shadow pack is for review and trial only. Keep the Drive factory unchanged
-and authoritative until the trial is reviewed and a separate decision approves
-the split and source-of-truth change. No GitHub repository has been created or
-published as part of this pack.
+## Change control
+
+Review changes to the shared rules in a pull request before merging `main`.
+Keep private overlay material in Drive. A repository merge updates the shared
+manual-only rules; it does not install local hooks, change private configuration,
+or grant an agent write authority over live operating files.
