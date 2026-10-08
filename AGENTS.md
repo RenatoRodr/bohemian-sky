@@ -1,6 +1,6 @@
 # Project factory instructions
 
-> Store: operating rules. Writers: human only. See `MEMORY-CONTRACT.md`.
+> Shared operating rule. Changes go through a reviewed GitHub pull request. See `MEMORY-CONTRACT.md`.
 
 ## Role
 

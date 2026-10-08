@@ -1,6 +1,6 @@
 # Master prompts
 
-> Store: operating rules. Writers: human only. See `MEMORY-CONTRACT.md`.
+> Shared operating rule. Changes go through a reviewed GitHub pull request. See `MEMORY-CONTRACT.md`.
 
 Seven prompts, ready to copy. Once the conductor skill is installed, the short trigger phrases replace most of these in Cowork; the full texts exist so the same procedures run in any LLM that has never seen the skill — portability is the point.
 
