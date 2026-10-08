@@ -1,7 +1,7 @@
 # Project factory — shared rules
 
-This repository is the canonical source for the shared, manual-only factory
-rules after this change is merged into `main`. Private operating data and local
+This repository's `main` branch is the canonical source for the shared,
+manual-only factory rules. Private operating data and local
 tool configuration remain in the Google Drive Project factory. A branch or
 pull request does not replace the active `main` rules.
 
