@@ -38,6 +38,10 @@ that can be reversed. Four of five is not promotion, it is drift.
 
 ## Enforcement in a local installation
 
+Existing files at a store root may be edited, but agents must not create new files there.
+Shared-rule edits still require a reviewed GitHub pull request.
+Within a managed project, `inputs/`, `reviews/`, and `outputs/` are write-once.
+
 This table states the intended writer rules; it does not by itself enforce them.
 A local installation may use hooks or other controls, but their coverage depends
 on that installation and should not be assumed complete. This public copy does
