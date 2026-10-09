@@ -123,3 +123,24 @@ folder. Report, in this order and nothing else:
    PROJECT.md, if you have access to spot-check them. Files win.
 Nothing to report in a section: say "clear" and move on.
 ```
+
+
+## Supplement. Managed-project outcome review
+
+```text
+Review <project> against its authoritative requirements record. Read the
+project decisions, accepted outputs, tests or evaluations, and authorized
+automation-run evidence since the last review. Do not read raw past chats or
+collect new telemetry without a separate scoped decision.
+
+For each applicable requirement, report delivery as met, partly met, unmet,
+or not applicable, with an inspectable reference. Report actual use or benefit
+separately as observed, reported by the owner, or unknown. Do not infer use
+from a successful test, scheduled run, or calendar block. Ask at most one
+focused question if a material outcome remains unknown.
+
+Give the current conclusion and the next action briefly. Propose a small
+change, revised criterion, or end to the review only when evidence warrants
+it. Preserve existing approval gates. Do not edit project goals or create a
+new recurring schedule through this review.
+```

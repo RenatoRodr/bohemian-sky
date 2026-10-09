@@ -131,3 +131,17 @@ relying on them; they supplement sandbox and tool permissions.
 At MAKE IT WORK, avoid required proposal, audit, score, pattern, and
 retrospective paperwork. Preserve advanced governance for MAKE IT RELIABLE or
 MAKE IT ROBUST. Factory policy changes remain human-approved.
+
+
+## Project requirements and outcome review
+
+For a managed project, keep a linked Markdown record of the user-stated high-level outcomes and material requirements. Give each requirement a stable ID, source date, observable delivery criterion, and, where useful, a practical use or benefit criterion. Ask one focused question when a missing criterion would materially change the design or evaluation. Do not invent a metric.
+
+Record later clarifications with their source and date; do not silently replace the original statement. Register the authoritative record in `control/RESOURCES.md`. At milestones and before claiming completion, mark each applicable requirement met, partly met, unmet, or not applicable, with inspectable evidence. Keep implementation/test evidence separate from observed use or benefit; mark the latter unknown until supported by an authorized observation or user report.
+
+About two weeks after first usable delivery, offer a brief outcome review for an active managed project, then repeat only while a live question warrants it. Reuse an existing project review route. Do not create another schedule, read raw past conversations, or collect hidden telemetry without separate authority. A review proposes changes; it does not alter goals, approval gates, or external systems. Quick tasks retain the compact completion check in their closing response.
+
+
+## Standing authority to prepare Factory pull requests
+
+When the user asks Codex to work on a Factory rule, Codex may create a GitHub branch and reviewable pull request for that work without seeking separate conversational approval for the branch or PR. The pull request is the review point. This standing authority does not approve merging, publishing private material, changing access, or bypassing a platform approval gate. If a platform gate rejects the action, report the exact block and wait for the authorization it requires.
