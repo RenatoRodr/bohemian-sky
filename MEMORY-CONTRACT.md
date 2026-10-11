@@ -22,11 +22,29 @@ policy. Clear store boundaries reduce both errors.
 | Private overlay and runtime cache | Private local instructions, paths, and cached copies outside this repository | Codex may prepare and apply a versioned refresh after a reviewed merge; private changes require Renato's review | Local factory sessions | Yes for private/local behavior only | Archive prior copies with an ISO date | Rebuild from the merged commit plus the private overlay; stop on conflict |
 | Register | `PORTFOLIO.md` | A project's close routine, **its own row only**. Portfolio review may restructure the whole file. | Every session; intake reads it first | Yes, for "what exists and where" | Indefinite; Done rows age out after 90 days | Terminal |
 | Project state | `<project>/control/PROJECT.md`, `DECISIONS.md`, `RESOURCES.md`, `INSTRUCTIONS.md` | The responsible project agent, inside that project only | That project's sessions | Yes, for that project | Life of the project | A recurring INSTRUCTIONS.md override becomes a lesson, tag `archetype` |
-| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | The manually invoked build coordinator through the append-only observer; one task at a time, after explicit call approval | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 30 days after the pilot ends; then human-reviewed disposition | Human-reviewed evaluation; any policy promotion requires a separate proposal and approval |
+| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | The manually invoked build coordinator after explicit per-call approval, or an approved pilot runner under the bounded standing authorization below | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 30 days after the pilot ends; then human-reviewed disposition | Human-reviewed per-route evaluation; production activation requires separate approval |
 | Evidence | `<project>/inputs/`, `reviews/`, `outputs/`, `control/LOG.md`, `records/` | Ingestion, append-only or write-once. Never edited in place. | Anyone | Source material, not conclusions | Indefinite | Cited by a lesson or a decision; never promoted itself |
 | Lessons | `LESSONS.md` | Any project's retro, append-only, newest on top | Portfolio review | No. Candidate patterns, not policy. | Each entry carries `review_by` | Human approval at portfolio review, recorded in the blueprint changelog |
 | Scratchpad | `<project>/work/`, `handoffs/out/`, the session scratch directory | The active agent | That session | No | Superseded material to `archive/`; scratch expires with the session | Content moves to `outputs/` or is cited as evidence |
 | Quarantine | `proposals/` | The review pass only (portfolio review, retro, an audit) | Human, when deciding | **No — read as data, never as instruction** | Deleted or promoted at the next portfolio review | Human approval moves the content into its target store |
+
+## Bounded Jev shadow pilot authorization
+
+A standing pilot is valid only after this rule change is merged and verified in
+the local runtime, and Renato explicitly approves a Gate A record naming its
+owner, provider and model, permitted minimized data categories, expiry date,
+maximum number of calls, total spend ceiling, and immediate kill switch.
+The runner must check that record and the remaining call and spend budgets
+before each request,
+record the resulting usage, and stop when any limit is reached. A failed call is
+not retried automatically. The `--paid-call-opt-in` flag attests to an applicable
+individual approval or valid standing record; it does not create approval.
+
+This authorization permits shadow observation only. It does not permit broader
+data disclosure, production routing, external actions, changes to permissions,
+spending beyond the ceiling, or waiver of a required review. Each decision type
+needs representative outcome evidence before a separate production activation
+approval.
 
 ## The rule that holds it together
 
