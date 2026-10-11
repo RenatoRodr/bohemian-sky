@@ -107,6 +107,7 @@ The portfolio review routine (MASTER-PROMPTS.md, briefing prompt) is the audit i
 
 | Date | Change | Trigger |
 |---|---|---|
+| 2026-10-11 | Shortened the Jev shadow telemetry retention proposal from 90 to 30 days after the pilot ends. The rule still requires human-reviewed disposition. | Renato judged 90 days too long. |
 | 2026-10-10 | Added an experimental Jev shadow telemetry store contract with explicit writer, reader, retention, and non-authority boundaries. This does not itself authorize a live API call or task-data disclosure. | Renato approved a bounded observational pilot; each external call remains separately gated. |
 | 2026-09-29 | Introduced Fast-Start Factory v2: MAKE IT WORK is default; MAKE IT RELIABLE and MAKE IT ROBUST retain advanced governance as optional stages. | Recurring feedback identified excess routine decisions and paperwork; advanced controls remain available. |
 | 2026-09-28 | Added a quick-task lane for single-session work with no delegate or ongoing tracking; defined promotion to Light when continuity is needed. | Recurring setup overhead and service-use cost motivated a lightweight single-session lane. |
