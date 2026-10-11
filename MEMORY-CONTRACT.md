@@ -1,5 +1,5 @@
 ---
-updated: 2026-09-16
+updated: 2026-10-10
 review_by: 2027-03-16
 ---
 
@@ -22,6 +22,7 @@ policy. Clear store boundaries reduce both errors.
 | Private overlay and runtime cache | Private local instructions, paths, and cached copies outside this repository | Codex may prepare and apply a versioned refresh after a reviewed merge; private changes require Renato's review | Local factory sessions | Yes for private/local behavior only | Archive prior copies with an ISO date | Rebuild from the merged commit plus the private overlay; stop on conflict |
 | Register | `PORTFOLIO.md` | A project's close routine, **its own row only**. Portfolio review may restructure the whole file. | Every session; intake reads it first | Yes, for "what exists and where" | Indefinite; Done rows age out after 90 days | Terminal |
 | Project state | `<project>/control/PROJECT.md`, `DECISIONS.md`, `RESOURCES.md`, `INSTRUCTIONS.md` | The responsible project agent, inside that project only | That project's sessions | Yes, for that project | Life of the project | A recurring INSTRUCTIONS.md override becomes a lesson, tag `archetype` |
+| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | The manually invoked build coordinator through the append-only observer; one task at a time, after explicit call approval | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 90 days after the pilot ends; then human-reviewed disposition | Human-reviewed evaluation; any policy promotion requires a separate proposal and approval |
 | Evidence | `<project>/inputs/`, `reviews/`, `outputs/`, `control/LOG.md`, `records/` | Ingestion, append-only or write-once. Never edited in place. | Anyone | Source material, not conclusions | Indefinite | Cited by a lesson or a decision; never promoted itself |
 | Lessons | `LESSONS.md` | Any project's retro, append-only, newest on top | Portfolio review | No. Candidate patterns, not policy. | Each entry carries `review_by` | Human approval at portfolio review, recorded in the blueprint changelog |
 | Scratchpad | `<project>/work/`, `handoffs/out/`, the session scratch directory | The active agent | That session | No | Superseded material to `archive/`; scratch expires with the session | Content moves to `outputs/` or is cited as evidence |
