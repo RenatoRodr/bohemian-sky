@@ -22,7 +22,7 @@ policy. Clear store boundaries reduce both errors.
 | Private overlay and runtime cache | Private local instructions, paths, and cached copies outside this repository | Codex may prepare and apply a versioned refresh after a reviewed merge; private changes require Renato's review | Local factory sessions | Yes for private/local behavior only | Archive prior copies with an ISO date | Rebuild from the merged commit plus the private overlay; stop on conflict |
 | Register | `PORTFOLIO.md` | A project's close routine, **its own row only**. Portfolio review may restructure the whole file. | Every session; intake reads it first | Yes, for "what exists and where" | Indefinite; Done rows age out after 90 days | Terminal |
 | Project state | `<project>/control/PROJECT.md`, `DECISIONS.md`, `RESOURCES.md`, `INSTRUCTIONS.md` | The responsible project agent, inside that project only | That project's sessions | Yes, for that project | Life of the project | A recurring INSTRUCTIONS.md override becomes a lesson, tag `archetype` |
-| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | The manually invoked build coordinator after explicit per-call approval, or an approved pilot runner under the bounded standing authorization below | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 30 days after the pilot ends; then human-reviewed disposition | Human-reviewed per-route evaluation; production activation requires separate approval |
+| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | The manually invoked build coordinator after explicit per-call approval, or an approved pilot runner under the bounded standing authorization below | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 30 days after the pilot ends; then human-reviewed disposition | Human-reviewed per-route evaluation, or a per-project approval record under the Jev use section below |
 | Evidence | `<project>/inputs/`, `reviews/`, `outputs/`, `control/LOG.md`, `records/` | Ingestion, append-only or write-once. Never edited in place. | Anyone | Source material, not conclusions | Indefinite | Cited by a lesson or a decision; never promoted itself |
 | Lessons | `LESSONS.md` | Any project's retro, append-only, newest on top | Portfolio review | No. Candidate patterns, not policy. | Each entry carries `review_by` | Human approval at portfolio review, recorded in the blueprint changelog |
 | Scratchpad | `<project>/work/`, `handoffs/out/`, the session scratch directory | The active agent | That session | No | Superseded material to `archive/`; scratch expires with the session | Content moves to `outputs/` or is cited as evidence |
@@ -45,6 +45,26 @@ data disclosure, production routing, external actions, changes to permissions,
 spending beyond the ceiling, or waiver of a required review. Each decision type
 needs representative outcome evidence before a separate production activation
 approval.
+
+## Jev use in projects built with the recurring-AI architecture
+
+A project built under `PROJECT-ARCHETYPES.md` may use Jev in its own operation
+once Renato explicitly approves a record for that project naming its owner,
+provider and model, decision types, permitted minimized data categories, expiry
+date, maximum number of calls, total spend ceiling, immediate kill switch,
+fallback when Jev is unavailable, and, where a decision can change what is
+shown, filed or ranked, its rollback and spot-check policy. The record is
+approved once per project and renewed on expiry or any change to those terms.
+It need not wait for a shadow period.
+
+The runner must check the record and the remaining call and spend budgets before
+each request, record usage without raw private content, stop when any limit is
+reached, and not retry a failed call automatically. The Jev answer is an input
+to the caller's policy, never an action. The limits in the shadow pilot
+paragraph above still apply: no external action, permission change, spending
+beyond the ceiling, security-alert suppression, or waiver of a required review,
+and a Jev answer cannot remove a review or alert that policy requires. A record
+that is silent on a data category does not permit it.
 
 ## The rule that holds it together
 

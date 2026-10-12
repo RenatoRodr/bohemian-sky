@@ -107,6 +107,7 @@ The portfolio review routine (MASTER-PROMPTS.md, briefing prompt) is the audit i
 
 | Date | Change | Trigger |
 |---|---|---|
+| 2026-10-12 | Added a `MEMORY-CONTRACT.md` section letting a project built with the recurring-AI architecture use Jev under a per-project approval record (data, spend, calls, expiry, kill switch, fallback, rollback). No shadow period required; no action authority added. | Renato asked that new projects be built Jev-inclusive, not shadow-only. |
 | 2026-10-12 | Added the recurring-AI architecture to `PROJECT-ARCHETYPES.md` and a pointer in `AGENTS.md`: projects with recurring model calls are built local-code-first, with Jev for bounded judgments, frontier models only when required, and humans for authority. Adds no approval or authority. | Renato asked that new projects be built Jev-inclusive wherever applicable. |
 | 2026-10-11 | Shortened the Jev shadow telemetry retention proposal from 90 to 30 days after the pilot ends. The rule still requires human-reviewed disposition. | Renato judged 90 days too long. |
 | 2026-10-10 | Added an experimental Jev shadow telemetry store contract with explicit writer, reader, retention, and non-authority boundaries. This does not itself authorize a live API call or task-data disclosure. | Renato approved a bounded observational pilot; each external call remains separately gated. |
