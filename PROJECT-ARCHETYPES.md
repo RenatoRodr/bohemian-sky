@@ -51,6 +51,48 @@ security, irreversible actions, or user experience.
 3. Start with the next concrete action; expand a plan during execution only if needed.
 4. Check portfolio claims when registering a managed project.
 5. Set autonomy only when it changes a meaningful boundary.
+6. If the project will make recurring model calls, build it with the layered
+   architecture below.
+
+## Recurring-AI architecture
+
+Applies when a project, at any archetype or weight, makes recurring or
+high-volume model calls over sources that repeat or change slowly. It does not
+apply to quick tasks, one-off work, or a project with no recurring judgment.
+Build the project this way from the start:
+
+```
+raw sources
+  → local code: filter · diff · dedupe · calculate · cache · validate
+      └─ nothing changed → stop, no model call
+  → deterministic policy: hard rules, exact lookups, calculations
+  → Jev: bounded decisions; bundle independent questions over the same compact state when useful
+      └─ clear → continue
+      └─ novel or uncertain → frontier model, only when required
+  → human, for authority decisions
+```
+
+- Reuse the shared contracts of `projects/jev-decision-gateway`
+  (`decide()` and the `preprocessors/`). Do not build a per-project Jev
+  integration or a second set of compilers.
+- Code owns known rules, exact extraction and calculation, permissions,
+  execution, and mandatory surfacing or review. Jev classifies facts,
+  relevance, ambiguity, severity, materiality, difficulty, or review
+  usefulness. Frontier models handle novel reasoning, synthesis and drafting.
+  Humans hold approval.
+- Jev is never the final authority for deletion, spending, external
+  communication, deployment, access changes, financial transactions, security
+  alert suppression, technical or compliance correctness, or waiver of a
+  required review. A Jev answer cannot remove a review or alert that policy
+  requires.
+- Uncertainty, missing provider, or low confidence falls back to the
+  deterministic path or to the next tier; it never silently discards an item.
+- Record privacy-preserving usage (calls, approximate tokens, duration, result,
+  context hashes), never raw private content, so savings are measured, not
+  assumed.
+- Jev calls remain spending and external data disclosure under
+  `SECURITY-AND-AUTHORITY.md` and `MEMORY-CONTRACT.md`. This section adds no
+  approval.
 
 ## Choosing wrong costs little
 
