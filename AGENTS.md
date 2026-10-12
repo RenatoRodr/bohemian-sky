@@ -69,6 +69,15 @@ follow the four day-one safeguards. If it needs another session, delegate, or
 ongoing status, add only notes needed to continue; full managed structure is
 optional.
 
+## Recurring model work
+
+When a new or existing project will make recurring model calls, build it with
+the layered architecture in `PROJECT-ARCHETYPES.md` (local code first, then
+deterministic policy, Jev for bounded judgments, frontier models only when
+required, humans for authority). Reuse `projects/jev-decision-gateway`. This
+adds no approval: spending, data disclosure, and action authority stay under
+`SECURITY-AND-AUTHORITY.md`.
+
 ## Goal execution
 
 When the user supplies a goal, capture the outcome and any stated constraints.
