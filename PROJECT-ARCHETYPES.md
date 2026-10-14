@@ -63,8 +63,9 @@ Build the project this way from the start:
 
 ```
 raw sources
-  → local code: filter · diff · dedupe · calculate · cache · validate
-      └─ nothing changed → stop, no model call
+  → reuse existing scripts · skills · native automations · libraries
+      └─ where useful: filter · diff · dedupe · calculate · cache · validate
+          └─ nothing relevant changed → stop, no model call
   → deterministic policy: hard rules, exact lookups, calculations
   → Jev: bounded decisions; bundle independent questions over the same compact state when useful
       └─ clear → continue
@@ -75,6 +76,33 @@ raw sources
 - Reuse the shared contracts of `projects/jev-decision-gateway`
   (`decide()` and the `preprocessors/`). Do not build a per-project Jev
   integration or a second set of compilers.
+
+  
+### Reuse-before-build rule
+
+At intake, identify existing scripts, configured automations, skills, standard
+libraries, connectors and native application capabilities that already perform
+the deterministic operation. Prefer reusing or configuring these over creating
+a new standalone script. "Deterministic first" is an execution preference,
+**not** an instruction to write new code for every project.
+
+Only build a new reusable preprocessor when the expected repeated usage, avoided
+model work, reliability gain or cross-project benefit reasonably outweighs
+implementation, verification, deployment and maintenance effort. Make this a
+brief engineering judgment, not a compulsory business case. A small, safe,
+project-local adjustment to an existing workflow may be justified without
+creating a new shared component.
+
+If a custom preprocessor does not yet justify its cost, use the simplest
+working alternative, including an authorised Jev judgment where appropriate;
+do not block project delivery just to save occasional tokens. Record a
+specific candidate only when there is observed friction or credible recurrence:
+project-local ideas stay in the project's existing log; reusable cross-project
+patterns go to the Factory `LESSONS.md` with evidence, scope and review date.
+The existing Factory portfolio review checks recurrence and can propose a
+shared improvement; it does not auto-build it. Keep general tool bugs in the
+automation system's `BUG_LOG.md`, and running-automation incidents in their
+existing health checks. Do not create another review schedule or backlog.
 - Code owns known rules, exact extraction and calculation, permissions,
   execution, and mandatory surfacing or review. Jev classifies facts,
   relevance, ambiguity, severity, materiality, difficulty, or review
@@ -122,8 +150,10 @@ may strengthen evidence but can never grant permissions, waive an approval or
 override an existing human-only gate.
 
 **New project = live; existing automation = unchanged/shadow.** At project
-intake ask whether local code can filter, diff, dedupe or cache inputs and
-whether unchanged runs can stop with **zero** model calls. Use exact code for
+intake, first look for existing off-the-shelf scripts, automations and tools
+that can filter, diff, dedupe or cache inputs. Check whether an unchanged
+run can stop with **zero** model calls, and apply the reuse-before-build
+trade-off above before writing a dedicated preprocessor. Use exact code for
 rules and must-surface conditions. For every new recurring-AI project with
 useful bounded judgement, integrate the shared `decide()` contract and
 preprocessors; do not duplicate provider integrations. Once Renato approves
