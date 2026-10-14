@@ -125,6 +125,43 @@ For operating instructions, explicit user instructions win, followed by
 `control/INSTRUCTIONS.md`, the closest nested `AGENTS.md`, and skill defaults.
 Generated dashboards are views, never authority.
 
+## Default development lane — MAKE IT WORK
+
+For ordinary development in an already authorised project, use **one accountable
+coding agent and one writer by default**, not a mandatory architect/builder/
+gatekeeper/auditor chain. Read only relevant instructions; implement, run
+proportional tests, show an early working preview, and retain minimal continuity
+notes. Resolve minor implementation choices without asking the user.
+
+**Selective multi-agent delegation:** keep specialist roles available, but call
+them only when independent bounded research, separate worktrees, or a genuinely
+useful independent review improves the result. Never require a subagent merely
+because a task has multiple steps. Give each delegate a narrow scope and a
+compact handback; one writer owns any shared project tree. The coordinator
+remains accountable for integration and acceptance.
+
+**Cost-aware execution:** prefer deterministic code and checks over model calls
+when possible. For model work, select the least expensive capable model/tier
+*only where the active runtime and existing budget/authority support selecting
+it*. Escalate capability for difficult reasoning or repeated failure; use
+stronger verification for authentication, permissions, secrets, tenant isolation
+and customer/production data. Do not assume subagents run on different models:
+if a runtime inherits the parent model, document that limitation rather than
+claiming savings. Do not add paid API calls or change the user's model setting
+without the applicable authority. Evaluate total task cost, including handoffs,
+retries and verification—not model list price alone.
+
+Use the **full build crew** only for genuinely complex coordinated work,
+material/high-risk operations, repeated unresolved failure, explicitly requested
+formal governance, or MAKE IT ROBUST. Security-sensitive changes can require
+independent review without automatically invoking the entire crew. Tests
+remain proportional, not optional; never weaken them to silence approvals.
+
+Use editable work/previews for drafts and disposable fixtures under work/tmp;
+freeze shipped deliverables in outputs. Platform approvals and tool-level
+permissions remain in force. Opening a reviewed pull request never implies
+permission to merge, deploy, or disclose private material.
+
 ## Codex build crew
 
 For a requested multi-step build that benefits from its controls, use the
