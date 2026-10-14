@@ -72,6 +72,28 @@ raw sources
   → human, for authority decisions
 ```
 
+- Reuse the shared contracts of `projects/jev-decision-gateway`
+  (`decide()` and the `preprocessors/`). Do not build a per-project Jev
+  integration or a second set of compilers.
+- Code owns known rules, exact extraction and calculation, permissions,
+  execution, and mandatory surfacing or review. Jev classifies facts,
+  relevance, ambiguity, severity, materiality, difficulty, or review
+  usefulness. Frontier models handle novel reasoning, synthesis and drafting.
+  Humans hold approval.
+- Jev is never the final authority for deletion, spending, external
+  communication, deployment, access changes, financial transactions, security
+  alert suppression, technical or compliance correctness, or waiver of a
+  required review. A Jev answer cannot remove a review or alert that policy
+  requires.
+- Uncertainty, missing provider, or low confidence falls back to the
+  deterministic path or to the next tier; it never silently discards an item.
+- Record privacy-preserving usage (calls, approximate tokens, duration, result,
+  context hashes), never raw private content, so savings are measured, not
+  assumed.
+- Jev calls remain spending and external data disclosure under
+  `SECURITY-AND-AUTHORITY.md` and `MEMORY-CONTRACT.md`. This section adds no
+  approval.
+
 ## Jev as an advisory dispatcher — existing and new automations
 
 The coordinator uses deterministic classification first, then may ask Jev for
@@ -114,28 +136,6 @@ Jev from advisor/shadow observer to active dispatcher. Continue to observe the
 `MEMORY-CONTRACT.md` per-project and Gate A controls; merely adding this
 architecture never authorises paid provider calls, new data transfer,
 credentials or unattended high-impact changes.
-
-- Reuse the shared contracts of `projects/jev-decision-gateway`
-  (`decide()` and the `preprocessors/`). Do not build a per-project Jev
-  integration or a second set of compilers.
-- Code owns known rules, exact extraction and calculation, permissions,
-  execution, and mandatory surfacing or review. Jev classifies facts,
-  relevance, ambiguity, severity, materiality, difficulty, or review
-  usefulness. Frontier models handle novel reasoning, synthesis and drafting.
-  Humans hold approval.
-- Jev is never the final authority for deletion, spending, external
-  communication, deployment, access changes, financial transactions, security
-  alert suppression, technical or compliance correctness, or waiver of a
-  required review. A Jev answer cannot remove a review or alert that policy
-  requires.
-- Uncertainty, missing provider, or low confidence falls back to the
-  deterministic path or to the next tier; it never silently discards an item.
-- Record privacy-preserving usage (calls, approximate tokens, duration, result,
-  context hashes), never raw private content, so savings are measured, not
-  assumed.
-- Jev calls remain spending and external data disclosure under
-  `SECURITY-AND-AUTHORITY.md` and `MEMORY-CONTRACT.md`. This section adds no
-  approval.
 
 ## Choosing wrong costs little
 
