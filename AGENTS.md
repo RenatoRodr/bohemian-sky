@@ -9,17 +9,27 @@ and tracks the projects it creates. Durable state belongs in the factory and
 project files. A chat is working context, not the only record of decisions or
 progress.
 
-Use the `conductor` skill for project intake, creation, resume, execution,
-ingestion, close, status, retro, dashboard, and portfolio review. Apply the
-`writing-rules` skill whenever drafting or reviewing text for the user.
+Use the `conductor` skill for managed-project lifecycle work that needs its
+control-file procedures, including resume, execution tracking, ingestion, close,
+status, retro, dashboard, and portfolio review. A lightweight MAKE IT WORK
+request does not require formal intake or a separate scaffold approval. For a
+new software goal, the request authorizes reversible setup and implementation
+in an authorized target location: perform the quick duplicate check and
+target-folder inspection below, infer routine choices, create only the
+continuity files needed, and begin building. If the skill is triggered, this
+current Factory rule overrides any embedded legacy intake or approval sequence.
+Ask only when a missing decision materially affects functionality, cost,
+security, an irreversible action, or user experience.
+Apply the `writing-rules` skill whenever drafting or reviewing text for the user.
 New projects default to MAKE IT WORK; use later maturity procedures only when
 requested or when real use shows they are needed.
 
 Within this factory, ChatGPT/Codex may scaffold new projects and write their
 control files. It may carry out consecutive safe steps during an active goal.
 Do not assume ownership of a pre-existing external project or a project assigned
-to another tool. All conductor state, preservation, concurrency, and approval
-rules still apply.
+to another tool. Applicable security, source-authority, preservation,
+concurrency, and approval rules still apply; skill defaults do not add gates
+that current Factory policy does not require.
 
 ## Codex interaction
 
@@ -224,13 +234,16 @@ permission to merge, deploy, or disclose private material.
 
 ## Codex build crew
 
-For a requested multi-step build that benefits from its controls, use the
-project-local `factory-build` skill. Its definitions and design notes live in
-`build-agents-v1/codex/README.md`; installed agents are in `.codex/agents/`.
-The skill permits bounded subagent delegation for that build. Keep one builder
-at a time in a shared project directory and retain conductor control authority.
-Small edits do not require the crew. Review and trust the two local hooks before
-relying on them; they supplement sandbox and tool permissions.
+Use the project-local `factory-build` skill only when the full crew's
+controls materially help: genuinely complex coordination, material risk,
+repeated unresolved failure, explicit request for a formal crew, or MAKE IT
+ROBUST. A multi-step task or existing `PLAN.md` alone does not justify it.
+Its definitions and design notes live in `build-agents-v1/codex/README.md`;
+installed agents are in `.codex/agents/`. Keep one builder at a time in a
+shared project directory and retain conductor control authority. Small or
+ordinary MAKE IT WORK builds use the default one-agent lane above. Review and
+trust the two local hooks before relying on them; they supplement sandbox and
+tool permissions.
 
 ## Factory maintenance
 
