@@ -86,24 +86,26 @@ Apply deterministic rules first (including no-change and no-model short circuits
 the Factory coordinator remains accountable for choosing the actual role, model,
 review and next step. Jev is not a mandatory extra model call.
 
-- **Existing automations and approved pilots:** where a current approved Gate A
-  pilot record or per-project Jev-use record covers the workflow, data categories,
-  provider, time window and budget, allow the approved runner to observe eligible
-  recurring runs and gather outcome evidence without repeated per-run approval.
-  Do not pause or reset an authorised pilot solely because routing policy changes.
-  Existing execution, outputs and permissions remain unchanged during shadow
-  measurement. Expired, exhausted, disabled or out-of-scope pilots stop Jev calls,
-  not the underlying automation.
-- **New automations:** provide one reusable Jev integration and an optional
-  shadow/measurement path from the start when probabilistic judgements recur.
-  Prefer the shared `projects/jev-decision-gateway` over bespoke integrations.
-  A new project may use Jev from its first operational run, **without a
-  mandatory shadow period**, only after Renato approves its exact project-use
-  record under `MEMORY-CONTRACT.md`, credentials and billing are checked, and
-  the shared adapter's offline safety tests pass. A shadow-pilot-only Gate A
-  record authorises shadow observations, not live project use. Before approval,
-  use deterministic/offline paths; project creation is not consent for API
-  traffic, data disclosure, routing, or external actions.
+- **Existing automations and approved pilots:** make no change to the execution
+  path merely because this policy changes. A separately approved existing-route
+  pilot may observe eligible recurring runs in shadow within its exact Gate A
+  scope, expiry and budget, without further per-run approval. Jev failure or
+  pilot expiry stops Jev observations, not the original automation. Promotion
+  of an existing route to live requires representative evidence and Gate B.
+- **New Factory projects:** include the shared Jev adapter whenever recurring
+  bounded judgement is useful. Ask at intake: "Can local code filter, diff,
+  dedupe or cache this first? Can an unchanged run stop with zero model calls?"
+  When there is no new relevant state, stop without a model call. Otherwise,
+  **use Jev live from the first authorised operational run, not in shadow**,
+  after Renato approves the exact project-use record in `MEMORY-CONTRACT.md`
+  and credentials, billing, privacy, caller fallback and offline safeguards
+  have been verified. This is one project-level approval, not per-run approval.
+  New projects must reuse `projects/jev-decision-gateway` and its `decide()`
+  contract; never create a duplicate Jev integration. Before approval, use
+  deterministic/offline paths. Project creation is not itself consent for paid
+  API calls or data disclosure. A shadow-pilot Gate A record cannot approve
+  live project operation. An approved live judgement is an advisory input;
+  code alone retains permissions, actions and mandatory reviews.
 - **Two separate assessments:** difficulty suggests whether to use no model,
   a cheap builder, a stronger implementer or specialists. Risk determines
   mandatory verification/escalation independent of difficulty. A simple but
