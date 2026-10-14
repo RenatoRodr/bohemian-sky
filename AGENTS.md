@@ -71,12 +71,15 @@ optional.
 
 ## Recurring model work
 
-When a new or existing project will make recurring model calls, build it with
-the layered architecture in `PROJECT-ARCHETYPES.md` (local code first, then
-deterministic policy, Jev for bounded judgments, frontier models only when
-required, humans for authority). Reuse `projects/jev-decision-gateway`. This
-adds no approval: spending, data disclosure, and action authority stay under
-`SECURITY-AND-AUTHORITY.md`.
+When a new or existing project will make recurring model calls, use the
+layered architecture in `PROJECT-ARCHETYPES.md`: reuse existing scripts,
+skills, libraries and native automations before writing preprocessing code;
+apply deterministic policy, then Jev for useful bounded judgments, frontier
+models only when required, and humans for authority. Reuse
+`projects/jev-decision-gateway`. Do not build a dedicated script merely to
+avoid one model call: assess likely recurrence, saved work, reuse elsewhere,
+build/test effort and maintenance first. This adds no approval: spending, data
+disclosure and action authority stay under `SECURITY-AND-AUTHORITY.md`.
 
 ## Jev pilot learning and advisory role assignment
 
@@ -93,8 +96,10 @@ review and next step. Jev is not a mandatory extra model call.
   pilot expiry stops Jev observations, not the original automation. Promotion
   of an existing route to live requires representative evidence and Gate B.
 - **New Factory projects:** include the shared Jev adapter whenever recurring
-  bounded judgement is useful. Ask at intake: "Can local code filter, diff,
-  dedupe or cache this first? Can an unchanged run stop with zero model calls?"
+  bounded judgement is useful. Ask at intake: "Which existing script, skill,
+  library, native automation or connector can filter, diff, dedupe or cache
+  this? Can an unchanged run stop with zero model calls? If new code is needed,
+  does expected recurrence and reuse justify building, testing and maintaining it?"
   When there is no new relevant state, stop without a model call. Otherwise,
   **use Jev live from the first authorised operational run, not in shadow**,
   after Renato approves the exact project-use record in `MEMORY-CONTRACT.md`
