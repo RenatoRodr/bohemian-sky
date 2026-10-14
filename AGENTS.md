@@ -78,6 +78,54 @@ required, humans for authority). Reuse `projects/jev-decision-gateway`. This
 adds no approval: spending, data disclosure, and action authority stay under
 `SECURITY-AND-AUTHORITY.md`.
 
+## Jev pilot learning and advisory role assignment
+
+Jev is the preferred *inexpensive first-pass advisor* for eligible, bounded
+judgements about **task difficulty, risk/uncertainty and useful agent roles**.
+Apply deterministic rules first (including no-change and no-model short circuits);
+the Factory coordinator remains accountable for choosing the actual role, model,
+review and next step. Jev is not a mandatory extra model call.
+
+- **Existing automations and approved pilots:** where a current approved Gate A
+  pilot record or per-project Jev-use record covers the workflow, data categories,
+  provider, time window and budget, allow the approved runner to observe eligible
+  recurring runs and gather outcome evidence without repeated per-run approval.
+  Do not pause or reset an authorised pilot solely because routing policy changes.
+  Existing execution, outputs and permissions remain unchanged during shadow
+  measurement. Expired, exhausted, disabled or out-of-scope pilots stop Jev calls,
+  not the underlying automation.
+- **New automations:** design an optional Jev shadow/measurement path from the
+  start when probabilistic judgements recur. Prefer the shared
+  `projects/jev-decision-gateway` over bespoke integrations. Run the shadow
+  path by default **only once a valid scoped pilot/project authorisation,
+  credential, permitted data categories and spending ceiling are in place**.
+  Before then, use offline examples and deterministic checks; a new automation
+  is not itself consent for paid API traffic or data disclosure.
+- **Two separate assessments:** difficulty suggests whether to use no model,
+  a cheap builder, a stronger implementer or specialists. Risk determines
+  mandatory verification/escalation independent of difficulty. A simple but
+  security-sensitive task may still require an independent reviewer.
+- **Uncertainty:** use a stricter confidence standard for risk than difficulty.
+  For initial offline/shadow evaluation, provisional example thresholds are
+  risk >= 0.95 and difficulty >= 0.80; these are *not calibrated safety claims*
+  and cannot waive mandatory review. If risk confidence is below its threshold,
+  missing or conflicting, request a second independent judgement from an
+  appropriately capable model **only within existing budget and data authority**.
+  If that is unavailable or materially uncertain, retain required review and
+  seek a human decision only for consequential actions. Do not escalate trivial
+  work into bureaucracy.
+- **Measurement:** associate minimised input category, difficulty/risk scores
+  and confidence, recommended vs actual role/model, calls/tokens/cost, retry
+  count, duration, independent review, and observed outcome by a stable run ID.
+  Never store raw private prompts, credentials or sensitive task material in
+  shared telemetry. Record unknown outcomes as unknown, not success.
+
+Current Jev shadow classifiers and historic D0-D4 records remain observational.
+A new two-axis schema may be introduced alongside the old one, but **no active
+routing, model switching, automatic approval or policy relaxation** is enabled
+by this rule. Use the standing pilot and project-specific limits already defined
+in `MEMORY-CONTRACT.md`; no new authorisation process is created here.
+
 ## Goal execution
 
 When the user supplies a goal, capture the outcome and any stated constraints.
