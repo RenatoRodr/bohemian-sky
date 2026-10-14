@@ -63,8 +63,9 @@ Build the project this way from the start:
 
 ```
 raw sources
-  → local code: filter · diff · dedupe · calculate · cache · validate
-      └─ nothing changed → stop, no model call
+  → reuse existing scripts · skills · native automations · libraries
+      └─ where useful: filter · diff · dedupe · calculate · cache · validate
+          └─ nothing relevant changed → stop, no model call
   → deterministic policy: hard rules, exact lookups, calculations
   → Jev: bounded decisions; bundle independent questions over the same compact state when useful
       └─ clear → continue
@@ -75,6 +76,33 @@ raw sources
 - Reuse the shared contracts of `projects/jev-decision-gateway`
   (`decide()` and the `preprocessors/`). Do not build a per-project Jev
   integration or a second set of compilers.
+
+  
+### Reuse-before-build rule
+
+At intake, identify existing scripts, configured automations, skills, standard
+libraries, connectors and native application capabilities that already perform
+the deterministic operation. Prefer reusing or configuring these over creating
+a new standalone script. "Deterministic first" is an execution preference,
+**not** an instruction to write new code for every project.
+
+Only build a new reusable preprocessor when the expected repeated usage, avoided
+model work, reliability gain or cross-project benefit reasonably outweighs
+implementation, verification, deployment and maintenance effort. Make this a
+brief engineering judgment, not a compulsory business case. A small, safe,
+project-local adjustment to an existing workflow may be justified without
+creating a new shared component.
+
+If a custom preprocessor does not yet justify its cost, use the simplest
+working alternative, including an authorised Jev judgment where appropriate;
+do not block project delivery just to save occasional tokens. Record a
+specific candidate only when there is observed friction or credible recurrence:
+project-local ideas stay in the project's existing log; reusable cross-project
+patterns go to the Factory `LESSONS.md` with evidence, scope and review date.
+The existing Factory portfolio review checks recurrence and can propose a
+shared improvement; it does not auto-build it. Keep general tool bugs in the
+automation system's `BUG_LOG.md`, and running-automation incidents in their
+existing health checks. Do not create another review schedule or backlog.
 - Code owns known rules, exact extraction and calculation, permissions,
   execution, and mandatory surfacing or review. Jev classifies facts,
   relevance, ambiguity, severity, materiality, difficulty, or review
@@ -93,6 +121,60 @@ raw sources
 - Jev calls remain spending and external data disclosure under
   `SECURITY-AND-AUTHORITY.md` and `MEMORY-CONTRACT.md`. This section adds no
   approval.
+
+## Jev as an advisory dispatcher — existing and new automations
+
+The coordinator uses deterministic classification first, then may ask Jev for
+a bounded recommendation on **difficulty**, **risk** and **role usefulness**
+(e.g. direct builder vs architect + builder vs independent reviewer). It may
+choose different model tiers per role only if the runtime actually supports
+that choice; otherwise it records model inheritance and does not claim savings.
+
+**Do not conflate risk with difficulty.** Evaluate them separately even when
+the provider exposes only one Score call: the adapter may bundle two named
+judgements over the same minimal state. Preserve historical D0-D4 observer
+records rather than silently reinterpreting D4 as the new risk axis.
+
+Pilot routing policy, subject to empirical calibration:
+
+| Axis | Example assessment | Low-confidence handling |
+|---|---|---|
+| Difficulty | D0 script/no model; D1 routine; D2 standard; D3 complex | Trial threshold 0.80; use a capable default agent or escalate after failure |
+| Risk | R0 negligible; R1 reversible/local; R2 sensitive; R3 material/high impact | Trial threshold 0.95; independent stronger-model judgement if authorised, otherwise retain review and stop at any required human gate |
+
+Confidence thresholds above are **provisional operating hypotheses**, not
+reliable security guarantees. Calibrate against verified outcomes and audit false
+negatives. For any mandatory security/financial/production gate, deterministic
+policy wins even when Jev reports low risk with high confidence. A second model
+may strengthen evidence but can never grant permissions, waive an approval or
+override an existing human-only gate.
+
+**New project = live; existing automation = unchanged/shadow.** At project
+intake, first look for existing off-the-shelf scripts, automations and tools
+that can filter, diff, dedupe or cache inputs. Check whether an unchanged
+run can stop with **zero** model calls, and apply the reuse-before-build
+trade-off above before writing a dedicated preprocessor. Use exact code for
+rules and must-surface conditions. For every new recurring-AI project with
+useful bounded judgement, integrate the shared `decide()` contract and
+preprocessors; do not duplicate provider integrations. Once Renato approves
+one exact per-project Jev-use record and the adapter passes offline safeguards,
+make Jev an ordinary **live advisory input from its first operational run**,
+not a shadow observation. A project lacking approval remains deterministic/
+offline until authorised; do not make an unauthorised paid call. Continue
+existing automations unchanged and, if separately authorised, measure Jev in
+shadow without affecting outcomes. For failures, ambiguous judgments or budget
+exhaustion preserve deterministic fallback and mandatory reviews; do not retry
+or discard work silently. Record minimised decisions, observed outcomes, calls,
+costs and overrides for quality monitoring; never claim savings without a
+no-Jev baseline.
+
+Promoting an **existing shadow route** into active routing still needs its
+separate Gate B review and verified activation. A **new project** may instead
+use Jev as a bounded advisory input from its first operational run under an
+approved per-project record; this never delegates action authority or waives
+mandatory review. Observe the `MEMORY-CONTRACT.md` project-use and shadow
+Gate A boundaries separately. Merely adding this architecture authorises no
+paid call, data transfer, credential or unattended high-impact change.
 
 ## Choosing wrong costs little
 

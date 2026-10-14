@@ -71,12 +71,72 @@ optional.
 
 ## Recurring model work
 
-When a new or existing project will make recurring model calls, build it with
-the layered architecture in `PROJECT-ARCHETYPES.md` (local code first, then
-deterministic policy, Jev for bounded judgments, frontier models only when
-required, humans for authority). Reuse `projects/jev-decision-gateway`. This
-adds no approval: spending, data disclosure, and action authority stay under
-`SECURITY-AND-AUTHORITY.md`.
+When a new or existing project will make recurring model calls, use the
+layered architecture in `PROJECT-ARCHETYPES.md`: reuse existing scripts,
+skills, libraries and native automations before writing preprocessing code;
+apply deterministic policy, then Jev for useful bounded judgments, frontier
+models only when required, and humans for authority. Reuse
+`projects/jev-decision-gateway`. Do not build a dedicated script merely to
+avoid one model call: assess likely recurrence, saved work, reuse elsewhere,
+build/test effort and maintenance first. This adds no approval: spending, data
+disclosure and action authority stay under `SECURITY-AND-AUTHORITY.md`.
+
+## Jev pilot learning and advisory role assignment
+
+Jev is the preferred *inexpensive first-pass advisor* for eligible, bounded
+judgements about **task difficulty, risk/uncertainty and useful agent roles**.
+Apply deterministic rules first (including no-change and no-model short circuits);
+the Factory coordinator remains accountable for choosing the actual role, model,
+review and next step. Jev is not a mandatory extra model call.
+
+- **Existing automations and approved pilots:** make no change to the execution
+  path merely because this policy changes. A separately approved existing-route
+  pilot may observe eligible recurring runs in shadow within its exact Gate A
+  scope, expiry and budget, without further per-run approval. Jev failure or
+  pilot expiry stops Jev observations, not the original automation. Promotion
+  of an existing route to live requires representative evidence and Gate B.
+- **New Factory projects:** include the shared Jev adapter whenever recurring
+  bounded judgement is useful. Ask at intake: "Which existing script, skill,
+  library, native automation or connector can filter, diff, dedupe or cache
+  this? Can an unchanged run stop with zero model calls? If new code is needed,
+  does expected recurrence and reuse justify building, testing and maintaining it?"
+  When there is no new relevant state, stop without a model call. Otherwise,
+  **use Jev live from the first authorised operational run, not in shadow**,
+  after Renato approves the exact project-use record in `MEMORY-CONTRACT.md`
+  and credentials, billing, privacy, caller fallback and offline safeguards
+  have been verified. This is one project-level approval, not per-run approval.
+  New projects must reuse `projects/jev-decision-gateway` and its `decide()`
+  contract; never create a duplicate Jev integration. Before approval, use
+  deterministic/offline paths. Project creation is not itself consent for paid
+  API calls or data disclosure. A shadow-pilot Gate A record cannot approve
+  live project operation. An approved live judgement is an advisory input;
+  code alone retains permissions, actions and mandatory reviews.
+- **Two separate assessments:** difficulty suggests whether to use no model,
+  a cheap builder, a stronger implementer or specialists. Risk determines
+  mandatory verification/escalation independent of difficulty. A simple but
+  security-sensitive task may still require an independent reviewer.
+- **Uncertainty:** use a stricter confidence standard for risk than difficulty.
+  For initial offline/shadow evaluation, provisional example thresholds are
+  risk >= 0.95 and difficulty >= 0.80; these are *not calibrated safety claims*
+  and cannot waive mandatory review. If risk confidence is below its threshold,
+  missing or conflicting, request a second independent judgement from an
+  appropriately capable model **only within existing budget and data authority**.
+  If that is unavailable or materially uncertain, retain required review and
+  seek a human decision only for consequential actions. Do not escalate trivial
+  work into bureaucracy.
+- **Measurement:** associate minimised input category, difficulty/risk scores
+  and confidence, recommended vs actual role/model, calls/tokens/cost, retry
+  count, duration, independent review, and observed outcome by a stable run ID.
+  Never store raw private prompts, credentials or sensitive task material in
+  shared telemetry. Record unknown outcomes as unknown, not success.
+
+Current Jev shadow classifiers and historic D0-D4 records remain observational.
+A new two-axis schema may be introduced alongside the old one, but **no
+promotion of existing shadow routes, model switching, automatic approval or
+policy relaxation** is enabled by this rule. Separately authorised new-project
+Jev inputs remain advisory: caller code owns all actions, hard rules and required
+reviews. Use the standing pilot and project-specific limits already defined in
+`MEMORY-CONTRACT.md`; no new authorisation process is created here.
 
 ## Goal execution
 
