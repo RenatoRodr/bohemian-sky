@@ -121,19 +121,22 @@ policy wins even when Jev reports low risk with high confidence. A second model
 may strengthen evidence but can never grant permissions, waive an approval or
 override an existing human-only gate.
 
-**Learning by running:** continue existing approved Jev pilots on already
-scheduled automations, within their recorded limits, without changing the
-automations' normal behaviour. New eligible recurring automations integrate the
-shared gateway from the start, but default to an offline/disabled provider state.
-After exact project-specific approval under `MEMORY-CONTRACT.md` and safety
-verification, a new project may consume Jev advisory input immediately without
-a shadow period; a shadow-only pilot record cannot authorise this. Optional
-shadow measurement must not duplicate calls or delay approved ordinary use.
-On missing/expired approval, provider failure or uncertain output, run the
-pre-existing deterministic/default path and surface required reviews; do not
-retry or silently discard work. Collect minimised outcomes, role choices,
-confidence calibration, latency and observed costs; never claim savings without
-a no-Jev baseline. Exhaustion disables Jev calls, not the underlying task.
+**New project = live; existing automation = unchanged/shadow.** At project
+intake ask whether local code can filter, diff, dedupe or cache inputs and
+whether unchanged runs can stop with **zero** model calls. Use exact code for
+rules and must-surface conditions. For every new recurring-AI project with
+useful bounded judgement, integrate the shared `decide()` contract and
+preprocessors; do not duplicate provider integrations. Once Renato approves
+one exact per-project Jev-use record and the adapter passes offline safeguards,
+make Jev an ordinary **live advisory input from its first operational run**,
+not a shadow observation. A project lacking approval remains deterministic/
+offline until authorised; do not make an unauthorised paid call. Continue
+existing automations unchanged and, if separately authorised, measure Jev in
+shadow without affecting outcomes. For failures, ambiguous judgments or budget
+exhaustion preserve deterministic fallback and mandatory reviews; do not retry
+or discard work silently. Record minimised decisions, observed outcomes, calls,
+costs and overrides for quality monitoring; never claim savings without a
+no-Jev baseline.
 
 Promoting an **existing shadow route** into active routing still needs its
 separate Gate B review and verified activation. A **new project** may instead
