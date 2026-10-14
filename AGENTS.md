@@ -127,18 +127,35 @@ Generated dashboards are views, never authority.
 
 ## Default development lane — MAKE IT WORK
 
-For ordinary development in an already authorised project, prefer a **single
-direct coding agent** over the full build crew. Read the relevant instructions,
-implement the requested change, run targeted checks, produce an early working
-preview, and record only what is necessary to resume. Minor implementation
-choices are autonomous; no recurring architect, gatekeeper, auditor, per-attempt
-manifest, full-project snapshot, or portfolio paperwork is required.
+For ordinary development in an already authorised project, use **one accountable
+coding agent and one writer by default**, not a mandatory architect/builder/
+gatekeeper/auditor chain. Read only relevant instructions; implement, run
+proportional tests, show an early working preview, and retain minimal continuity
+notes. Resolve minor implementation choices without asking the user.
 
-Escalate to the full build crew when work involves production or customer data,
-authentication, permissions, secrets, multi-agent write coordination, material
-irreversible consequences, repeated failures, or explicitly requested
-MAKE IT ROBUST governance. Verification remains proportional to the change;
-do not remove tests just to suppress approval requests.
+**Selective multi-agent delegation:** keep specialist roles available, but call
+them only when independent bounded research, separate worktrees, or a genuinely
+useful independent review improves the result. Never require a subagent merely
+because a task has multiple steps. Give each delegate a narrow scope and a
+compact handback; one writer owns any shared project tree. The coordinator
+remains accountable for integration and acceptance.
+
+**Cost-aware execution:** prefer deterministic code and checks over model calls
+when possible. For model work, select the least expensive capable model/tier
+*only where the active runtime and existing budget/authority support selecting
+it*. Escalate capability for difficult reasoning or repeated failure; use
+stronger verification for authentication, permissions, secrets, tenant isolation
+and customer/production data. Do not assume subagents run on different models:
+if a runtime inherits the parent model, document that limitation rather than
+claiming savings. Do not add paid API calls or change the user's model setting
+without the applicable authority. Evaluate total task cost, including handoffs,
+retries and verification—not model list price alone.
+
+Use the **full build crew** only for genuinely complex coordinated work,
+material/high-risk operations, repeated unresolved failure, explicitly requested
+formal governance, or MAKE IT ROBUST. Security-sensitive changes can require
+independent review without automatically invoking the entire crew. Tests
+remain proportional, not optional; never weaken them to silence approvals.
 
 Use editable work/previews for drafts and disposable fixtures under work/tmp;
 freeze shipped deliverables in outputs. Platform approvals and tool-level
