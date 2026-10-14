@@ -94,13 +94,16 @@ review and next step. Jev is not a mandatory extra model call.
   Existing execution, outputs and permissions remain unchanged during shadow
   measurement. Expired, exhausted, disabled or out-of-scope pilots stop Jev calls,
   not the underlying automation.
-- **New automations:** design an optional Jev shadow/measurement path from the
-  start when probabilistic judgements recur. Prefer the shared
-  `projects/jev-decision-gateway` over bespoke integrations. Run the shadow
-  path by default **only once a valid scoped pilot/project authorisation,
-  credential, permitted data categories and spending ceiling are in place**.
-  Before then, use offline examples and deterministic checks; a new automation
-  is not itself consent for paid API traffic or data disclosure.
+- **New automations:** provide one reusable Jev integration and an optional
+  shadow/measurement path from the start when probabilistic judgements recur.
+  Prefer the shared `projects/jev-decision-gateway` over bespoke integrations.
+  A new project may use Jev from its first operational run, **without a
+  mandatory shadow period**, only after Renato approves its exact project-use
+  record under `MEMORY-CONTRACT.md`, credentials and billing are checked, and
+  the shared adapter's offline safety tests pass. A shadow-pilot-only Gate A
+  record authorises shadow observations, not live project use. Before approval,
+  use deterministic/offline paths; project creation is not consent for API
+  traffic, data disclosure, routing, or external actions.
 - **Two separate assessments:** difficulty suggests whether to use no model,
   a cheap builder, a stronger implementer or specialists. Risk determines
   mandatory verification/escalation independent of difficulty. A simple but
@@ -121,10 +124,12 @@ review and next step. Jev is not a mandatory extra model call.
   shared telemetry. Record unknown outcomes as unknown, not success.
 
 Current Jev shadow classifiers and historic D0-D4 records remain observational.
-A new two-axis schema may be introduced alongside the old one, but **no active
-routing, model switching, automatic approval or policy relaxation** is enabled
-by this rule. Use the standing pilot and project-specific limits already defined
-in `MEMORY-CONTRACT.md`; no new authorisation process is created here.
+A new two-axis schema may be introduced alongside the old one, but **no
+promotion of existing shadow routes, model switching, automatic approval or
+policy relaxation** is enabled by this rule. Separately authorised new-project
+Jev inputs remain advisory: caller code owns all actions, hard rules and required
+reviews. Use the standing pilot and project-specific limits already defined in
+`MEMORY-CONTRACT.md`; no new authorisation process is created here.
 
 ## Goal execution
 
