@@ -125,6 +125,26 @@ For operating instructions, explicit user instructions win, followed by
 `control/INSTRUCTIONS.md`, the closest nested `AGENTS.md`, and skill defaults.
 Generated dashboards are views, never authority.
 
+## Default development lane — MAKE IT WORK
+
+For ordinary development in an already authorised project, prefer a **single
+direct coding agent** over the full build crew. Read the relevant instructions,
+implement the requested change, run targeted checks, produce an early working
+preview, and record only what is necessary to resume. Minor implementation
+choices are autonomous; no recurring architect, gatekeeper, auditor, per-attempt
+manifest, full-project snapshot, or portfolio paperwork is required.
+
+Escalate to the full build crew when work involves production or customer data,
+authentication, permissions, secrets, multi-agent write coordination, material
+irreversible consequences, repeated failures, or explicitly requested
+MAKE IT ROBUST governance. Verification remains proportional to the change;
+do not remove tests just to suppress approval requests.
+
+Use editable work/previews for drafts and disposable fixtures under work/tmp;
+freeze shipped deliverables in outputs. Platform approvals and tool-level
+permissions remain in force. Opening a reviewed pull request never implies
+permission to merge, deploy, or disclose private material.
+
 ## Codex build crew
 
 For a requested multi-step build that benefits from its controls, use the
