@@ -123,19 +123,25 @@ override an existing human-only gate.
 
 **Learning by running:** continue existing approved Jev pilots on already
 scheduled automations, within their recorded limits, without changing the
-automations' normal behaviour. Include Jev shadow observations when setting up
-new eligible recurring automations once the required scope/budget/data approval
-is valid. The pilot must leave an unavailable/uncertain record and execute the
-pre-existing deterministic/default path on Jev failure; no retry without budget.
-Collect outcomes, model/role choices, confidence calibration, latency and actual
-total costs to compare against the no-Jev baseline. If a pilot expires or reaches
-its ceiling, omit the Jev request and continue the underlying task as authorised.
+automations' normal behaviour. New eligible recurring automations integrate the
+shared gateway from the start, but default to an offline/disabled provider state.
+After exact project-specific approval under `MEMORY-CONTRACT.md` and safety
+verification, a new project may consume Jev advisory input immediately without
+a shadow period; a shadow-only pilot record cannot authorise this. Optional
+shadow measurement must not duplicate calls or delay approved ordinary use.
+On missing/expired approval, provider failure or uncertain output, run the
+pre-existing deterministic/default path and surface required reviews; do not
+retry or silently discard work. Collect minimised outcomes, role choices,
+confidence calibration, latency and observed costs; never claim savings without
+a no-Jev baseline. Exhaustion disables Jev calls, not the underlying task.
 
-Only a separately reviewed, authorised, verified routing change can promote
-Jev from advisor/shadow observer to active dispatcher. Continue to observe the
-`MEMORY-CONTRACT.md` per-project and Gate A controls; merely adding this
-architecture never authorises paid provider calls, new data transfer,
-credentials or unattended high-impact changes.
+Promoting an **existing shadow route** into active routing still needs its
+separate Gate B review and verified activation. A **new project** may instead
+use Jev as a bounded advisory input from its first operational run under an
+approved per-project record; this never delegates action authority or waives
+mandatory review. Observe the `MEMORY-CONTRACT.md` project-use and shadow
+Gate A boundaries separately. Merely adding this architecture authorises no
+paid call, data transfer, credential or unattended high-impact change.
 
 ## Choosing wrong costs little
 
