@@ -72,6 +72,49 @@ raw sources
   → human, for authority decisions
 ```
 
+## Jev as an advisory dispatcher — existing and new automations
+
+The coordinator uses deterministic classification first, then may ask Jev for
+a bounded recommendation on **difficulty**, **risk** and **role usefulness**
+(e.g. direct builder vs architect + builder vs independent reviewer). It may
+choose different model tiers per role only if the runtime actually supports
+that choice; otherwise it records model inheritance and does not claim savings.
+
+**Do not conflate risk with difficulty.** Evaluate them separately even when
+the provider exposes only one Score call: the adapter may bundle two named
+judgements over the same minimal state. Preserve historical D0-D4 observer
+records rather than silently reinterpreting D4 as the new risk axis.
+
+Pilot routing policy, subject to empirical calibration:
+
+| Axis | Example assessment | Low-confidence handling |
+|---|---|---|
+| Difficulty | D0 script/no model; D1 routine; D2 standard; D3 complex | Trial threshold 0.80; use a capable default agent or escalate after failure |
+| Risk | R0 negligible; R1 reversible/local; R2 sensitive; R3 material/high impact | Trial threshold 0.95; independent stronger-model judgement if authorised, otherwise retain review and stop at any required human gate |
+
+Confidence thresholds above are **provisional operating hypotheses**, not
+reliable security guarantees. Calibrate against verified outcomes and audit false
+negatives. For any mandatory security/financial/production gate, deterministic
+policy wins even when Jev reports low risk with high confidence. A second model
+may strengthen evidence but can never grant permissions, waive an approval or
+override an existing human-only gate.
+
+**Learning by running:** continue existing approved Jev pilots on already
+scheduled automations, within their recorded limits, without changing the
+automations' normal behaviour. Include Jev shadow observations when setting up
+new eligible recurring automations once the required scope/budget/data approval
+is valid. The pilot must leave an unavailable/uncertain record and execute the
+pre-existing deterministic/default path on Jev failure; no retry without budget.
+Collect outcomes, model/role choices, confidence calibration, latency and actual
+total costs to compare against the no-Jev baseline. If a pilot expires or reaches
+its ceiling, omit the Jev request and continue the underlying task as authorised.
+
+Only a separately reviewed, authorised, verified routing change can promote
+Jev from advisor/shadow observer to active dispatcher. Continue to observe the
+`MEMORY-CONTRACT.md` per-project and Gate A controls; merely adding this
+architecture never authorises paid provider calls, new data transfer,
+credentials or unattended high-impact changes.
+
 - Reuse the shared contracts of `projects/jev-decision-gateway`
   (`decide()` and the `preprocessors/`). Do not build a per-project Jev
   integration or a second set of compilers.
