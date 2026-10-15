@@ -7,57 +7,33 @@
   "source_commit_note": "Bound to the immutable commit only after trusted reviewed-main provenance is verified.",
   "files": {
     "agents/factory-architect.toml": {
-      "sha256": "661fd7fbdebf385fc3b97f2bf54ed0b81e60682488c6710e882568be76c907d8",
-      "target": ".codex/agents/factory-architect.toml",
-      "observed_installed_sha256": "661fd7fbdebf385fc3b97f2bf54ed0b81e60682488c6710e882568be76c907d8"
+      "sha256": "661fd7fbdebf385fc3b97f2bf54ed0b81e60682488c6710e882568be76c907d8"
     },
     "agents/factory-auditor.toml": {
-      "sha256": "07bb48ee02209023192f4111b805a02946a4fd23e1cfc2fcce762e72323f89cc",
-      "target": ".codex/agents/factory-auditor.toml",
-      "observed_installed_sha256": "07bb48ee02209023192f4111b805a02946a4fd23e1cfc2fcce762e72323f89cc"
+      "sha256": "07bb48ee02209023192f4111b805a02946a4fd23e1cfc2fcce762e72323f89cc"
     },
     "agents/factory-builder.toml": {
-      "sha256": "6ac9e22a92c27a5e1e5cf898a6bf9275c11db84a6e1b06ad1f6808f6eb30b034",
-      "target": ".codex/agents/factory-builder.toml",
-      "observed_installed_sha256": "6ac9e22a92c27a5e1e5cf898a6bf9275c11db84a6e1b06ad1f6808f6eb30b034"
+      "sha256": "6ac9e22a92c27a5e1e5cf898a6bf9275c11db84a6e1b06ad1f6808f6eb30b034"
     },
     "agents/factory-gatekeeper.toml": {
-      "sha256": "85ee8563465a1bab264ebf2587a6dd6234d9b878f5564192129885ba39493126",
-      "target": ".codex/agents/factory-gatekeeper.toml",
-      "observed_installed_sha256": "85ee8563465a1bab264ebf2587a6dd6234d9b878f5564192129885ba39493126"
+      "sha256": "85ee8563465a1bab264ebf2587a6dd6234d9b878f5564192129885ba39493126"
     },
     "skills/factory-build/SKILL.md": {
-      "sha256": "aa6acf4b4bc33b1fc5616ab6e9296c331d3a7f49623a5348cfcb3e834c6881ad",
-      "target": ".agents/skills/factory-build/SKILL.md",
-      "observed_installed_sha256": "b5578288f0bfa6cec06865b30f19cf78f27b45c9ecd06955bf5b9915f2b1e2c3"
+      "sha256": "aa6acf4b4bc33b1fc5616ab6e9296c331d3a7f49623a5348cfcb3e834c6881ad"
     },
     "skills/factory-build/references/PLAN.md": {
-      "sha256": "95ac3a06cfed42d88893718eec58e0d4eb52f66e4d6b63c41b6851ef5f020626",
-      "target": ".agents/skills/factory-build/references/PLAN.md",
-      "observed_installed_sha256": "95ac3a06cfed42d88893718eec58e0d4eb52f66e4d6b63c41b6851ef5f020626"
+      "sha256": "95ac3a06cfed42d88893718eec58e0d4eb52f66e4d6b63c41b6851ef5f020626"
     },
     "skills/factory-build/scripts/build_check.py": {
-      "sha256": "46362aea7172bf49e0add37441325f725870d215a0671df6a5ce2e4ad3957417",
-      "target": ".agents/skills/factory-build/scripts/build_check.py",
-      "observed_installed_sha256": "46362aea7172bf49e0add37441325f725870d215a0671df6a5ce2e4ad3957417"
+      "sha256": "46362aea7172bf49e0add37441325f725870d215a0671df6a5ce2e4ad3957417"
     },
     "skills/factory-build/scripts/execution_manifest.py": {
-      "sha256": "848a302a6fb03a94ef4c99e93148e0cd06b8009de6b4a0720ee65341b93c5b50",
-      "target": ".agents/skills/factory-build/scripts/execution_manifest.py",
-      "observed_installed_sha256": "848a302a6fb03a94ef4c99e93148e0cd06b8009de6b4a0720ee65341b93c5b50"
+      "sha256": "848a302a6fb03a94ef4c99e93148e0cd06b8009de6b4a0720ee65341b93c5b50"
     }
-  },
-  "shared_rules": {
-    "repository": "RenatoRodr/bohemian-sky",
-    "manifest": "work/source-sync/shared-source-manifest.json",
-    "composition": "unchanged eight-document GitHub plus private overlay"
   },
   "source_only": {
     "updater/refresh/refresh_core.py": {
-      "sha256": "44b7d88e97f79ee15a8686a7736f8efe9386f2158840457ce017930846d6d9cf"
-    },
-    "updater/refresh/sessionstart_refresh_candidate.py": {
-      "sha256": "8836f089a2e8a22ac022cb197aa09186cdb8cf82e194aaba3e3c3c6bac7f7cf5"
+      "sha256": "ac3e3ab1e8c091acba4bc0276b06ffe053ace2d3f2519d841bd946d8464f553d"
     },
     "updater/refresh/source_verifier.py": {
       "sha256": "d14286b3280d67eaa371ee79aabb99eaae809af4833402ade065255c7779d10e"
