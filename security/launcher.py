@@ -1,7 +1,7 @@
-"""Unactivated launcher contract / safe prototype.
+"""Fail-closed launcher boundary contract; it intentionally starts no process.
 
-This prototype deliberately refuses to spawn commands: Python process-local
-identity is forgeable and there is no OS sandbox or durable recovery broker.
+Python callers can forge these booleans. A production implementation needs a
+host-owned broker and OS-enforced sandbox before this gate is meaningful.
 """
 from pathlib import Path
 from typing import Optional
@@ -14,14 +14,16 @@ class LauncherUnavailable(RuntimeError):
 
 def require_production_boundary(*, trusted_runtime: bool,
                                 os_sandbox_verified: bool,
-                                audit_recovery_broker: bool) -> None:
-    if not (trusted_runtime and os_sandbox_verified and audit_recovery_broker):
+                                audit_recovery_broker: bool,
+                                connector_broker: bool = False) -> None:
+    if not all((trusted_runtime, os_sandbox_verified, audit_recovery_broker, connector_broker)):
         raise LauncherUnavailable(
-            "trusted runtime, verified OS sandbox, and protected audit/recovery broker required"
+            "trusted host identity, verified OS sandbox, protected audit/recovery, "
+            "and connector brokers are required; prototype will not spawn commands"
         )
 
 
 def preview_authorization(identity: Identity, capability: Capability,
                           operation: str, target: Optional[Path] = None) -> Decision:
-    """Evaluate policy for tests/design review. Never execute the operation."""
+    """Evaluate policy for design/tests only. Never authorize execution."""
     return authorize(identity, capability, operation, target)
