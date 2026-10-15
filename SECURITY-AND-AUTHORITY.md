@@ -56,10 +56,10 @@ Disposable development fixtures
 Cleanup of files created specifically for testing under an explicitly designated
 temporary work directory is routine reversible development housekeeping, not
 permission to delete source material, user inputs, review records, shipped
-outputs, or production data. The agent must verify the target remains inside the
-authorised project before cleanup. Unknown or ambiguous deletion targets still
-require review. Do not treat a text-matching hook as an operating-system security
-boundary.
+outputs, or production data. The agent must verify the target remains inside
+the authorised project before cleanup. Unknown or ambiguous deletion targets
+still require review. Do not treat a text-matching hook as an operating-system
+security boundary.
 
 ## Autonomy levels
 
