@@ -197,18 +197,19 @@ Generated dashboards are views, never authority.
 
 ## Default development lane — MAKE IT WORK
 
-For ordinary development in an already authorised project, use **one accountable
-coding agent and one writer by default**, not a mandatory architect/builder/
-gatekeeper/auditor chain. Read only relevant instructions; implement, run
-proportional tests, show an early working preview, and retain minimal continuity
-notes. Resolve minor implementation choices without asking the user.
+Use one accountable agent and one writer by default. Read relevant instructions,
+build a usable result early, run proportionate checks, and keep continuity notes
+minimal. Resolve routine choices autonomously.
 
-**Selective multi-agent delegation:** keep specialist roles available, but call
-them only when independent bounded research, separate worktrees, or a genuinely
-useful independent review improves the result. Never require a subagent merely
-because a task has multiple steps. Give each delegate a narrow scope and a
-compact handback; one writer owns any shared project tree. The coordinator
-remains accountable for integration and acceptance.
+Delegate only when a bounded independent task, separate worktree, or useful
+independent review improves the result enough to justify coordination. The
+coordinator remains accountable for integration and acceptance. A coordinator
+may create and maintain the working plan, scope, and acceptance criteria as
+needed. A delegated builder may report a needed change but cannot edit the
+authoritative plan or redefine acceptance. An independent auditor reviews
+against the user goal and agreed criteria; an auditor cannot certify work they
+implemented. Architecture review, builders, and audits are available roles, not
+mandatory gates. Use the smallest set of roles that fits the task.
 
 **Cost-aware execution:** prefer deterministic code and checks over model calls
 when possible. For model work, select the least expensive capable model/tier
@@ -221,11 +222,12 @@ claiming savings. Do not add paid API calls or change the user's model setting
 without the applicable authority. Evaluate total task cost, including handoffs,
 retries and verification—not model list price alone.
 
-Use the **full build crew** only for genuinely complex coordinated work,
+Use the **full build crew** only for genuinely complex coordination,
 material/high-risk operations, repeated unresolved failure, explicitly requested
-formal governance, or MAKE IT ROBUST. Security-sensitive changes can require
-independent review without automatically invoking the entire crew. Tests
-remain proportional, not optional; never weaken them to silence approvals.
+formal governance, or MAKE IT ROBUST. Security-sensitive changes may need an
+independent review without requiring the whole crew. Verification is
+proportionate to risk and consequence; do not weaken a required check to bypass
+a denial.
 
 Use editable work/previews for drafts and disposable fixtures under work/tmp;
 freeze shipped deliverables in outputs. Platform approvals and tool-level
