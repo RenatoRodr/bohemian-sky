@@ -23,8 +23,17 @@ activate from this branch.
    processes or alternate tools: there is no enforcing runtime to test.
 5. **Staged migration and rollback — DOCUMENTED, NOT EXECUTED.** Scripts remain
    inert instructions. No backup, install, activation, or live config change.
-6. **Review package — IN PROGRESS.** Changes are isolated in this branch for a
-   separate review PR. No commit, push, install, merge, or activation performed.
+6. **Review package — WAITING_FOR_APPROVAL.** Commit `0b74f96` is pushed on
+   `build/security-v3-runtime`. The pre-tool-use hook blocked `gh pr create`
+   as an external send requiring explicit human approval. The branch is ready;
+   PR creation is not complete. No install, merge, or activation occurred.
+
+## Gated actions
+
+- **Create GitHub PR:** blocked by the active pre-tool-use hook with
+  `BLOCKED — external send`; it requires explicit human approval. The exact
+  proposed action is to create a PR from `build/security-v3-runtime` into
+  `main`, titled “Continue Security v3 runtime prototype,” for code review.
 
 ## Acceptance state
 
