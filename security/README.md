@@ -1,19 +1,29 @@
-# Security v3 proposal
+# Security v3 runtime prototype
 
-This directory contains an unactivated policy and prototype. It does not replace v2, alter installed hooks, or enforce OS isolation. `launcher.py` deliberately refuses to launch because this repository cannot establish trusted runtime identity, a verified OS sandbox, or protected audit/recovery storage.
+This branch continues the Security v3 proposal merged in PR #15. The code is a
+fail-closed policy reference, not a practical macOS security runtime: it does
+not spawn commands, establish trusted identities, enforce OS sandboxing, broker
+Google Drive or other connectors, or provide protected audit/recovery storage.
+No production security guarantee is claimed.
 
-- `POLICY.md` defines intended capabilities and enforcement boundaries.
-- `policy.py` is a testable authorization model.
-- `hooks.py` illustrates narrow denial-only classification; an empty result is not authorization.
-- `agent-proposals/` contains replacement role definitions. Current installed role files remain untouched.
-- `migrate.sh` and `rollback.sh` print the required manual stages and do not modify configuration.
-- `tests/` covers policy-level positive and negative cases. They cannot prove OS or connector containment.
-- `WORK-PLAN.md` records task status.
+## Implemented here
 
-## Current inspection findings
+- Policy decisions for authorized local workspace reads/writes and explicit
+  cross-project grants, with resolved-path and symlink escape checks.
+- Narrow child capability derivation and separate external-effect categories
+  for email, GitHub writes, publishing, deployments, Git pushes and paid APIs.
+- Protected governance-name checks and fail-closed handling for secret and
+  identity/escalation operations.
+- Deny-only hook classification and a launcher boundary that refuses to spawn
+  unless required host services are asserted (the assertions themselves are
+  not trustworthy in this Python prototype).
+- Inert migration and rollback checklists; neither edits configuration.
 
-The live runtime registers pre-tool-use and session-start hooks under `~/.codex/hooks.json`; hook programs and v2 policy are under private local paths. v2 labels itself best effort and defers opaque shell forms to native controls. These private configurations and source files were inspected read-only and are not copied here. The repository itself had no versioned agent definitions; the local definitions were inspected read-only and generalized into review proposals.
+Google Drive authorization is not implemented or granted by this checkout.
+Only a host broker with an explicit selected workspace scope can provide it.
+The installed hooks and live configuration remain untouched.
 
-## Explicit scope
-
-Authorized development target: this repository checkout. Google Drive project workspaces are proposed as an explicit future capability, not accessed or modified by this change. No credentials, personal content, absolute private paths, active hook configuration, installation, activation, or Git push are included.
+Run the local policy regression suite with
+`python3 -m unittest discover -s security/tests -v`. These tests validate the
+reference model only; they do not prove enforcement against subprocesses,
+alternate tools, macOS escape paths, connector APIs, or a hostile process.

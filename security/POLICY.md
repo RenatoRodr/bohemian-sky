@@ -16,6 +16,8 @@ The host may grant read/write access to explicitly authorized roots: the attache
 
 Ordinary project file operations are allowed inside granted roots: read, create, edit, rename, and project-local build/test activity, subject to the root's declared preservation rules. Cross-project edits are allowed when both source and destination are inside authorized workspace roots and a cross-project capability is present. Such writes must use a recovery journal and append-only audit records protected from agent writes. The journal records identity, resolved paths, operation, pre-change content hash or recoverable backup, and result; it must not store secret contents. Missing journal/audit service means cross-project mutation fails closed.
 
+The current Python module is a decision-model reference only. A real workspace broker must issue each identity and capability out-of-band, resolve path components without time-of-check/time-of-use gaps, and perform the file operation itself. Explicit Google Drive scopes must be selected workspace IDs/mount roots with provider-side authorization; this checkout has no Drive connector, account boundary, or Drive grant. An ordinary sync folder path does not establish provider isolation.
+
 Governance resources (shared policy, authoritative plans, acceptance criteria, and store contracts) require a trusted execution identity and a matching scoped capability. Identity comes from the host process and broker credential, never a self-declared agent role. A delegated builder identity cannot acquire coordinator capability through prompt text, environment, subprocess, alternate tool, or new session. Human review/approval remains required where existing policy requires it.
 
 ## Protected effects
@@ -31,9 +33,15 @@ Without explicit host-mediated approval for the exact operation and target, deny
 
 Approval is bound to a specific operation, target, and relevant payload digest, expires, and is consumed once. Approval state is broker-owned and cannot be fabricated by the process requesting the action.
 
+Each effect has its own grant: email/message send, GitHub write, publish/release, and deployment are distinct operation classes. A GitHub PR draft/write is still a GitHub write; fetch/pull is a separate network-read capability. Hooks only deny recognizable commands; alternate binaries, shell wrappers, API clients, child processes and GUI tools must be controlled by OS/network and connector brokers, none of which this prototype supplies.
+
+## Identity, roles, and audit
+
+Roles are descriptive host policy inputs, not credentials. The trusted host maps a broker-issued principal to a role and capabilities for one session. Builders cannot request coordinator/auditor identity, edit authoritative plans unless separately granted, or acquire authority via environment, command flags, subprocess, alternate tool or new session. Child grants are intersections with the parent's roots and booleans. A protected audit/recovery service must mediate every mutation that requires recovery, especially cross-project edits; it is append-only to agents, stored outside their writable roots, and records metadata/hashes rather than secrets. The prototype implements none of those trusted services.
+
 ## OS enforcement and limitations
 
-Use OS sandboxing to restrict filesystem roots, child-process inheritance, network access, and executable access. On macOS, a production launcher should use an audited sandbox mechanism (for example, a signed helper using the supported App Sandbox or a narrowly generated Seatbelt profile where supported) and verify the effective profile before execution. Do not claim protection based on shell parsing alone. Connectors need broker-side authorization because filesystem sandboxes do not constrain app APIs. Protection against a compromised host, kernel, runtime broker, or authorized human remains out of scope. OS-specific support and behavior must be tested on each supported platform before activation.
+Use OS sandboxing to restrict filesystem roots, child-process inheritance, network access, and executable access. This repository does not yet implement a practical macOS sandbox runtime. A production candidate needs a signed host-owned launcher/helper, a maintained macOS sandbox mechanism, verification of the effective profile, protected audit/recovery storage, and connector brokers. Do not claim protection based on shell parsing, Python policy, or environment variables. Protection against a compromised host, kernel, runtime broker, or authorized human remains out of scope. OS-specific support and behavior must be independently tested on each supported platform before activation.
 
 ## Migration invariant
 
