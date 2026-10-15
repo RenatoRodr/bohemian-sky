@@ -45,6 +45,18 @@ The existing intake, scaffold, resume, delegate, ingest, close, retro,
 portfolio, and audit machinery remains available as optional tools. It is not
 the default front door or recurring checklist at MAKE IT WORK.
 
+## Working roles
+
+One accountable agent is the default. A coordinator owns delivery, integration,
+and any working plan; it may maintain plan details and acceptance criteria
+autonomously within the user's goal and constraints. An architect may advise on
+structure and risks, but architecture review is not a default gate. A builder
+implements one bounded assignment and returns evidence; delegated builders do
+not edit the authoritative plan or acceptance criteria. An auditor independently
+checks the result against the agreed goal and evidence and cannot certify work
+they implemented. Use each role only when it adds value. Keep documentation and
+gates minimal and verify in proportion to risk.
+
 ## Fixed versus flexible
 
 Four safeguards apply from day one: secrets/API keys outside the repo; writes
@@ -109,6 +121,7 @@ The portfolio review routine (MASTER-PROMPTS.md, briefing prompt) is the audit i
 |---|---|---|
 | 2026-10-12 | Added a `MEMORY-CONTRACT.md` section letting a project built with the recurring-AI architecture use Jev under a per-project approval record (data, spend, calls, expiry, kill switch, fallback, rollback). No shadow period required; no action authority added. | Renato asked that new projects be built Jev-inclusive, not shadow-only. |
 | 2026-10-12 | Added the recurring-AI architecture to `PROJECT-ARCHETYPES.md` and a pointer in `AGENTS.md`: projects with recurring model calls are built local-code-first, with Jev for bounded judgments, frontier models only when required, and humans for authority. Adds no approval or authority. | Renato asked that new projects be built Jev-inclusive wherever applicable. |
+| 2026-10-15 | Clarified the one-agent default and coordinator, architect, builder, and auditor responsibilities. Plans and acceptance remain coordinator-owned; delegated builders cannot edit them, and auditors cannot certify their own implementation. | Factory Simplification and Security v3 proposal. |
 | 2026-10-11 | Shortened the Jev shadow telemetry retention proposal from 90 to 30 days after the pilot ends. The rule still requires human-reviewed disposition. | Renato judged 90 days too long. |
 | 2026-10-10 | Added an experimental Jev shadow telemetry store contract with explicit writer, reader, retention, and non-authority boundaries. This does not itself authorize a live API call or task-data disclosure. | Renato approved a bounded observational pilot; each external call remains separately gated. |
 | 2026-09-29 | Introduced Fast-Start Factory v2: MAKE IT WORK is default; MAKE IT RELIABLE and MAKE IT ROBUST retain advanced governance as optional stages. | Recurring feedback identified excess routine decisions and paperwork; advanced controls remain available. |
