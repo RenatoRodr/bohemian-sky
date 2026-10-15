@@ -20,6 +20,35 @@ functionality, cost, security, irreversible actions, or user experience.
 The detailed controls below are maturity-stage tools, not extra default
 paperwork for MAKE IT WORK.
 
+## Codex execution and external actions
+
+Use Codex's `workspace-write` sandbox for local commands. Keep writable roots
+limited to the active project folders. Do not add the home directory or the
+Factory parent. Commands may read files outside the workspace, so this mode
+limits writes but does not provide read confidentiality. Keep command network
+access off unless a task needs it. Read-only research does not authorize a
+service write.
+
+The local command sandbox does not govern app connectors or MCP tools. Codex
+can ask for approval when an app tool declares side effects. A destructive
+tool marked as destructive requires approval unless it is also marked as
+read. Connector account permissions remain separate. Get human approval for
+the exact target and operation before sending communications, deploying,
+spending money, changing credentials or permissions, or mutating cloud data.
+Use a human reviewer, not automatic review. If the available tool does not
+show a clear approval gate, leave that action disabled or have the user
+perform it.
+
+Routine local Git work inside an authorized project may proceed without
+repeated approval. A push to a shared remote remains an external write and
+needs approval. Keep Factory hooks for governance rules the native sandbox
+does not cover. Do not use them as a second filesystem sandbox, and do not
+remove a live hook control until an agent-session test with that hook active
+proves the replacement and a rollback is ready.
+
+See [Codex approvals and security](https://learn.chatgpt.com/docs/agent-approvals-security)
+for current sandbox and app-action approval behavior.
+
 ## Development fixture scope
 
 Disposable development fixtures
@@ -27,10 +56,10 @@ Disposable development fixtures
 Cleanup of files created specifically for testing under an explicitly designated
 temporary work directory is routine reversible development housekeeping, not
 permission to delete source material, user inputs, review records, shipped
-outputs, or production data. The agent must verify the target remains inside
-the authorised project before cleanup. Unknown or ambiguous deletion targets
-still require review. Do not treat a text-matching hook as an operating-system
-security boundary.
+outputs, or production data. The agent must verify the target remains inside the
+authorised project before cleanup. Unknown or ambiguous deletion targets still
+require review. Do not treat a text-matching hook as an operating-system security
+boundary.
 
 ## Autonomy levels
 
