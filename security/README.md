@@ -19,9 +19,22 @@ No production security guarantee is claimed.
   not trustworthy in this Python prototype).
 - Inert migration and rollback checklists; neither edits configuration.
 
-Google Drive authorization is not implemented or granted by this checkout.
-Only a host broker with an explicit selected workspace scope can provide it.
-The installed hooks and live configuration remain untouched.
+Google Drive access uses its separate connector and account permissions. The
+local command sandbox does not scope that connector to the active project
+folder. This checkout does not prove folder-level Drive isolation. Installed
+hooks and live configuration remain untouched.
+
+The connector approval assessment and offline broker mock are documented in
+[`EXTERNAL-ACTION-LAYER.md`](EXTERNAL-ACTION-LAYER.md). Codex documents per-app
+and per-tool approval settings, but they have not been verified in this task's
+connector runtime. The mock uses an in-memory provider and simulated approval
+receipts. Keep consequential service actions manual until a user-routed prompt
+and a declined call with no provider effect are verified.
+
+See [`CODEX-NATIVE-ASSESSMENT.html`](CODEX-NATIVE-ASSESSMENT.html) for the
+capability matrix, probe evidence, recommendation, and remaining checks. The
+disposable macOS profile diagnostic is
+[`diagnostics/test_codex_workspace_profile.sh`](diagnostics/test_codex_workspace_profile.sh).
 
 Run the local policy regression suite with
 `python3 -m unittest discover -s security/tests -v`. These tests validate the
