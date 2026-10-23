@@ -8,10 +8,11 @@ and the follow-up commit series was rebased onto it. The current branch is
 assessment is recorded in `CODEX-NATIVE-ASSESSMENT.html`. The mock broker
 remains a fixture. Custom Seatbelt development is paused. No live configuration
 or hooks were changed, and no connector mutation was attempted during this
-assessment turn. The existing Open Loop record was updated. The follow-up is
-committed locally on current `origin/main` and has not been pushed or reviewed.
-Keep consequential connector writes manual until a user
-prompt and denial behavior are verified.
+assessment turn. The existing Open Loop record was updated. The follow-up is in
+GitHub PR #20 (`Assess Codex-native security architecture`), based on
+`2c00d1b` and headed by `b329413`; GitHub reports it open, draft, and mergeable,
+with no submitted reviews. Keep consequential connector writes manual until a
+user prompt and denial behavior are verified.
 The latest normal-Terminal run is the current shell-only diagnostic. It passed
 the workspace read/write and child execution checks, denied the tested temp and
 external-home reads/writes (including child writes), and confirmed a network
@@ -42,16 +43,17 @@ Do not activate Security v3.
    diagnostic, not arbitrary filesystem access or connector-mediated access.
 5. **Staged migration and rollback — DOCUMENTED, NOT EXECUTED.** Scripts remain
    inert instructions. No backup, install, activation, or live config change.
-6. **Review package — PR #18 MERGED; FOLLOW-UP COMMITTED LOCALLY, NOT PUSHED.**
+6. **Review package — PR #18 MERGED; FOLLOW-UP IN PR #20, REVIEW PENDING.**
    Commit `4dc747d` records the follow-up assessment and diagnostics.
-   No follow-up PR exists. GitHub reports PR #18,
-   “Document Codex workspace and external action boundaries,” merged into
+   GitHub reports PR #18, “Document Codex workspace and external action
+   boundaries,” merged into
    `main`; the merged local commit `7887c80` contains the authority document
    change, whose file patch matches the merged PR diff. The follow-up commits
    begin with `f606595`; they are not part of PR #18. `origin/main` is refreshed
    to `2c00d1b` after PR #19 and the
-   follow-up branch is rebased onto it. The follow-up remains local and needs
-   review and approval before pushing.
+   follow-up branch is rebased onto it. The user approved the push and the
+   follow-up was pushed as PR #20. That PR remains a draft with no reviews; it
+   has not been merged.
 7. **Codex-native architecture assessment — FILESYSTEM PROFILE PASS; NETWORK PROFILE-DIFFERENTIAL OBSERVED; AUDIT EVENT MISSING.**
    The first normal-Terminal run passed the simple shell/`true` baseline, then
    failed before Python printed `PROFILE_STARTED`: the active developer path
@@ -117,8 +119,14 @@ Do not activate Security v3.
    effects. The inspector invokes no
    connector tools. A prior Gmail draft ran without a visible prompt, and a
    public GitHub fetch succeeded, but neither establishes policy for other
-   tools. Treat the exposed write surface as broad until narrowed. Keep consequential writes manual until a user-routed prompt and a
-   declined call with no provider effect are verified. See
+   tools. Treat the exposed write surface as broad until narrowed. The latest
+   native-app check reports macOS locked, so the live approval surface could
+   not be inspected. The separate connector snapshot is not proof of the
+   desktop's current approval mode. Do not invoke a write to test this: the
+   available snapshot reports broad Drive write access, so it could mutate
+   Drive without showing a prompt. Keep consequential writes manual until the
+   live tool mode is confirmed, a user-routed prompt is observed, and a
+   declined call is verified to have no provider effect. See
    `EXTERNAL-ACTION-LAYER.md`.
 9. **External action mock — IMPLEMENTED, NOT ACTIVE.** The in-memory GitHub PR
    fixture and seven broker tests pass within the 21-test suite. Approval
@@ -127,9 +135,10 @@ Do not activate Security v3.
 
 ## Gated actions
 
-- **Follow-up GitHub PR:** not created. PR #18 merged the prior
-  `SECURITY-AND-AUTHORITY.md` change. Current assessment and diagnostic edits
-  are local and require review before any shared-remote write.
+- **Follow-up GitHub PR:** PR #20 is open as a draft and mergeable, based on
+  `main` at `2c00d1b`, head `b329413`; it has no submitted reviews. PR #18
+  merged the prior `SECURITY-AND-AUTHORITY.md` change. Current assessment and
+  diagnostic edits are already in PR #20.
 - **Live approval configuration:** not changed. An isolated per-tool approval
   test may be planned, but do not write live settings, hooks, or credentials
   under this assessment.
@@ -137,8 +146,8 @@ Do not activate Security v3.
 ## Acceptance state
 
 - Previous prototype and PR #18 review: **merged**. Follow-up assessment and
-  diagnostic are committed locally on the current branch; no follow-up review
-  or PR has occurred. PR #18 did not review these later commits.
+  diagnostic are pushed in PR #20, which is **open as a draft, mergeable, and
+  not yet reviewed**. PR #18 did not review these later commits.
 - Installed hooks, live configuration, credentials unchanged: **met by scope**;
   no write was made to them.
 - Regression suite: **21/21 passed in this session** with
@@ -166,8 +175,10 @@ Do not activate Security v3.
   every external path are not covered.
 - Connector approval: standalone App Server configuration and tool inventory
   **inspected**; active desktop thread state and approval behavior remain
-  **unverified**. Reported command approval fields are null, the response has
-  no app settings table, apps and broad write tools are enabled/callable, and
+  **unverified**. The latest native-app check reports macOS locked, so the live
+  approval surface could not be inspected. Reported command approval fields are
+  null, the response has no app settings table, apps and broad write tools are
+  enabled/callable, and
   no decline/no-provider-effect test ran. Current Codex docs describe app-tool
   modes separately from command approvals.
 - Cross-project edits and logging: per-path scoping is documented; Git records
