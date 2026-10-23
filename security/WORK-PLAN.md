@@ -9,6 +9,11 @@ remains a fixture. Custom Seatbelt development is paused. No live configuration
 or hooks were changed, and no connector mutation was attempted during this
 assessment turn. The existing Open Loop record was updated. Keep consequential
 connector writes manual until a user prompt and denial behavior are verified.
+The latest normal-Terminal profile output predates the startup-classification
+refactor in the current diagnostic. Shell syntax and classifier tests pass, but
+the desktop safety boundary refused Codex access to Terminal, so the final
+script version has not had an end-to-end macOS rerun. Run the documented command
+in normal Terminal before treating the latest script as fully verified.
 Do not activate Security v3.
 
 1. **Baseline and scope — DONE.** Confirmed merged PR #15 and its v2-preserving,
@@ -141,8 +146,10 @@ Do not activate Security v3.
   child execution passed. In the matched network probe, the same TCP connect
   succeeded outside Codex and returned `Operation not permitted` inside. This
   is a **profile-correlated differential**; both log sources lacked a matching
-  audit event. Other protocols, connectors, and every external path are not
-  covered.
+  audit event. The latest profile output predates the diagnostic's
+  startup-classification refactor. Codex computer-use access to Terminal was
+  refused, so rerun the final script version in normal Terminal. Other
+  protocols, connectors, and every external path are not covered.
 - Connector approval: standalone App Server configuration and tool inventory
   **inspected**; active desktop thread state and approval behavior remain
   **unverified**. Reported approval fields are null, apps and broad write tools
