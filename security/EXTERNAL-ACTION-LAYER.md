@@ -28,10 +28,17 @@ local file access; it did not gate that connector action. Do not assume the
 same approval behavior for other connectors or operations.
 
 In the current assessment, a read-only fetch of the public `openai/codex`
-README succeeded. The available tool inventory also includes GitHub, Drive,
-Gmail, and Sites mutation tools. Their effective per-tool approval modes were
-not visible: `codex app-server daemon version` failed because the expected
-control socket was absent. No external mutation was attempted.
+README succeeded. A standalone App Server inspection returned
+`approval_policy: null`, `approvals_reviewer: null`, and
+`managed_requirements: null`; it listed several apps as enabled and callable.
+The enabled non-read-only tool inventory includes Drive file mutations,
+GitHub issue/PR/repository and workflow actions, calendar changes, many Notion
+mutations, and plugin-permission/uninstall controls. The recommendation is to
+disable unneeded apps and writes, then allow only named reads and writes that
+pass an approval test. This is an inventory from
+a separate App Server process, not the desktop's live thread state. It does
+not establish which tools prompt, how a decline behaves, or whether the live
+desktop has different settings. No connector mutation was attempted.
 
 ## Trust boundary
 
@@ -89,16 +96,16 @@ completed external action can always be undone.
    requirements.
 2. **Mock prototype — DONE.** `mock_action_broker.py` implements one GitHub PR
    request against an in-memory provider. Seven broker tests passed as part of
-   the 17-test reference suite. The approval panel issues simulated receipts;
+   the 21-test reference suite. The approval panel issues simulated receipts;
    it is not a human UI. The audit hash chain detects fixture mutation but is
    not durable or protected from a process that can edit its memory.
-3. **Codex control configuration — DOCUMENTED, NOT APPLIED OR VERIFIED.**
-   Inspect the effective `apps` config and exact connector tool IDs. Test a
-   per-tool `approval_mode = "prompt"` with `approvals_reviewer = "user"` in a
-   disposable task. The local CLI can read the base config, but this task has
-   no connection to the active app-server `config/read` interface or an
-   isolated connector test surface. Do not change live configuration as part
-   of this design assessment.
+3. **Standalone settings and tool inventory — INSPECTED; LIVE POLICY NOT VERIFIED.**
+   The standalone `config/read` response showed null top-level approval fields,
+   null managed requirements, and no app-specific approval overrides. The
+   runtime inventory showed a broad enabled write surface. This does not expose
+   the desktop's live in-memory state or prove that a particular tool prompts.
+   A future test would need the exact target tool ID and a disposable task. Do
+   not change live configuration as part of this design assessment.
 4. **Connector approval test — NOT VERIFIED.** A previous reversible Gmail
    create-draft call had no visible approval pause; no email was sent. It did
    not test a declined call or prove what the active per-tool policy was. In an

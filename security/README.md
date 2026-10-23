@@ -31,10 +31,36 @@ connector runtime. The mock uses an in-memory provider and simulated approval
 receipts. Keep consequential service actions manual until a user-routed prompt
 and a declined call with no provider effect are verified.
 
+To inspect resolved approval settings and connector/tool metadata from normal
+macOS Terminal, run
+`python3 security/diagnostics/inspect_codex_approvals.py`. It does not invoke
+connector tools or write configuration. It uses a standalone App Server and
+cannot establish the desktop's current in-memory thread state. Earlier Terminal
+attempts exposed a client-side stream handling bug and a timeout during optional
+directory enumeration. The latest run completed: the standalone snapshot
+reported `approval_policy: null`, `approvals_reviewer: null`, and
+`managed_requirements: null`; several apps were enabled and callable. Its
+enabled non-read-only tool inventory includes broad Drive, GitHub, calendar,
+and Notion mutations, plus plugin-permission/uninstall controls. This does not
+reveal effective approval behavior or prove a human prompt/decline path. No
+connector operation was invoked. The diagnostic skips slow directory
+enumeration and treats tool metadata as best-effort.
+
 See [`CODEX-NATIVE-ASSESSMENT.html`](CODEX-NATIVE-ASSESSMENT.html) for the
 capability matrix, probe evidence, recommendation, and remaining checks. The
-disposable macOS profile diagnostic is
+disposable macOS profile diagnostic is now shell-only:
 [`diagnostics/test_codex_workspace_profile.sh`](diagnostics/test_codex_workspace_profile.sh).
+Its first Python-based Terminal run stopped before the target marker because
+the selected Command Line Tools path lacks `usr/bin/xcrun`; see the portable
+handoff at [`diagnostics/XCRUN-ISSUE.md`](diagnostics/XCRUN-ISSUE.md). The
+shell-only profile passed workspace/child execution and temp plus
+`~/Library/Caches` denial. The matched TCP check connected outside Codex and
+returned `Operation not permitted` inside its sandbox. This strongly correlates
+the block with the Codex sandbox. Neither Codex’s denial capture nor Apple’s
+filtered unified log found a matching event, so it is not an audited denial.
+The diagnostic now labels explicit `sandbox_apply` and broken-`xcrun` startup
+errors as host failures. A generic permission error before the target marker is
+reported as an unattributed startup permission error, never as a denial pass.
 
 Run the local policy regression suite with
 `python3 -m unittest discover -s security/tests -v`. These tests validate the
