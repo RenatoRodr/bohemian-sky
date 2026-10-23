@@ -119,10 +119,11 @@ Do not activate Security v3.
    effects. The inspector invokes no
    connector tools. A prior Gmail draft ran without a visible prompt, and a
    public GitHub fetch succeeded, but neither establishes policy for other
-   tools. Treat the exposed write surface as broad until narrowed. The latest
-   native-app check reports macOS locked, so the live approval surface could
-   not be inspected. The separate connector snapshot is not proof of the
-   desktop's current approval mode. Do not invoke a write to test this: the
+   tools. Treat the exposed write surface as broad until narrowed. At the
+   latest check the Mac was unlocked, but the app-control tool refused access
+   to ChatGPT/Codex for safety reasons; the live approval surface remains
+   uninspected. The separate connector snapshot is not proof of the desktop's
+   current approval mode. Do not invoke a write to test this: the
    available snapshot reports broad Drive write access, so it could mutate
    Drive without showing a prompt. Keep consequential writes manual until the
    live tool mode is confirmed, a user-routed prompt is observed, and a
@@ -175,8 +176,9 @@ Do not activate Security v3.
   every external path are not covered.
 - Connector approval: standalone App Server configuration and tool inventory
   **inspected**; active desktop thread state and approval behavior remain
-  **unverified**. The latest native-app check reports macOS locked, so the live
-  approval surface could not be inspected. Reported command approval fields are
+  **unverified**. The latest app-control attempt explicitly denied access to
+  ChatGPT/Codex for safety reasons, so the live approval surface could not be
+  inspected. Reported command approval fields are
   null, the response has no app settings table, apps and broad write tools are
   enabled/callable, and
   no decline/no-provider-effect test ran. Current Codex docs describe app-tool
