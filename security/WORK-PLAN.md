@@ -10,10 +10,10 @@ remains a fixture. Custom Seatbelt development is paused. No live configuration
 or hooks were changed. A single Drive folder was created as a user-authorized,
 disposable connector probe; no production connector mutation was attempted.
 The existing Open Loop record was updated. The follow-up is in
-GitHub PR #20 (`Assess Codex-native security architecture`), based on
-`2c00d1b` and headed by `efc1362`; GitHub reports it open, draft, and mergeable,
-with no submitted reviews. Keep consequential connector writes manual until a
-user prompt and denial behavior are verified.
+GitHub PR #20 (`Assess Codex-native security architecture`) merged on 23 October
+2026 at head `e3ae309` into `main` as merge commit `e1eb187`. The post-merge
+status-only correction is in draft PR #21. Keep consequential connector writes
+manual until a decline with no provider effect is verified.
 The latest normal-Terminal run is the current shell-only diagnostic. It passed
 the workspace read/write and child execution checks, denied the tested temp and
 external-home reads/writes (including child writes), and confirmed a network
@@ -143,8 +143,11 @@ Do not activate Security v3.
 
 ## Gated actions
 
-- **Follow-up GitHub PR:** PR #20 is open as a draft and mergeable, based on
-  `main` at `2c00d1b`, head `efc1362`; it has no submitted reviews. PR #18
+- **Assessment PR:** PR #20 merged on 23 October 2026 at head `e3ae309` into
+  `main` as merge commit `e1eb187`. It had no submitted reviews or commit
+  statuses when checked.
+- **Status correction:** PR #21 is open as a draft and contains the post-merge
+  work-plan status corrections; it has not yet been reviewed. PR #18
   merged the prior `SECURITY-AND-AUTHORITY.md` change. Current assessment and
   diagnostic edits are already in PR #20.
 - **Live approval configuration:** not changed. An isolated per-tool approval
@@ -153,9 +156,10 @@ Do not activate Security v3.
 
 ## Acceptance state
 
-- Previous prototype and PR #18 review: **merged**. Follow-up assessment and
-  diagnostic are pushed in PR #20, which is **open as a draft, mergeable, and
-  not yet reviewed**. PR #18 did not review these later commits.
+- Previous prototype, PR #18, and the assessment PR #20: **merged**. PR #20
+  merged at head `e3ae309` as `e1eb187`. The later status-only work-plan
+  correction is in draft PR #21 for review. PR #18 did not review the later
+  Security v3 assessment.
 - Installed hooks, live configuration, credentials unchanged: **met by scope**;
   no write was made to them.
 - Regression suite: **21/21 passed in this session** with
