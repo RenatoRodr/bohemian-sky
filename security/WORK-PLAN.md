@@ -33,7 +33,9 @@ Do not activate Security v3.
    diagnostic, not arbitrary filesystem access or connector-mediated access.
 5. **Staged migration and rollback — DOCUMENTED, NOT EXECUTED.** Scripts remain
    inert instructions. No backup, install, activation, or live config change.
-6. **Review package — PR #18 MERGED; FOLLOW-UP LOCAL.** GitHub reports PR #18,
+6. **Review package — PR #18 MERGED; FOLLOW-UP COMMITTED LOCALLY, NOT PUSHED.**
+   Commit `4891a92` records the current follow-up assessment and diagnostics.
+   No follow-up PR exists. GitHub reports PR #18,
    “Document Codex workspace and external action boundaries,” merged into
    `main`. Its remote diff is identical to the current `HEAD` patch. Refresh
    stale `origin/main` before the next branch/PR step. Follow-up assessment and
@@ -115,7 +117,8 @@ Do not activate Security v3.
 ## Acceptance state
 
 - Previous prototype and PR #18 review: **merged**. Follow-up assessment and
-  diagnostic are written locally and remain unreviewed.
+  diagnostic are committed locally on the current branch; no follow-up review
+  or PR has occurred.
 - Installed hooks, live configuration, credentials unchanged: **met by scope**;
   no write was made to them.
 - Regression suite: **21/21 passed in this session** with
