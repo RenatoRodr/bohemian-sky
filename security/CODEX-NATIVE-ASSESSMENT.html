@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Security v3: Codex-native architecture assessment</title>
+  <style>
+    :root { color-scheme: light; --ink:#18212b; --muted:#586574; --line:#d7dee5; --paper:#fff; --wash:#f4f7f9; --green:#166534; --amber:#92400e; --red:#991b1b; --blue:#1d4ed8; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--wash); color:var(--ink); font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { max-width:1120px; margin:0 auto; padding:32px 22px 56px; }
+    h1 { font-size:clamp(1.8rem,4vw,2.7rem); line-height:1.12; margin:0 0 10px; }
+    h2 { margin:34px 0 12px; font-size:1.4rem; }
+    h3 { margin:0 0 8px; font-size:1.05rem; }
+    p { margin:8px 0 12px; }
+    a { color:#174ea6; }
+    .lede,.panel,.card { background:var(--paper); border:1px solid var(--line); border-radius:12px; }
+    .lede { padding:20px 22px; border-left:5px solid #b45309; }
+    .lede p:last-child { margin-bottom:0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:12px; margin:18px 0; }
+    .card { padding:16px; }
+    .card strong { display:block; font-size:1.1rem; margin-bottom:4px; }
+    .status { display:inline-block; border-radius:999px; padding:3px 9px; font-size:.78rem; font-weight:700; letter-spacing:.02em; white-space:nowrap; }
+    .direct { background:#dcfce7; color:var(--green); }
+    .config { background:#dbeafe; color:#1e40af; }
+    .external { background:#ffedd5; color:var(--amber); }
+    .unknown { background:#fee2e2; color:var(--red); }
+    .table-wrap { overflow:auto; background:var(--paper); border:1px solid var(--line); border-radius:12px; }
+    table { border-collapse:collapse; width:100%; min-width:860px; }
+    th,td { text-align:left; vertical-align:top; padding:12px 14px; border-bottom:1px solid var(--line); }
+    th { background:#edf2f6; font-size:.88rem; }
+    tr:last-child td { border-bottom:0; }
+    details { background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:13px 16px; margin:9px 0; }
+    summary { cursor:pointer; font-weight:700; }
+    .evidence { color:var(--muted); }
+    .steps { padding:0; list-style:none; counter-reset:steps; }
+    .steps li { counter-increment:steps; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin:9px 0; }
+    .steps li::before { content:counter(steps) ". "; font-weight:800; }
+    .steps label { display:flex; gap:10px; align-items:flex-start; }
+    .steps input { margin-top:5px; }
+    .steps .step-body { flex:1; }
+    .step-meta { color:var(--muted); font-size:.92rem; margin:5px 0 0 27px; }
+    code,pre { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { background:#edf2f6; padding:1px 4px; border-radius:4px; overflow-wrap:anywhere; }
+    pre { white-space:pre-wrap; overflow-wrap:anywhere; background:#101820; color:#f8fafc; padding:14px; border-radius:8px; }
+    .callout { border-left:4px solid #b45309; padding:10px 14px; background:#fff7ed; border-radius:5px; }
+    .small { font-size:.9rem; color:var(--muted); }
+    footer { margin-top:32px; border-top:1px solid var(--line); padding-top:14px; color:var(--muted); font-size:.9rem; }
+    @media print { body { background:#fff; } main { max-width:none; } details { break-inside:avoid; } .steps input { display:none; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Security v3: Codex-native architecture</h1>
+  <p class="small">Assessment updated: 23 October 2026 · Permission profiles are beta · Custom Seatbelt development remains paused · No live configuration changed</p>
+
+  <section class="lede" aria-label="Recommendation">
+    <h2 style="margin-top:0">Recommendation</h2>
+    <p>Use Codex’s native command sandbox as the local execution boundary and keep custom Seatbelt development paused. The user’s normal-Terminal run of the disposable workspace-only profile passed workspace read/write and child execution, and denied tested reads and writes under both <code>$TMPDIR</code> and a unique <code>~/Library/Caches</code> fixture. These results cover the tested paths only. Command-network enforcement remains inconclusive.</p>
+    <p>Disable unneeded apps and write tools. Keep only the reads each workflow needs, then require user review for each required write. The standalone snapshot shows a broad enabled write surface, but it does not establish the desktop's live settings or approval behavior. Keep consequential writes manual until a decline-with-no-effect test passes. If Codex cannot gate a direct route, leave it disabled or require the person to perform the action.</p>
+  </section>
+
+  <section class="grid" aria-label="Current status">
+    <div class="card"><strong>Local commands</strong><span class="status direct">PROFILE TEST PASSED</span><p>Workspace read/write and child execution worked in the user’s Terminal run.</p></div>
+    <div class="card"><strong>External file reads</strong><span class="status direct">TESTED PATHS DENIED</span><p>Reads and writes under temp and a disposable <code>~/Library/Caches</code> path were denied.</p></div>
+    <div class="card"><strong>Connector approval</strong><span class="status unknown">BROAD WRITE SURFACE; GATE UNVERIFIED</span><p>Codex has separate per-app/per-tool approval modes. The standalone snapshot returned no apps configuration table; null command-approval fields do not show the connector approval mode. No decline test was performed.</p></div>
+    <div class="card"><strong>Custom Seatbelt</strong><span class="status config">PAUSED</span><p>Retain existing mock and policy files as development evidence. Do not activate them.</p></div>
+  </section>
+
+  <h2>Capability assessment</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Requirement</th><th>Classification</th><th>What is supported</th><th>Evidence and limit</th></tr></thead>
+      <tbody>
+        <tr><td>Authorized local workspace</td><td><span class="status direct">Directly supported</span></td><td>Codex sandbox scopes writes to active roots and allows child processes under the same policy.</td><td>The user’s disposable Terminal probe wrote and read in its scratch workspace; a shell child ran. This proves only the tested profile and paths.</td></tr>
+        <tr><td>Google Drive access</td><td><span class="status config">Supported through configuration</span></td><td>Drive connector tools are present. App and per-tool enablement and approval settings are documented.</td><td>The standalone App Server snapshot lists Google Drive enabled and callable. No Drive data was accessed, desktop in-memory settings were not inspected, and project-folder isolation was not demonstrated.</td></tr>
+        <tr><td>Protection of external Mac files</td><td><span class="status config">Supported through configuration</span></td><td>Permission profiles can grant writes to workspace roots and deny reads elsewhere.</td><td>The user’s Terminal run denied reads and writes under <code>$TMPDIR</code> and a unique <code>~/Library/Caches</code> fixture while workspace operations passed. Other external paths and app-mediated file access were not tested.</td></tr>
+        <tr><td>Cross-project edits and logging</td><td><span class="status external">Configuration for scoped edits; external trusted component for complete audit</span></td><td>Profiles can select workspace roots and set per-path read/write rules. Git records versioned changes and commits.</td><td>The current task permission manifest includes a broad Documents/Codex root. Git does not record every read or uncommitted operation. A complete, protected activity log requires an external trusted store; this was not demonstrated.</td></tr>
+        <tr><td>Coordinator, builder, auditor permissions</td><td><span class="status config">Supported through configuration</span></td><td>Separate Codex tasks can use different roots and permission profiles. Subagents inherit the parent sandbox and approval mode.</td><td>Custom-agent instructions do not create separate read-only sandboxes. Keep role text for workflow only; run builders and auditors in separate scoped tasks when write isolation matters.</td></tr>
+        <tr><td>Identity, impersonation, privilege escalation</td><td><span class="status unknown">Not demonstrated; trusted enforcement needed</span></td><td>Subagents cannot replace the parent’s sandbox and approval settings.</td><td>No signed role identity or host-issued capability was demonstrated. Instructions or environment labels alone cannot establish identity.</td></tr>
+        <tr><td>Protected plans and acceptance criteria</td><td><span class="status config">Supported through configuration; untested</span></td><td>Permission profiles can make plan paths read-only while leaving source paths writable.</td><td>Apply a builder-specific profile in a separate task; a subagent inherits the parent profile. Use protected branches as a second review gate.</td></tr>
+        <tr><td>GitHub fetching</td><td><span class="status direct">Directly supported</span></td><td>The available <code>github_fetch</code> connector accepts public GitHub resources and GET-only API paths.</td><td>A read-only fetch of the public <code>openai/codex</code> README completed. The tool inventory also contains distinct GitHub mutation tools.</td></tr>
+        <tr><td>Email, publishing, deployment</td><td><span class="status unknown">Broad write surface; approval enforcement unverified</span></td><td>Codex documents app disablement and app-wide/per-tool approval modes with a user reviewer. The approvals guide says side-effecting app calls can prompt and destructive calls require approval when the tool metadata marks them destructive, subject to its read-only annotation rule.</td><td>The standalone snapshot's enabled, non-read-only tool list includes Drive file create/update/delete/share/upload and batch updates; GitHub issue, PR, repository and workflow actions including PR creation/merge; calendar event changes; numerous Notion mutations; and plugin-permission/uninstall controls. Apps are enabled and callable. The returned configuration has no apps table; null command approval fields do not establish connector approval behavior. No decline/no-provider-effect test was performed, and the snapshot is not the desktop's live in-memory state.</td></tr>
+        <tr><td>Command network versus connectors</td><td><span class="status config">Profile differential observed; audit event missing</span></td><td>Permission profiles can disable command networking. App, MCP, browser, and web-search traffic use separate policies.</td><td>In the matched Terminal run, the same TCP connect succeeded outside Codex and returned <code>Operation not permitted</code> inside the sandbox. Both Codex’s denial capture and Apple’s filtered unified log lacked a matching event. This strongly correlates the block with the Codex sandbox, but it is not an audited denial. Connector approval is not covered.</td></tr>
+        <tr><td>Audit and recovery</td><td><span class="status external">Partial telemetry through configuration; external trusted component for guarantees</span></td><td>Optional Codex OpenTelemetry can export tool-decision and tool-result events. Git history, pull request records, task transcripts, and provider logs provide separate evidence.</td><td>OpenTelemetry is off by default and was not tested here. It is not a demonstrated protected record of all local file activity and provider-side effects. No single tamper-resistant log covers those actions; the mock hash chain is in-memory and alterable by its process. Recovery is provider-specific; an external write may not be reversible.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Observed tests</h2>
+  <details open>
+    <summary>Current Codex command boundary</summary>
+    <p class="evidence">A disposable script printed <code>PROBE_STARTED</code>, wrote and read a file under <code>/private/tmp</code>, and executed a shell child. It then read one byte from another workspace and successfully observed that read. An attempted file creation under <code>~/Library/Caches</code> failed with errno 1 (<code>EPERM</code>). A Python child independently received <code>EPERM</code> for the same outside write. No fixture remained.</p>
+    <p>The user config selects <code>sandbox_mode = "workspace-write"</code>. No app-approval entries or managed requirements files were found in the inspected local paths. The effective Desktop or organization configuration is not visible from this task.</p>
+  </details>
+  <details>
+    <summary>Native profile and approval inspection limits</summary>
+    <p class="evidence">An attempted nested sandbox invocation failed before the target command ran: <code>sandbox-exec: sandbox_apply: Operation not permitted</code>. This is a host startup failure, not a policy-denial pass. The separate app-server CLI check failed because <code>~/.codex/app-server-control/app-server-control.sock</code> does not exist. A UI attempt to read Codex settings was refused by the computer-use safety boundary. No live settings were changed.</p>
+    <p>The first normal-Terminal run passed the shell/true baseline, then reported <code>xcrun: error: invalid active developer path</code> before Python printed <code>PROFILE_STARTED</code>. No restriction was tested in that run. A later shell-only run started, and workspace read/write plus child execution passed, but the three outside probes were allowed because the fixture was under writable <code>$TMPDIR</code>. After adding <code>:tmpdir</code> and <code>:slash_tmp</code> denials, the user reran the diagnostic: temporary-path reads/writes were denied and workspace/child operations passed. The subsequent run also denied outside reads/writes and child writes for a unique fixture under <code>~/Library/Caches</code>. Filesystem checks passed for these tested paths. The updated diagnostic classifies explicit <code>sandbox_apply</code> and broken-<code>xcrun</code> startup errors as host failures; generic permission errors before a target marker remain unattributed and never count as a denial. In the latest matched network test, the TCP connection succeeded outside Codex and the sandboxed <code>nc</code> returned <code>Operation not permitted</code>. The result is profile-correlated, but neither Codex’s denial capture nor Apple’s filtered unified log found a matching audit event. Do not describe this as an audited denial. A portable handoff summary is in <a href="diagnostics/XCRUN-ISSUE.md">diagnostics/XCRUN-ISSUE.md</a>.</p>
+  </details>
+  <details>
+    <summary>GitHub and connector surface</summary>
+    <p class="evidence">The public GitHub README fetch returned successfully. The standalone App Server snapshot reported <code>approval_policy: null</code>, <code>approvals_reviewer: null</code>, and <code>managed_requirements: null</code>. It lists Google Drive, GitHub, Gmail, Outlook Email, Notion, Google Calendar, Outlook Calendar, Sites, and other apps enabled and callable. The filtered <code>enabled_write_tools</code> list includes Drive file create/update/delete/share/upload and batch-update actions; GitHub issue, PR, repository and workflow mutations including PR creation/merge; calendar event changes; numerous Notion mutations; and plugin-permission/uninstall controls. Those are tool names marked enabled and <code>isReadOnly: false</code>, not evidence that approval is enforced. The snapshot is not the desktop's live in-memory thread state. On 23 October, after the user explicitly authorized one disposable folder write, the Drive connector created and a subsequent metadata search verified the private folder <code>Codex Security Approval Probe 2026-10-23</code>. Since this action was pre-authorized in the conversation, it does not establish whether an unapproved action triggers a prompt; no decline/no-provider-effect test was performed.</p>
+  </details>
+
+  <h2>Smallest practical architecture</h2>
+  <ol>
+    <li><strong>Local execution:</strong> use Codex’s native permission profile with one project checkout as the writable root, minimal system reads, outside reads denied, and command network disabled. Keep temporary directories only if the workflow needs them.</li>
+    <li><strong>Connectors:</strong> disable apps and write tools the workflow does not need. Allow only named reads; keep GitHub fetch read-only where possible. Require user review for each required mutating tool, then verify a decline has no provider effect before relying on the setting. Do not change live settings until separately authorized.</li>
+    <li><strong>Roles and plans:</strong> keep coordinator ownership, builder scope, auditor independence, plans, and acceptance criteria in versioned project rules. Use separate Codex tasks with different permission profiles when roles need different file rights. Keep plan paths read-only for builder tasks and protect shared branches with review.</li>
+    <li><strong>External actions:</strong> do not route around Codex’s connector controls. If a direct connector remains callable without the required gate, leave that action manual. Build an external broker only if it can hold credentials and prevent direct connector access.</li>
+    <li><strong>Audit and recovery:</strong> use Git and pull-request history for code. Add a separate protected action log only if consequential provider actions become automated. Pair it with provider-specific idempotency and recovery steps.</li>
+  </ol>
+
+  <h2>Migration checklist</h2>
+  <p id="progress" class="small">Progress saves in this browser only.</p>
+  <ol class="steps">
+    <li><label><input type="checkbox" checked disabled><span class="step-body"><strong>Codex native workspace boundary — observed for this task.</strong> Workspace read/write and child execution succeeded; the original workspace-write probe allowed outside reads.</span></label><p class="step-meta">Evidence: prior managed-runtime command output recorded in the work plan.</p></li>
+    <li><label><input type="checkbox" checked disabled><span class="step-body"><strong>Filesystem profile check — passed for tested paths.</strong> Workspace read/write and child execution succeeded; temporary and <code>~/Library/Caches</code> read/write attempts, including child writes, were denied.</span></label><p class="step-meta">The current diagnostic version was rerun in normal Terminal. This does not prove every external path or cover connectors.</p></li>
+    <li><label><input type="checkbox" checked disabled><span class="step-body"><strong>Command-network differential — observed.</strong> The TCP connect succeeded outside Codex and returned <code>Operation not permitted</code> inside the sandbox.</span></label><p class="step-meta">Neither Codex’s denial capture nor Apple’s filtered unified log recorded a matching event. Treat the result as strongly profile-correlated, not as an audited denial. GitHub connectors, browser and MCP traffic remain separate and untested.</p></li>
+    <li><label><input type="checkbox" checked disabled data-step="effective"><span class="step-body"><strong>Inspect standalone app-server configuration and installed tool metadata — DONE.</strong></span></label><p class="step-meta">Terminal output returned <code>approval_policy: null</code>, <code>approvals_reviewer: null</code>, <code>managed_requirements: null</code>, no apps configuration table, and multiple enabled/callable connectors; Notion write-capable tools were enabled. Command approval fields do not establish app-tool approval modes. This is a standalone-server snapshot, not necessarily desktop in-memory state, and does not prove prompt/decline behavior.</p></li>
+    <li><label><input type="checkbox" checked disabled><span class="step-body"><strong>Authorized Drive write probe — DONE; approval gate not tested.</strong> A single private folder was created and verified after the user authorized that exact disposable action.</span></label><p class="step-meta">The call result shows this connector route can write with prior user authorization. It cannot demonstrate what happens without authorization or when a person declines.</p></li>
+    <li><label><input type="checkbox" data-step="approval"><span class="step-body"><strong>Verify approval prompt and decline/no-provider-effect behavior — NOT TESTED.</strong> Needs a supported route that presents an actual approval choice without pre-authorizing the action in advance.</span></label><p class="step-meta">No production writes. Keep consequential connector actions manual; do not rely on app approval until a declined call is shown to have no provider effect.</p></li>
+    <li><label><input type="checkbox" data-step="migration"><span class="step-body"><strong>Keep custom Seatbelt paused; decide its disposition after native checks.</strong> Keep the mock as a fixture or archive it after the replacement is proven.</span></label><p class="step-meta">Requires results from the profile and connector checks. No activation is authorized by this assessment.</p></li>
+  </ol>
+
+  <h2>Terminal diagnostic</h2>
+  <p>The script creates a disposable workspace and temp fixture under <code>$TMPDIR</code>, plus one uniquely named fixture under the existing <code>~/Library/Caches</code>. It removes those exact fixtures on exit. The profile explicitly denies <code>:tmpdir</code> and <code>:slash_tmp</code> while granting the workspace root. It writes an isolated profile file and never touches <code>~/.codex/config.toml</code>. Permission profiles do not compose with legacy <code>sandbox_mode</code> settings; this isolated configuration selects the new profile without copying the live config. The current version was rerun in normal Terminal: workspace read/write and child execution passed; tested temp and external-home reads/writes, including child writes, were denied. The matched network test succeeded outside Codex and returned <code>Operation not permitted</code> inside the sandbox. No matching audit event appeared in either log source, so this is profile-correlated but not an audited denial.</p>
+  <pre>cd "/Users/renato/Documents/Codex/2026-10-15/continue-existing-build-security-v3-sandbox/work/project-factory-security-simplification"
+./security/diagnostics/test_codex_workspace_profile.sh</pre>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://learn.chatgpt.com/docs/permissions">Codex permission profiles</a> — workspace roots, deny-read rules, network policy, and macOS enforcement.</li>
+    <li><a href="https://learn.chatgpt.com/docs/agent-approvals-security">Codex approvals and security</a> — local sandbox, connector approval behavior, telemetry, and separate network surfaces.</li>
+    <li><a href="https://learn.chatgpt.com/docs/agent-configuration/subagents?surface=app">Subagents</a> — inherited sandbox and limits of custom agent instructions.</li>
+    <li><a href="https://learn.chatgpt.com/docs/config-file/config-reference">Configuration reference</a> and <a href="https://learn.chatgpt.com/docs/app-server">App Server</a> — per-app/per-tool approval modes and configuration RPCs.</li>
+  </ul>
+
+  <footer>Security v3 remains inactive. Custom Seatbelt implementation is paused. This assessment distinguishes documented features, tests in this task, and behavior that still needs an isolated runtime check.</footer>
+</main>
+<script>
+  const checks = [...document.querySelectorAll('input[data-step]')];
+  const key = 'security-v3-codex-native-assessment-2026-10-22';
+  try {
+    const saved = JSON.parse(localStorage.getItem(key) || '{}');
+    for (const box of checks) box.checked = Boolean(saved[box.dataset.step]);
+  } catch {}
+  const update = () => {
+    const saved = Object.fromEntries(checks.map(box => [box.dataset.step, box.checked]));
+    try { localStorage.setItem(key, JSON.stringify(saved)); } catch {}
+    const done = checks.filter(box => box.checked).length;
+    document.getElementById('progress').textContent = `${done} of ${checks.length} pending steps marked complete in this browser. This checklist is a convenience, not evidence of a test.`;
+  };
+  checks.forEach(box => box.addEventListener('change', update));
+  update();
+</script>
+</body>
+</html>
