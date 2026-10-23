@@ -109,6 +109,24 @@ follow the four day-one safeguards. If it needs another session, delegate, or
 ongoing status, add only notes needed to continue; full managed structure is
 optional.
 
+## Jev use in new work
+
+For every new Factory project and quick task, identify any useful bounded
+judgment Jev can answer as a choice, score, or probability. Use Jev live for
+that judgment under the standing authorization in `MEMORY-CONTRACT.md` when
+the provider route and permitted input are ready. This preference does not
+require a token call when no judgment is needed, no relevant state changed, or
+an exact rule already decides the answer. It does not require a project-specific
+approval record or a shadow period. Keep permissions and actions in code or
+with the human owner.
+
+For the first uses of a decision type, compare Jev's advice with observed
+outcomes or a human check. Adjust the state, question, criteria, or downstream
+threshold when those observations warrant it; do not claim calibration from
+typed output alone. Record compact, privacy-safe evidence and use it to
+propose expansion to existing tasks and more complex decisions. Do not change
+an existing automation's execution path merely because Jev is preferred.
+
 ## Recurring model work
 
 When a new or existing project will make recurring model calls, use the
@@ -129,12 +147,12 @@ Apply deterministic rules first (including no-change and no-model short circuits
 the Factory coordinator remains accountable for choosing the actual role, model,
 review and next step. Jev is not a mandatory extra model call.
 
-- **Existing automations and approved pilots:** make no change to the execution
-  path merely because this policy changes. A separately approved existing-route
-  pilot may observe eligible recurring runs in shadow within its exact Gate A
-  scope, expiry and budget, without further per-run approval. Jev failure or
-  pilot expiry stops Jev observations, not the original automation. Promotion
-  of an existing route to live requires representative evidence and Gate B.
+- **Existing automations and approved pilots:** make no change to their execution
+  paths merely because this policy changes. Existing Gate A pilots retain their
+  exact scope, expiry and budget. Use results from new work and representative
+  route-specific outcomes to propose a reversible existing-route change under
+  that route's normal authority. A route with an applicable Gate B still needs
+  it; this rule creates no universal new Gate B.
 - **New Factory projects:** include the shared Jev adapter whenever recurring
   bounded judgement is useful. Ask at intake: "Which existing script, skill,
   library, native automation or connector can filter, diff, dedupe or cache
@@ -142,14 +160,14 @@ review and next step. Jev is not a mandatory extra model call.
   does expected recurrence and reuse justify building, testing and maintaining it?"
   When there is no new relevant state, stop without a model call. Otherwise,
   **use Jev live from the first authorised operational run, not in shadow**,
-  after Renato approves the exact project-use record in `MEMORY-CONTRACT.md`
-  and credentials, billing, privacy, caller fallback and offline safeguards
-  have been verified. This is one project-level approval, not per-run approval.
+  under the standing Jev authorization in `MEMORY-CONTRACT.md` after the
+  provider, permitted input, caller fallback and offline safeguards have been
+  verified. Do not ask again for routine per-project or per-call approval.
   New projects must reuse `projects/jev-decision-gateway` and its `decide()`
-  contract; never create a duplicate Jev integration. Before approval, use
-  deterministic/offline paths. Project creation is not itself consent for paid
-  API calls or data disclosure. A shadow-pilot Gate A record cannot approve
-  live project operation. An approved live judgement is an advisory input;
+  contract; never create a duplicate Jev integration. If the live route or
+  permitted input is unavailable, use a deterministic/offline path and record
+  the specific gap. A shadow-pilot Gate A record does not expand the standing
+  data scope. A live judgement is an advisory input;
   code alone retains permissions, actions and mandatory reviews.
 - **Two separate assessments:** difficulty suggests whether to use no model,
   a cheap builder, a stronger implementer or specialists. Risk determines
@@ -171,12 +189,11 @@ review and next step. Jev is not a mandatory extra model call.
   shared telemetry. Record unknown outcomes as unknown, not success.
 
 Current Jev shadow classifiers and historic D0-D4 records remain observational.
-A new two-axis schema may be introduced alongside the old one, but **no
-promotion of existing shadow routes, model switching, automatic approval or
-policy relaxation** is enabled by this rule. Separately authorised new-project
-Jev inputs remain advisory: caller code owns all actions, hard rules and required
-reviews. Use the standing pilot and project-specific limits already defined in
-`MEMORY-CONTRACT.md`; no new authorisation process is created here.
+A new two-axis schema may be introduced alongside the old one. This rule does
+not itself promote an existing route, switch models automatically, grant action
+authority, or waive required review. Caller code owns actions and hard rules.
+Use the standing Jev authorization and the separate limits of any existing
+pilot in `MEMORY-CONTRACT.md`.
 
 ## Goal execution
 
@@ -248,8 +265,9 @@ it*. Escalate capability for difficult reasoning or repeated failure; use
 stronger verification for authentication, permissions, secrets, tenant isolation
 and customer/production data. Do not assume subagents run on different models:
 if a runtime inherits the parent model, document that limitation rather than
-claiming savings. Do not add paid API calls or change the user's model setting
-without the applicable authority. Evaluate total task cost, including handoffs,
+claiming savings. Do not add paid API calls outside the standing Jev
+authorization or change the user's model setting without the applicable
+authority. Evaluate total task cost, including handoffs,
 retries and verification—not model list price alone.
 
 Use the **full build crew** only for genuinely complex coordination,
