@@ -70,9 +70,13 @@ Do not activate Security v3.
    do not call it an audited denial. Keep command networking disabled.
    Other network protocols and connector traffic are not covered. Do not run the restricted
    profile test inside Codex.
-8. **Connector approval — CONFIG INSPECTED; BEHAVIOR UNVERIFIED.** Codex
-   documentation exposes `apps._default` and per-app/per-tool `approval_mode`
-   settings plus `approvals_reviewer = "user"`. The inspected local base
+8. **Connector approval — CONFIG INSPECTED; BEHAVIOR UNVERIFIED.** Current
+   Codex documentation distinguishes command `approval_policy` from app/MCP
+   tool approval. App tools have app-wide and per-tool modes (`auto`, `prompt`,
+   `writes`, `approve`) and a reviewer setting; the approval/security guide
+   says side-effecting app calls can prompt and destructive calls require
+   approval when metadata marks them destructive (unless marked read-only).
+   The inspected local base
    `~/.codex/config.toml` has no approval or app settings. The documented
    app-server RPC can read resolved on-disk config, managed requirements, and
    app/tool metadata, but it does not claim to expose the desktop's current
@@ -88,8 +92,9 @@ Do not activate Security v3.
    app-server SQLite state under `~/.codex`, so do not run this query here.
    The latest Terminal output reports `status: complete`,
    `approval_policy: null`, `approvals_reviewer: null`, and
-   `managed_requirements: null`. The shown configuration contains no app-specific
-   approval overrides. The installed-app snapshot marks multiple connectors
+   `managed_requirements: null`; it returned no `apps` table. Null command
+   approval fields do not establish the app-tool approval mode. The
+   installed-app snapshot marks multiple connectors
    enabled and callable, including Google Drive, GitHub, Gmail, Outlook Email,
    Notion, Google Calendar, Outlook Calendar, and Sites. The filtered
    `enabled_write_tools` output additionally lists Drive create/update/delete/
@@ -102,7 +107,10 @@ Do not activate Security v3.
    establish availability in a standalone App Server snapshot, not whether a
    call prompts, is automatically reviewed, or can be declined without provider
    effect. The snapshot is not the desktop's current in-memory thread state; no
-   connector action or decline test was performed. The inspector invokes no
+   connector action or decline test was performed. Optional Codex OpenTelemetry
+   can export tool-decision and tool-result events, but it is off by default
+   and is not a demonstrated complete or tamper-resistant audit of provider
+   effects. The inspector invokes no
    connector tools. A prior Gmail draft ran without a visible prompt, and a
    public GitHub fetch succeeded, but neither establishes policy for other
    tools. Treat the exposed write surface as broad until narrowed. Keep consequential writes manual until a user-routed prompt and a
@@ -155,8 +163,10 @@ Do not activate Security v3.
   protocols, connectors, and every external path are not covered.
 - Connector approval: standalone App Server configuration and tool inventory
   **inspected**; active desktop thread state and approval behavior remain
-  **unverified**. Reported approval fields are null, apps and broad write tools
-  are enabled/callable, and no decline/no-provider-effect test ran.
+  **unverified**. Reported command approval fields are null, the response has
+  no app settings table, apps and broad write tools are enabled/callable, and
+  no decline/no-provider-effect test ran. Current Codex docs describe app-tool
+  modes separately from command approvals.
 - Cross-project edits and logging: per-path scoping is documented; Git records
   versioned changes and commits. A complete activity log requires an external
   trusted component and is **not demonstrated**.
@@ -165,6 +175,8 @@ Do not activate Security v3.
   or elevation-resistant authorization was **not demonstrated**.
 - Protected plans: per-path read-only rules are documented, but the proposed
   builder-specific arrangement has not been runtime-tested.
-- Audit/recovery: a tamper-resistant full audit and provider recovery process
-  require external components and are **not demonstrated**.
+- Audit/recovery: optional Codex OpenTelemetry can export tool-decision and
+  tool-result events, but is off by default and was not tested. A complete,
+  tamper-resistant audit and provider recovery process require external
+  components and are **not demonstrated**.
 - Production security guarantee: **not claimed**.

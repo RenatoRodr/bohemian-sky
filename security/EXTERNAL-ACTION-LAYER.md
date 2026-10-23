@@ -7,11 +7,13 @@ connector use, modify Codex settings, install software, or activate Security v3.
 ## Decision
 
 Test Codex's built-in per-tool approval controls before building a separate
-broker. Official Codex documentation exposes app-wide and per-tool approval
-modes, an enabled/disabled switch, and a reviewer setting that can route
-prompts to the user. A `prompt` mode on each mutating tool may provide the
-needed gate in the Codex app surface. This behavior has not been verified in
-the current connector runtime.
+broker. Current Codex documentation distinguishes command `approval_policy`
+from app/MCP tool approval. App-wide and per-tool approval modes, enabled
+switches, and a reviewer setting are available. Side-effecting app calls can
+prompt; destructive calls require approval when the tool metadata marks them
+destructive (unless marked read-only). A `writes` or `prompt` mode may provide
+the needed gate for app tools, but it has not been verified in the current
+connector runtime.
 
 Keep the offline broker below as a policy fixture. Build a trusted broker only
 if built-in approval controls fail to govern a connector call. Until a prompt
@@ -19,8 +21,9 @@ is observed and declining it is shown to prevent the provider action, keep
 consequential service writes manual.
 
 The relevant settings and approval flow are described in the [Codex
-configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference)
-and [Codex App Server documentation](https://learn.chatgpt.com/docs/app-server).
+configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference),
+[approval and security guide](https://learn.chatgpt.com/docs/agent-approvals-security),
+and [App Server documentation](https://learn.chatgpt.com/docs/app-server).
 
 A Gmail draft was created through a connector without a visible human approval
 pause in the observed Codex runtime. A `request_permissions` grant protected
@@ -30,12 +33,15 @@ same approval behavior for other connectors or operations.
 In the current assessment, a read-only fetch of the public `openai/codex`
 README succeeded. A standalone App Server inspection returned
 `approval_policy: null`, `approvals_reviewer: null`, and
-`managed_requirements: null`; it listed several apps as enabled and callable.
+`managed_requirements: null`, and no `apps` table; it listed several apps as
+enabled and callable. The null command-approval fields do not establish the
+app-tool approval mode.
 The enabled non-read-only tool inventory includes Drive file mutations,
 GitHub issue/PR/repository and workflow actions, calendar changes, many Notion
 mutations, and plugin-permission/uninstall controls. The recommendation is to
-disable unneeded apps and writes, then allow only named reads and writes that
-pass an approval test. This is an inventory from
+disable unneeded apps and writes, then configure a user-routed `writes` or
+per-tool prompt mode for any required mutation and verify it in the live
+surface. This is an inventory from
 a separate App Server process, not the desktop's live thread state. It does
 not establish which tools prompt, how a decline behaves, or whether the live
 desktop has different settings. No connector mutation was attempted.
@@ -77,6 +83,12 @@ deployment, permission changes, spending, or deletion in the first version.
 Those actions need separate policy and approval checks if added later.
 
 ## Audit and recovery
+
+Codex's optional OpenTelemetry can export tool-decision and tool-result events.
+It is off by default and has not been enabled or tested here. It may support
+operational traceability, but it is not evidence of a complete, tamper-resistant
+record of local file activity or provider-side effects. Keep the external
+trusted audit store requirement below for those guarantees.
 
 For every request, record the request digest, action, target, approver,
 decision, time, provider result identifier, and final status. Do not log
