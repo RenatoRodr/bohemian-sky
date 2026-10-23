@@ -2,15 +2,16 @@
 
 Status: PR #15 and PR #18 are merged. GitHub confirms PR #18 merged on 15
 October 2026; it covered the earlier `SECURITY-AND-AUTHORITY.md` change only.
-The Codex-native assessment and subsequent diagnostic updates are committed
-locally after that PR and have not been pushed or reviewed. This checkout's
-`origin/main` is stale. The current branch is
+On 23 October 2026, `origin/main` was refreshed to `2c00d1b` (after PR #19),
+and the follow-up commit series was rebased onto it. The current branch is
 `codex/security-architecture-simplification-20261015`. The Codex-native
 assessment is recorded in `CODEX-NATIVE-ASSESSMENT.html`. The mock broker
 remains a fixture. Custom Seatbelt development is paused. No live configuration
 or hooks were changed, and no connector mutation was attempted during this
-assessment turn. The existing Open Loop record was updated. Keep consequential
-connector writes manual until a user prompt and denial behavior are verified.
+assessment turn. The existing Open Loop record was updated. The follow-up is
+committed locally on current `origin/main` and has not been pushed or reviewed.
+Keep consequential connector writes manual until a user
+prompt and denial behavior are verified.
 The latest normal-Terminal profile output predates the startup-classification
 refactor in the current diagnostic. Shell syntax and classifier tests pass, but
 the desktop safety boundary refused Codex access to Terminal, so the final
@@ -41,13 +42,15 @@ Do not activate Security v3.
 5. **Staged migration and rollback — DOCUMENTED, NOT EXECUTED.** Scripts remain
    inert instructions. No backup, install, activation, or live config change.
 6. **Review package — PR #18 MERGED; FOLLOW-UP COMMITTED LOCALLY, NOT PUSHED.**
-   Commit `4891a92` records the current follow-up assessment and diagnostics.
+   Commit `4dc747d` records the follow-up assessment and diagnostics.
    No follow-up PR exists. GitHub reports PR #18,
    “Document Codex workspace and external action boundaries,” merged into
    `main`; the merged local commit `7887c80` contains the authority document
-   change. The assessment and diagnostic follow-ups begin with `95ef2d3` and
-   continue through `6f9a3c7`; they are not part of PR #18 and remain local.
-   Refresh stale `origin/main` before any next branch/PR step.
+   change, whose file patch matches the merged PR diff. The follow-up commits
+   begin with `f606595`; they are not part of PR #18. `origin/main` is refreshed
+   to `2c00d1b` after PR #19 and the
+   follow-up branch is rebased onto it. The follow-up remains local and needs
+   review and approval before pushing.
 7. **Codex-native architecture assessment — FILESYSTEM PROFILE PASS; NETWORK PROFILE-DIFFERENTIAL OBSERVED; AUDIT EVENT MISSING.**
    The first normal-Terminal run passed the simple shell/`true` baseline, then
    failed before Python printed `PROFILE_STARTED`: the active developer path
