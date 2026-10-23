@@ -1,8 +1,10 @@
 # Factory Simplification and Security v3 — work plan
 
 Status: PR #15 and PR #18 are merged. GitHub confirms PR #18 merged on 15
-October 2026; its patch matches the current `HEAD` change, while this
-checkout's `origin/main` is stale. The current branch is
+October 2026; it covered the earlier `SECURITY-AND-AUTHORITY.md` change only.
+The Codex-native assessment and subsequent diagnostic updates are committed
+locally after that PR and have not been pushed or reviewed. This checkout's
+`origin/main` is stale. The current branch is
 `codex/security-architecture-simplification-20261015`. The Codex-native
 assessment is recorded in `CODEX-NATIVE-ASSESSMENT.html`. The mock broker
 remains a fixture. Custom Seatbelt development is paused. No live configuration
@@ -42,9 +44,10 @@ Do not activate Security v3.
    Commit `4891a92` records the current follow-up assessment and diagnostics.
    No follow-up PR exists. GitHub reports PR #18,
    “Document Codex workspace and external action boundaries,” merged into
-   `main`. Its remote diff is identical to the current `HEAD` patch. Refresh
-   stale `origin/main` before the next branch/PR step. Follow-up assessment and
-   diagnostic files remain local and have not been pushed.
+   `main`; the merged local commit `7887c80` contains the authority document
+   change. The assessment and diagnostic follow-ups begin with `95ef2d3` and
+   continue through `6f9a3c7`; they are not part of PR #18 and remain local.
+   Refresh stale `origin/main` before any next branch/PR step.
 7. **Codex-native architecture assessment — FILESYSTEM PROFILE PASS; NETWORK PROFILE-DIFFERENTIAL OBSERVED; AUDIT EVENT MISSING.**
    The first normal-Terminal run passed the simple shell/`true` baseline, then
    failed before Python printed `PROFILE_STARTED`: the active developer path
@@ -123,7 +126,7 @@ Do not activate Security v3.
 
 - Previous prototype and PR #18 review: **merged**. Follow-up assessment and
   diagnostic are committed locally on the current branch; no follow-up review
-  or PR has occurred.
+  or PR has occurred. PR #18 did not review these later commits.
 - Installed hooks, live configuration, credentials unchanged: **met by scope**;
   no write was made to them.
 - Regression suite: **21/21 passed in this session** with
