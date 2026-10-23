@@ -7,10 +7,11 @@ and the follow-up commit series was rebased onto it. The current branch is
 `codex/security-architecture-simplification-20261015`. The Codex-native
 assessment is recorded in `CODEX-NATIVE-ASSESSMENT.html`. The mock broker
 remains a fixture. Custom Seatbelt development is paused. No live configuration
-or hooks were changed, and no connector mutation was attempted during this
-assessment turn. The existing Open Loop record was updated. The follow-up is in
+or hooks were changed. A single Drive folder was created as a user-authorized,
+disposable connector probe; no production connector mutation was attempted.
+The existing Open Loop record was updated. The follow-up is in
 GitHub PR #20 (`Assess Codex-native security architecture`), based on
-`2c00d1b` and headed by `b329413`; GitHub reports it open, draft, and mergeable,
+`2c00d1b` and headed by `efc1362`; GitHub reports it open, draft, and mergeable,
 with no submitted reviews. Keep consequential connector writes manual until a
 user prompt and denial behavior are verified.
 The latest normal-Terminal run is the current shell-only diagnostic. It passed
@@ -109,11 +110,12 @@ Do not activate Security v3.
    and numerous Notion create/update/delete/move/comment operations. It also
    lists administrative or consequential tools for plugin permissions and
    uninstall, document commands, and pet management. These are tool names
-   marked enabled and `isReadOnly: false` by metadata; no tool was called. These results
-   establish availability in a standalone App Server snapshot, not whether a
+   marked enabled and `isReadOnly: false` by metadata; at the time of that
+   configuration inspection no tool had been called. These results establish
+   availability in a standalone App Server snapshot, not whether a
    call prompts, is automatically reviewed, or can be declined without provider
    effect. The snapshot is not the desktop's current in-memory thread state; no
-   connector action or decline test was performed. Optional Codex OpenTelemetry
+   decline test was performed. Optional Codex OpenTelemetry
    can export tool-decision and tool-result events, but it is off by default
    and is not a demonstrated complete or tamper-resistant audit of provider
    effects. The inspector invokes no
@@ -123,11 +125,16 @@ Do not activate Security v3.
    latest check the Mac was unlocked, but the app-control tool refused access
    to ChatGPT/Codex for safety reasons; the live approval surface remains
    uninspected. The separate connector snapshot is not proof of the desktop's
-   current approval mode. Do not invoke a write to test this: the
-   available snapshot reports broad Drive write access, so it could mutate
-   Drive without showing a prompt. Keep consequential writes manual until the
-   live tool mode is confirmed, a user-routed prompt is observed, and a
-   declined call is verified to have no provider effect. See
+   current approval mode. On 23 October, after the user explicitly authorized
+   a disposable Drive-folder probe, `google_drive_create_folder` returned
+   success and the private folder was verified by a metadata search: `Codex
+   Security Approval Probe 2026-10-23`. This proves the connected route can perform the
+   authorized write. Because the action was pre-authorized in the conversation,
+   it does not test whether Codex would prompt for an unapproved write, and it
+   does not test decline/no-provider-effect behavior. The folder remains as a
+   clearly named fixture; no deletion was authorized. Keep consequential
+   writes manual until a genuine prompt and a declined call with no provider
+   effect are observed through a supported UI route. See
    `EXTERNAL-ACTION-LAYER.md`.
 9. **External action mock — IMPLEMENTED, NOT ACTIVE.** The in-memory GitHub PR
    fixture and seven broker tests pass within the 21-test suite. Approval
@@ -137,7 +144,7 @@ Do not activate Security v3.
 ## Gated actions
 
 - **Follow-up GitHub PR:** PR #20 is open as a draft and mergeable, based on
-  `main` at `2c00d1b`, head `b329413`; it has no submitted reviews. PR #18
+  `main` at `2c00d1b`, head `efc1362`; it has no submitted reviews. PR #18
   merged the prior `SECURITY-AND-AUTHORITY.md` change. Current assessment and
   diagnostic edits are already in PR #20.
 - **Live approval configuration:** not changed. An isolated per-tool approval
@@ -176,7 +183,11 @@ Do not activate Security v3.
   every external path are not covered.
 - Connector approval: standalone App Server configuration and tool inventory
   **inspected**; active desktop thread state and approval behavior remain
-  **unverified**. The latest app-control attempt explicitly denied access to
+  **unverified**. One user-authorized Drive-folder write probe succeeded and
+  its private folder was verified by search. As the call was explicitly
+  authorized in the conversation, it does not demonstrate whether the platform
+  would prompt for an unapproved write or whether decline prevents provider
+  effects. No decline test ran. The latest app-control attempt explicitly denied access to
   ChatGPT/Codex for safety reasons, so the live approval surface could not be
   inspected. Reported command approval fields are
   null, the response has no app settings table, apps and broad write tools are
