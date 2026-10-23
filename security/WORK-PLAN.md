@@ -12,11 +12,12 @@ assessment turn. The existing Open Loop record was updated. The follow-up is
 committed locally on current `origin/main` and has not been pushed or reviewed.
 Keep consequential connector writes manual until a user
 prompt and denial behavior are verified.
-The latest normal-Terminal profile output predates the startup-classification
-refactor in the current diagnostic. Shell syntax and classifier tests pass, but
-the desktop safety boundary refused Codex access to Terminal, so the final
-script version has not had an end-to-end macOS rerun. Run the documented command
-in normal Terminal before treating the latest script as fully verified.
+The latest normal-Terminal run is the current shell-only diagnostic. It passed
+the workspace read/write and child execution checks, denied the tested temp and
+external-home reads/writes (including child writes), and confirmed a network
+profile differential. No matching audit event was captured for the network
+denial, so network enforcement is correlated but not audited. Connector
+approval behavior remains unverified.
 Do not activate Security v3.
 
 1. **Baseline and scope — DONE.** Confirmed merged PR #15 and its v2-preserving,
@@ -160,10 +161,9 @@ Do not activate Security v3.
   child execution passed. In the matched network probe, the same TCP connect
   succeeded outside Codex and returned `Operation not permitted` inside. This
   is a **profile-correlated differential**; both log sources lacked a matching
-  audit event. The latest profile output predates the diagnostic's
-  startup-classification refactor. Codex computer-use access to Terminal was
-  refused, so rerun the final script version in normal Terminal. Other
-  protocols, connectors, and every external path are not covered.
+  audit event. The current diagnostic version has now been rerun in normal
+  Terminal and reproduces these results. Other protocols, connectors, and
+  every external path are not covered.
 - Connector approval: standalone App Server configuration and tool inventory
   **inspected**; active desktop thread state and approval behavior remain
   **unverified**. Reported command approval fields are null, the response has
