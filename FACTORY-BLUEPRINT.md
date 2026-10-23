@@ -118,6 +118,7 @@ The portfolio review routine (MASTER-PROMPTS.md, briefing prompt) is the audit i
 ## Factory changelog
 
 | Date | Change | Trigger |
+| 2026-10-23 | Set the Factory rules refresh design: bounded automatic prefetch outside SessionStart, protected atomic local publication, descriptor-based local consumption, and a 72-hour maximum result age. This is a design rule; it does not install or enable hooks or alter native security controls. | Renato selected the automatic prefetch and local SessionStart consumer design and chose a 72-hour freshness limit. |
 |---|---|---|
 | 2026-10-12 | Added a `MEMORY-CONTRACT.md` section letting a project built with the recurring-AI architecture use Jev under a per-project approval record (data, spend, calls, expiry, kill switch, fallback, rollback). No shadow period required; no action authority added. | Renato asked that new projects be built Jev-inclusive, not shadow-only. |
 | 2026-10-12 | Added the recurring-AI architecture to `PROJECT-ARCHETYPES.md` and a pointer in `AGENTS.md`: projects with recurring model calls are built local-code-first, with Jev for bounded judgments, frontier models only when required, and humans for authority. Adds no approval or authority. | Renato asked that new projects be built Jev-inclusive wherever applicable. |
