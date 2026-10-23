@@ -11,8 +11,8 @@ or hooks were changed. A single Drive folder was created as a user-authorized,
 disposable connector probe; no production connector mutation was attempted.
 The existing Open Loop record was updated. The follow-up is in
 GitHub PR #20 (`Assess Codex-native security architecture`), based on
-`2c00d1b` and headed by `e3ae309`; GitHub reports it open and draft, with no
-submitted reviews or commit statuses. Mergeability is currently unknown.
+`2c00d1b`; the latest remote check reports it open and draft, with no submitted
+reviews or commit statuses. Mergeability is currently unknown.
 Keep consequential connector writes manual until a
 user prompt and denial behavior are verified.
 The latest normal-Terminal run is the current shell-only diagnostic. It passed
@@ -145,8 +145,8 @@ Do not activate Security v3.
 ## Gated actions
 
 - **Follow-up GitHub PR:** PR #20 is open as a draft, based on `main` at
-  `2c00d1b`, head `e3ae309`; it has no submitted reviews or commit statuses.
-  Mergeability is currently unknown. PR #18
+  `2c00d1b`; its latest remote check found no submitted reviews or commit
+  statuses. Mergeability is currently unknown. PR #18
   merged the prior `SECURITY-AND-AUTHORITY.md` change. Current assessment and
   diagnostic edits are already in PR #20.
 - **Live approval configuration:** not changed. An isolated per-tool approval
