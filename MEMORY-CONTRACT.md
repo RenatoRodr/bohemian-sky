@@ -22,7 +22,7 @@ policy. Clear store boundaries reduce both errors.
 | Private overlay and runtime cache | Private local instructions, paths, and cached copies outside this repository | Codex may prepare and apply a versioned refresh after a reviewed merge; private changes require Renato's review | Local factory sessions | Yes for private/local behavior only | Archive prior copies with an ISO date | Rebuild from the merged commit plus the private overlay; stop on conflict |
 | Register | `PORTFOLIO.md` | A project's close routine, **its own row only**. Portfolio review may restructure the whole file. | Every session; intake reads it first | Yes, for "what exists and where" | Indefinite; Done rows age out after 90 days | Terminal |
 | Project state | `<project>/control/PROJECT.md`, `DECISIONS.md`, `RESOURCES.md`, `INSTRUCTIONS.md` | The responsible project agent, inside that project only | That project's sessions | Yes, for that project | Life of the project | A recurring INSTRUCTIONS.md override becomes a lesson, tag `archetype` |
-| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | The manually invoked build coordinator after explicit per-call approval, or an approved pilot runner under the bounded standing authorization below | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 30 days after the pilot ends; then human-reviewed disposition | Human-reviewed per-route evaluation, or a per-project approval record under the Jev use section below |
+| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | A runner authorized under its installed controls; existing Gate A runners keep their bounded record until changed through their normal review | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 30 days after the pilot ends; then human-reviewed disposition | Human-reviewed per-route evaluation; no automatic production activation |
 | Evidence | `<project>/inputs/`, `reviews/`, `outputs/`, `control/LOG.md`, `records/` | Ingestion, append-only or write-once. Never edited in place. | Anyone | Source material, not conclusions | Indefinite | Cited by a lesson or a decision; never promoted itself |
 | Restricted Project Factory conversation archive | The fullest available persisted interaction record, including user and assistant messages and exposed tool/action details | The owner-approved private capture procedure, with destination, ownership and access checked before each write | Renato only; outside public repositories and shared project stores | No; source material, never policy or instructions | Preserve until a separate owner-approved retention policy; no automatic deletion | Human-reviewed analysis through existing decision and lesson controls |
 | Lessons | `LESSONS.md` | Any project's retro, append-only, newest on top | Portfolio review | No. Candidate patterns, not policy. | Each entry carries `review_by` | Human approval at portfolio review, recorded in the blueprint changelog |
@@ -41,31 +41,50 @@ record the resulting usage, and stop when any limit is reached. A failed call is
 not retried automatically. The `--paid-call-opt-in` flag attests to an applicable
 individual approval or valid standing record; it does not create approval.
 
-This authorization permits shadow observation only. It does not permit broader
-data disclosure, production routing, external actions, changes to permissions,
-spending beyond the ceiling, or waiver of a required review. Each decision type
-needs representative outcome evidence before a separate production activation
-approval.
+The Gate A record permits shadow observation only. It does not by itself
+activate an existing production route, expand permitted data, authorize an
+external action, or waive a required review. An existing route needs
+representative outcome evidence and its normal change authority, including a
+Gate B where one already applies. Existing pilot runners still enforce their
+installed Gate A and opt-in checks until those runners are separately changed.
 
-## Jev use in projects built with the recurring-AI architecture
+## Standing Jev use for new projects and tasks
 
-A project built under `PROJECT-ARCHETYPES.md` may use Jev in its own operation
-once Renato explicitly approves a record for that project naming its owner,
-provider and model, decision types, permitted minimized data categories, expiry
-date, maximum number of calls, total spend ceiling, immediate kill switch,
-fallback when Jev is unavailable, and, where a decision can change what is
-shown, filed or ranked, its rollback and spot-check policy. The record is
-approved once per project and renewed on expiry or any change to those terms.
-It need not wait for a shadow period.
+Renato's 2026-10-23 standing direction is to use Jev for useful bounded
+judgments in new Factory projects and tasks, learn from the first uses, and
+then consider existing routes and harder decisions. After this rule is merged
+and verified in the local runtime, it is standing authorization for ordinary
+TypeSafe Jev API calls through an existing account for those advisory uses.
+Do not require a new per-project record, per-call approval, shadow period, or
+arbitrary expiry solely because the work is new. The standing authorization
+does not create an account, subscription, credential, new billing arrangement,
+or permission to alter an existing automation's execution path.
 
-The runner must check the record and the remaining call and spend budgets before
-each request, record usage without raw private content, stop when any limit is
-reached, and not retry a failed call automatically. The Jev answer is an input
-to the caller's policy, never an action. The limits in the shadow pilot
-paragraph above still apply: no external action, permission change, spending
-beyond the ceiling, security-alert suppression, or waiver of a required review,
-and a Jev answer cannot remove a review or alert that policy requires. A record
-that is silent on a data category does not permit it.
+Permitted inputs are public material, non-sensitive task material, and
+minimized categorical or numeric facts that do not identify a person or reveal
+private source content. Send only fields needed for the question. Do not send
+credentials, health or financial records, personal messages, customer data,
+confidential work material, or private document excerpts under this standing
+authorization. A new sensitive data category or wider disclosure needs Renato's
+explicit approval for that use. Project instructions that prohibit external
+disclosure still control.
+
+Before the first live call, verify the account and model, terms for the
+permitted data, credential path outside the Factory, billing, the live adapter,
+and a tested offline fallback. Repeat a check when its underlying condition
+changes, not for every project. Each caller must bound its batch, make no
+unbounded retries, observe usage and stop on an account limit or anomalous
+spend. A provider failure must not suppress a required item. Jev returns
+advice, never an action or permission; code and humans retain mandatory gates.
+
+Use existing project records for the decision type, minimized input category,
+model version, advice, cost, disagreement and observed outcome when known.
+Capture a reusable quick-task finding in `LESSONS.md` with its source and scope;
+do not create another log or collect hidden telemetry. Do not store raw private
+prompts in shared telemetry. Review early real uses to improve state, questions,
+criteria and thresholds. Extend Jev to an existing route or more consequential
+decision only with representative evidence, a reversible change and the
+route's normal authority. Unknown outcomes remain unknown.
 
 ## The rule that holds it together
 

@@ -11,7 +11,8 @@ ROBUST projects.
 1. Keep secrets and API keys outside the repository.
 2. Write only in user-authorized project locations.
 3. Get human approval before destructive actions, external communications,
-   deployments, or spending.
+   deployments, or spending, except ordinary Jev API use covered by the
+   standing authorization in `MEMORY-CONTRACT.md`.
 4. Keep changes reversible and under version control where available.
 
 Do not ask the user implementation questions unless a choice materially affects
@@ -34,7 +35,11 @@ can ask for approval when an app tool declares side effects. A destructive
 tool marked as destructive requires approval unless it is also marked as
 read. Connector account permissions remain separate. Get human approval for
 the exact target and operation before sending communications, deploying,
-spending money, changing credentials or permissions, or mutating cloud data.
+spending money outside the standing Jev authorization, changing credentials
+or permissions, or mutating cloud data.
+An ordinary Jev call through an already available route is covered by the
+standing authorization; installing a new integration or changing an existing
+automation remains a deployment or configuration change under its normal gate.
 Use a human reviewer, not automatic review. If the available tool does not
 show a clear approval gate, leave that action disabled or have the user
 perform it.
@@ -80,7 +85,8 @@ Obtain explicit approval before:
   communication;
 - changing a calendar;
 - deploying or changing an external system;
-- making a paid API call;
+- making a paid API call outside the standing Jev authorization in
+  `MEMORY-CONTRACT.md`;
 - writing outside the active managed-project folder or the factory files that
   its documented procedure requires;
 - pushing to a shared Git remote;

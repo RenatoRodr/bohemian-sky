@@ -57,9 +57,10 @@ security, irreversible actions, or user experience.
 ## Recurring-AI architecture
 
 Applies when a project, at any archetype or weight, makes recurring or
-high-volume model calls over sources that repeat or change slowly. It does not
-apply to quick tasks, one-off work, or a project with no recurring judgment.
-Build the project this way from the start:
+high-volume model calls over sources that repeat or change slowly. Quick tasks
+and one-off work still use the Jev opportunity check in `AGENTS.md`, without
+requiring this whole architecture. Build a recurring project this way from the
+start:
 
 ```
 raw sources
@@ -119,8 +120,8 @@ existing health checks. Do not create another review schedule or backlog.
   context hashes), never raw private content, so savings are measured, not
   assumed.
 - Jev calls remain spending and external data disclosure under
-  `SECURITY-AND-AUTHORITY.md` and `MEMORY-CONTRACT.md`. This section adds no
-  approval.
+  `SECURITY-AND-AUTHORITY.md` and the standing authorization in
+  `MEMORY-CONTRACT.md`. This section adds no separate approval.
 
 ## Jev as an advisory dispatcher — existing and new automations
 
@@ -149,32 +150,33 @@ policy wins even when Jev reports low risk with high confidence. A second model
 may strengthen evidence but can never grant permissions, waive an approval or
 override an existing human-only gate.
 
-**New project = live; existing automation = unchanged/shadow.** At project
+**New project = live; existing automation = unchanged until evaluated.** At project
 intake, first look for existing off-the-shelf scripts, automations and tools
 that can filter, diff, dedupe or cache inputs. Check whether an unchanged
 run can stop with **zero** model calls, and apply the reuse-before-build
 trade-off above before writing a dedicated preprocessor. Use exact code for
 rules and must-surface conditions. For every new recurring-AI project with
 useful bounded judgement, integrate the shared `decide()` contract and
-preprocessors; do not duplicate provider integrations. Once Renato approves
-one exact per-project Jev-use record and the adapter passes offline safeguards,
-make Jev an ordinary **live advisory input from its first operational run**,
-not a shadow observation. A project lacking approval remains deterministic/
-offline until authorised; do not make an unauthorised paid call. Continue
-existing automations unchanged and, if separately authorised, measure Jev in
-shadow without affecting outcomes. For failures, ambiguous judgments or budget
-exhaustion preserve deterministic fallback and mandatory reviews; do not retry
-or discard work silently. Record minimised decisions, observed outcomes, calls,
-costs and overrides for quality monitoring; never claim savings without a
-no-Jev baseline.
+preprocessors; do not duplicate provider integrations. Under the standing Jev
+authorization, make Jev an ordinary **live advisory input from the first
+operational run** when the provider route, permitted input and offline
+safeguards are ready. Do not defer a new project's useful Jev decisions solely
+to collect shadow data or obtain a repeated project-use approval. If the live
+route is unavailable, continue deterministically and record that gap.
+Existing automations keep their current behavior while evidence from first
+uses is gathered. For failures or ambiguous judgments preserve deterministic
+fallback and mandatory reviews; do not discard work silently. Record the
+decision type, minimized input category, model version, advice, outcome when
+known, calls, costs and overrides without raw private content. Review early
+disagreements and adjust the question, criteria or threshold based on evidence;
+do not claim savings without a no-Jev baseline.
 
-Promoting an **existing shadow route** into active routing still needs its
-separate Gate B review and verified activation. A **new project** may instead
-use Jev as a bounded advisory input from its first operational run under an
-approved per-project record; this never delegates action authority or waives
-mandatory review. Observe the `MEMORY-CONTRACT.md` project-use and shadow
-Gate A boundaries separately. Merely adding this architecture authorises no
-paid call, data transfer, credential or unattended high-impact change.
+An **existing shadow route** may move to live advice after representative
+route-specific evidence, a reversible change and verified activation under
+its normal authority. Honor an applicable Gate B or project-specific gate,
+but do not impose Gate B on every existing task. More complex decisions may be
+tried in a bounded advisory role after simpler uses show where Jev succeeds
+and fails. Jev never gains action authority or waives a mandatory review.
 
 ## Choosing wrong costs little
 
