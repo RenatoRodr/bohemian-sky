@@ -11,12 +11,9 @@ or hooks were changed. A single Drive folder was created as a user-authorized,
 disposable connector probe; no production connector mutation was attempted.
 The existing Open Loop record was updated. The follow-up is in
 GitHub PR #20 (`Assess Codex-native security architecture`) merged on 23 October
-2026 at head `e3ae309` into `main` as merge commit `e1eb187`. The two subsequent
-commits only correct PR-status bookkeeping and are in a separate follow-up
-branch for review. Keep consequential connector writes manual until a decline
-with no provider effect is verified.
-Keep consequential connector writes manual until a
-user prompt and denial behavior are verified.
+2026 at head `e3ae309` into `main` as merge commit `e1eb187`. The post-merge
+status-only correction is in draft PR #21. Keep consequential connector writes
+manual until a decline with no provider effect is verified.
 The latest normal-Terminal run is the current shell-only diagnostic. It passed
 the workspace read/write and child execution checks, denied the tested temp and
 external-home reads/writes (including child writes), and confirmed a network
@@ -149,9 +146,8 @@ Do not activate Security v3.
 - **Assessment PR:** PR #20 merged on 23 October 2026 at head `e3ae309` into
   `main` as merge commit `e1eb187`. It had no submitted reviews or commit
   statuses when checked.
-- **Status correction:** two follow-up commits update only PR status references
-  after PR #20 was merged. They are not included in PR #20 and need their own
-  reviewable PR. PR #18
+- **Status correction:** PR #21 is open as a draft and contains the post-merge
+  work-plan status corrections; it has not yet been reviewed. PR #18
   merged the prior `SECURITY-AND-AUTHORITY.md` change. Current assessment and
   diagnostic edits are already in PR #20.
 - **Live approval configuration:** not changed. An isolated per-tool approval
@@ -162,7 +158,7 @@ Do not activate Security v3.
 
 - Previous prototype, PR #18, and the assessment PR #20: **merged**. PR #20
   merged at head `e3ae309` as `e1eb187`. The later status-only work-plan
-  correction is pushed separately for review. PR #18 did not review the later
+  correction is in draft PR #21 for review. PR #18 did not review the later
   Security v3 assessment.
 - Installed hooks, live configuration, credentials unchanged: **met by scope**;
   no write was made to them.
