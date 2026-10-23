@@ -2,6 +2,36 @@
 
 > Shared operating rule. Changes go through a reviewed GitHub pull request. See `MEMORY-CONTRACT.md`.
 
+## Verified rules refresh design
+
+The Factory rules refresh design uses a protected local publisher and a short
+local SessionStart consumer.
+
+- A bounded automatic prefetch runs outside SessionStart. It fetches the
+  canonical GitHub source, verifies the exact approved commit and every shared
+  input, checks the private overlay against an explicit owner approval bound
+  to that commit and the overlay's complete SHA-256, composes the rules, and
+  emits an inspectable result path and machine-readable manifest.
+- The publisher writes only to its protected local cache. It publishes a
+  complete, verified bundle atomically; incomplete or failed refreshes do not
+  replace the last verified bundle.
+- The local SessionStart consumer opens the bundle relative to a trusted root
+  using descriptor-based, no-follow reads. It checks the manifest, input and
+  output hashes, approval binding, and verification age. The maximum accepted
+  age is 72 hours. It does no network access, fetching, or composition.
+- The hook path stays short and bounded. Missing, malformed, changed,
+  unapproved, incomplete, or older-than-72-hour results fail closed. No
+  unverified local rules may be substituted.
+- The producer and consumer do not invoke Codex or restart a session. A
+  prefetch failure does not trigger recursive retries. Automatic prefetch and
+  this design do not enable or install hooks, change the runtime, or grant
+  permission to change sandbox, approval, tool, or OS controls. Exact targets,
+  trigger, timing limits, recovery set, and live activation remain subject to
+  the separate updater installation review.
+
+The public package contains no private overlay, approval material, host paths,
+or local cache configuration.
+
 ## Role
 
 Operate this folder as a file-based project factory that creates new projects
