@@ -129,7 +129,7 @@ def export(source, target, review, verify_folder, write_direct, now=None, record
     Neither function may persist the payload outside the restricted folder.
     """
     payload, receipt = prepare(source, record_limit=record_limit)
-    if not isinstance(review, dict) or review.get("reviewer") != "Renato" or review.get("decision") != "APPROVED" or review.get("source_sha256") != receipt["source_sha256"] or review.get("output_sha256") != receipt["output_sha256"]:
+    if not isinstance(review, dict) or review.get("reviewer") != target.owner_email or review.get("decision") != "APPROVED" or review.get("source_sha256") != receipt["source_sha256"] or review.get("output_sha256") != receipt["output_sha256"]:
         raise CaptureError("exact source and output have not been reviewed")
     metadata = verify_folder()
     verify_destination(metadata, target, now=now)
