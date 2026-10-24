@@ -43,7 +43,7 @@ def main():
             config = json.loads(Path(args.config).read_text())
             target = ArchiveTarget(config["folder_id"], config["owner_email"], Path(config["mount"]))
             metadata = json.loads(args.folder_metadata_json)
-            review = {"reviewer": "Renato", "decision": "APPROVED",
+            review = {"reviewer": target.owner_email, "decision": "APPROVED",
                       "source_sha256": args.reviewed_source_sha256,
                       "output_sha256": args.reviewed_output_sha256}
             result = export(args.source, target, review, lambda: metadata,
