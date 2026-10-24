@@ -29,9 +29,11 @@ Constraints: <material boundaries, if any>
 
 Choose routine implementation details yourself. Ask me only if a choice
 materially affects functionality, cost, security, irreversible actions, or
-user experience. Keep secrets/API keys outside the repo, write only in
-authorized project locations, get approval for destructive actions, external
-communications, deployments, or spending, and keep changes reversible.
+user experience. Keep secrets/API keys outside the repo and write only in
+authorized project locations. Get approval for destructive actions, external
+communications, deployments, and spending outside the standing Jev
+authorization. Ordinary Jev calls within that authorization need no repeated
+approval. Keep changes reversible.
 Show me a usable result early so I can try it; then iterate from my feedback.
 ```
 
