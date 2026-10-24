@@ -43,9 +43,8 @@ their declared scopes differ. Never have two coordinators on the same project.
 
 ### Jev live advice for new Factory builds
 
-At intake for a new project or a newly started task in an existing project using
-this workflow, follow the Jev opportunity check
-in `AGENTS.md`. When a useful bounded judgment about task difficulty, risk, or
+At intake for a new project or a newly started task in an existing project,
+follow the Jev opportunity check in `AGENTS.md`. When a useful bounded judgment about task difficulty, risk, or
 role usefulness could change the build plan, use the shared live adapter before
 choosing roles. This is the ordinary new-work path under the standing
 authorization in `MEMORY-CONTRACT.md`; do not replace it with shadow telemetry,
