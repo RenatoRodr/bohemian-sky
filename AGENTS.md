@@ -113,9 +113,8 @@ optional.
 
 For every newly started Factory task, whether in a new or existing project
 (including a quick task), identify any useful bounded judgment Jev can answer
-as a choice, score, or probability. Use Jev live for that judgment under the
-standing authorization in `MEMORY-CONTRACT.md` when
-the provider route and permitted input are ready. This preference does not
+as a choice, score, or probability. Use Jev live for that judgment under the standing authorization in
+`MEMORY-CONTRACT.md` when the provider route and permitted input are ready. This preference does not
 require a token call when no judgment is needed, no relevant state changed, or
 an exact rule already decides the answer. It does not require a project-specific
 approval record or a shadow period. Keep permissions and actions in code or
@@ -164,8 +163,8 @@ review and next step. Jev is not a mandatory extra model call.
   under the standing Jev authorization in `MEMORY-CONTRACT.md` after the
   provider, permitted input, caller fallback and offline safeguards have been
   verified. Do not ask again for routine per-project or per-call approval.
-  New work that calls Jev must reuse `projects/jev-decision-gateway` and its `decide()`
-  contract; never create a duplicate Jev integration. If the live route or
+  New work that calls Jev must reuse `projects/jev-decision-gateway` and its
+  `decide()` contract; never create a duplicate Jev integration. If the live route or
   permitted input is unavailable, use a deterministic/offline path and record
   the specific gap. A shadow-pilot Gate A record does not expand the standing
   data scope. A live judgement is an advisory input;
