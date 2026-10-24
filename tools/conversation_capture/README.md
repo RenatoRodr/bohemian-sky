@@ -15,6 +15,7 @@ outside this repository:
 Use `capture_cli.py summary SOURCE --records N` to get hashes for a fixed
 prefix of an active chat. Use `review` with the same source and record count to
 inspect the redacted output in a pager; it stays in memory. `write` requires
+the same range; a later segment uses `--start-record N+1 --records END`. It also requires
 the exact reviewed source and output hashes, private config, and fresh Drive
 metadata containing the folder ID, folder type, active account, sole-owner
 permission, and a `checked_at_epoch` within 30 seconds. A caller must obtain
