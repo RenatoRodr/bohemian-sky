@@ -114,8 +114,11 @@ existing health checks. Do not create another review schedule or backlog.
   alert suppression, technical or compliance correctness, or waiver of a
   required review. A Jev answer cannot remove a review or alert that policy
   requires.
-- Uncertainty, missing provider, or low confidence falls back to the
-  deterministic path or to the next tier; it never silently discards an item.
+- Keep a valid Jev label and confidence visible as advisory evidence,
+  including at low confidence. The coordinator may use deterministic fallback
+  or a higher tier when the decision contract warrants it. A missing provider
+  uses the available offline path or next tier; never silently drop a required
+  item.
 - Record privacy-preserving usage (calls, approximate tokens, duration, result,
   context hashes), never raw private content, so savings are measured, not
   assumed.
