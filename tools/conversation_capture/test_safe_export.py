@@ -30,7 +30,7 @@ class SafeExportTests(unittest.TestCase):
 
     def review(self):
         _, receipt = module.prepare(self.source)
-        return {"reviewer": "Renato", "decision": "APPROVED",
+        return {"reviewer": self.target.owner_email, "decision": "APPROVED",
                 "source_sha256": receipt["source_sha256"],
                 "output_sha256": receipt["output_sha256"]}
 
