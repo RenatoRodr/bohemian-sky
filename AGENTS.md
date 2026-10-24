@@ -11,8 +11,8 @@ local SessionStart consumer.
   its own detached process. A scheduler or the SessionStart hook may start
   it; the hook starts it only when the last verified bundle is older than a
   refresh threshold, and never waits for it, reads its output, or retries it.
-  The prefetch fetches the canonical GitHub source, verifies the exact approved commit and every shared
-  input, checks the private overlay against an explicit owner approval bound
+  The prefetch fetches the canonical GitHub source, verifies the exact
+  approved commit and every shared input, checks the private overlay against an explicit owner approval bound
   to that commit and the overlay's complete SHA-256, composes the rules, and
   emits an inspectable result path and machine-readable manifest.
 - The publisher writes only to its protected local cache. It publishes a
