@@ -225,9 +225,10 @@ factory tree. Do not edit source files in `inputs/` or returned reviews in
 `reviews/`. Preserve superseded material in `archive/` with an ISO date.
 
 Human approval is required before destructive actions, external communications,
-deployments, or spending. Keep writes inside authorized project locations and
-changes reversible/version-controlled. Detailed governance applies at later
-maturity levels.
+deployments, or spending, except ordinary Jev API use covered by the
+standing authorization in `MEMORY-CONTRACT.md`. Keep writes inside authorized
+project locations and changes reversible/version-controlled. Detailed
+governance applies at later maturity levels.
 
 ## Sources of truth
 
