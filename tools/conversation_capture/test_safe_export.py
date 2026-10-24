@@ -137,6 +137,27 @@ class SafeExportTests(unittest.TestCase):
             module.write_mounted(self.target.folder_id, b"synthetic", "project-factory-chat--synthetic.jsonl", self.target)
         self.assertEqual(list(mount.iterdir()), [])
 
+    @unittest.skipUnless(sys.platform == "darwin", "macOS Drive mount only")
+    def test_cli_writes_reviewed_fixture_directly(self):
+        mount = self.target.mount
+        mount.mkdir(mode=0o700)
+        subprocess.run(["xattr", "-w", "com.google.drivefs.item-id#S", self.target.folder_id, str(mount)], check=True)
+        config = Path(self.temp.name) / "target.json"
+        config.write_text(json.dumps({"folder_id": self.target.folder_id,
+                                      "owner_email": self.target.owner_email,
+                                      "mount": str(mount)}))
+        review = self.review()
+        name = "project-factory-chat--integration.jsonl"
+        result = subprocess.run([sys.executable, str(Path(__file__).with_name("capture_cli.py")),
+                                 "write", str(self.source), "--config", str(config),
+                                 "--name", name,
+                                 "--reviewed-source-sha256", review["source_sha256"],
+                                 "--reviewed-output-sha256", review["output_sha256"],
+                                 "--folder-metadata-json", json.dumps(self.metadata())],
+                                check=True, capture_output=True, text=True)
+        self.assertEqual(json.loads(result.stdout)["status"], "LOCAL_WRITTEN_PENDING_SYNC")
+        self.assertEqual(module.sha((mount / name).read_bytes()), review["output_sha256"])
+
 
 if __name__ == "__main__":
     unittest.main()
