@@ -113,8 +113,8 @@ optional.
 
 For every newly started Factory task, whether in a new or existing project
 (including a quick task), identify any useful bounded judgment Jev can answer
-as a choice, score, or probability. Use Jev live for
-that judgment under the standing authorization in `MEMORY-CONTRACT.md` when
+as a choice, score, or probability. Use Jev live for that judgment under the
+standing authorization in `MEMORY-CONTRACT.md` when
 the provider route and permitted input are ready. This preference does not
 require a token call when no judgment is needed, no relevant state changed, or
 an exact rule already decides the answer. It does not require a project-specific
