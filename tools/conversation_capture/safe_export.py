@@ -168,7 +168,6 @@ def write_mounted(folder_id, payload, name, target):
                 os.fsync(out)
         finally:
             os.close(out)
-        os.fsync(fd)
         return {"local_name": name, "parent_id": target.folder_id, "local_written": True}
     finally:
         os.close(fd)
