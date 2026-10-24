@@ -118,6 +118,18 @@ class SafeExportTests(unittest.TestCase):
         self.assertTrue(later["source_is_prefix"])
         self.assertEqual(module.prepare(self.source)[1]["records"], 2)
 
+    def test_following_range_excludes_archived_prefix(self):
+        with self.source.open("a") as stream:
+            stream.write('{"type":"later"}\n')
+        first, first_receipt = module.prepare(self.source, record_limit=1)
+        second, second_receipt = module.prepare(self.source, start_record=2, record_limit=2)
+        self.assertNotEqual(first_receipt["source_sha256"], second_receipt["source_sha256"])
+        self.assertEqual(json.loads(second)["type"], "later")
+        self.assertEqual(second_receipt["source_start_record"], 2)
+        self.assertEqual(second_receipt["source_end_record"], 2)
+        self.assertFalse(second_receipt["source_is_prefix"])
+        self.assertEqual(first + second, module.prepare(self.source)[0])
+
     def test_changed_reviewed_bytes_block_write(self):
         review = self.review()
         self.source.write_text('{"type":"changed"}\n')
