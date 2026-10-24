@@ -19,6 +19,8 @@ def main():
         command = sub.add_parser(action)
         command.add_argument("source", help="native Codex JSONL path")
         command.add_argument("--records", type=int, help="fixed, complete JSONL prefix to review and export")
+        command.add_argument("--start-record", type=int, default=1,
+                             help="first record of a nonoverlapping export range; requires --records")
         if action == "write":
             command.add_argument("--config", required=True, help="private local target JSON")
             command.add_argument("--name", required=True)
@@ -29,7 +31,8 @@ def main():
     args = parser.parse_args()
     try:
         if args.action in ("summary", "review"):
-            payload, receipt = prepare(args.source, record_limit=args.records)
+            payload, receipt = prepare(args.source, record_limit=args.records,
+                                       start_record=args.start_record)
             if args.action == "review":
                 # Pager receives bytes through a pipe. No transcript file or
                 # pager search history is created by this command.
@@ -48,7 +51,7 @@ def main():
                       "output_sha256": args.reviewed_output_sha256}
             result = export(args.source, target, review, lambda: metadata,
                             lambda folder, payload: write_mounted(folder, payload, args.name, target),
-                            record_limit=args.records)
+                            record_limit=args.records, start_record=args.start_record)
             print(json.dumps(result, sort_keys=True))
     except (CaptureError, OSError, json.JSONDecodeError) as exc:
         print("CAPTURE_NOT_WRITTEN: " + str(exc), file=sys.stderr)
