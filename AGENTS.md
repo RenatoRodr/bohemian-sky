@@ -165,11 +165,11 @@ review and next step. Jev is not a mandatory extra model call.
   verified. Do not ask again for routine per-project or per-call approval.
   New work that calls Jev must reuse
   `projects/jev-decision-gateway` and its `decide()` contract; never create a
-duplicate Jev integration. If the live route or
-  permitted input is unavailable, use a deterministic/offline path and record
-  the specific gap. A shadow-pilot Gate A record does not expand the standing
-  data scope. A live judgement is an advisory input;
-  code alone retains permissions, actions and mandatory reviews.
+  duplicate Jev integration. If the live route or permitted input is
+  unavailable, use a deterministic/offline path and record the specific gap. A
+  shadow-pilot Gate A record does not expand the standing data scope. A live
+  judgement is an advisory input; code alone retains permissions, actions and
+  mandatory reviews.
 - **Two separate assessments:** difficulty suggests whether to use no model,
   a cheap builder, a stronger implementer or specialists. Risk determines
   mandatory verification/escalation independent of difficulty. A simple but
