@@ -136,19 +136,23 @@ the provider exposes only one Score call: the adapter may bundle two named
 judgements over the same minimal state. Preserve historical D0-D4 observer
 records rather than silently reinterpreting D4 as the new risk axis.
 
-Pilot routing policy, subject to empirical calibration:
+Pilot evaluation hypotheses only. These thresholds do not gate ordinary
+live Jev advice for new Factory projects or quick tasks. Show valid advice with
+its confidence by default. A caller may apply a decision-specific confidence
+floor when evidence and the task warrant one; mandatory reviews remain
+deterministic.
 
 | Axis | Example assessment | Low-confidence handling |
 |---|---|---|
-| Difficulty | D0 script/no model; D1 routine; D2 standard; D3 complex | Trial threshold 0.80; use a capable default agent or escalate after failure |
-| Risk | R0 negligible; R1 reversible/local; R2 sensitive; R3 material/high impact | Trial threshold 0.95; independent stronger-model judgement if authorised, otherwise retain review and stop at any required human gate |
+| Difficulty | D0 script/no model; D1 routine; D2 standard; D3 complex | Pilot threshold 0.80; during evaluation, use a capable default agent or escalate after failure |
+| Risk | R0 negligible; R1 reversible/local; R2 sensitive; R3 material/high impact | Pilot threshold 0.95; during evaluation, seek an independent judgment if authorised, otherwise retain review and stop at any required human gate |
 
-Confidence thresholds above are **provisional operating hypotheses**, not
-reliable security guarantees. Calibrate against verified outcomes and audit false
-negatives. For any mandatory security/financial/production gate, deterministic
-policy wins even when Jev reports low risk with high confidence. A second model
-may strengthen evidence but can never grant permissions, waive an approval or
-override an existing human-only gate.
+These values are **provisional evaluation hypotheses**, not calibrated accuracy
+claims or security guarantees. Calibrate against verified outcomes and audit
+false negatives. For any mandatory security, financial or production gate,
+deterministic policy wins even when Jev reports low risk with high confidence.
+A second model may strengthen evidence but can never grant permissions, waive
+an approval or override an existing human-only gate.
 
 **New project = live; existing automation = unchanged until evaluated.** At project
 intake, first look for existing off-the-shelf scripts, automations and tools
