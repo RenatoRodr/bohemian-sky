@@ -24,8 +24,9 @@ through its directory descriptor. The target file is created with mode `0600`.
 
 The regex pass does not establish that an arbitrary conversation is free of
 unknown or fragmented credentials. A human must review the exact output before
-export. A local write also needs remote Drive readback, including parent and
-checksum, before it counts as synced. The native conversation should remain in
+export. A local write also needs remote Drive readback, including file ID,
+parent and size, before it counts as synced; compare a remote checksum when the
+connection exposes one. The native conversation should remain in
 place. This utility does not delete or schedule deletion of any record.
 
 Run the synthetic checks with
