@@ -111,13 +111,13 @@ optional.
 
 ## Jev use in new work
 
-For every new Factory project and quick task, identify any useful bounded
-judgment Jev can answer as a choice, score, or probability. Use Jev live for
-that judgment under the standing authorization in `MEMORY-CONTRACT.md` when
-the provider route and permitted input are ready. This preference does not
-require a token call when no judgment is needed, no relevant state changed, or
-an exact rule already decides the answer. It does not require a project-specific
-approval record or a shadow period. Keep permissions and actions in code or
+For every newly started Factory task, whether in a new or existing project
+(including quick tasks), identify any useful bounded Jev judgment (choice,
+score, or probability). Use live advice under the standing authorization in
+`MEMORY-CONTRACT.md` when the provider route and permitted input are ready.
+A call is unnecessary when no useful judgment is needed, no relevant state has
+changed, or an exact rule decides the answer. No per-project approval or shadow
+period is required for covered use. Keep permissions and actions in code or
 with the human owner.
 
 For the first uses of a decision type, compare Jev's advice with observed
@@ -153,7 +153,7 @@ review and next step. Jev is not a mandatory extra model call.
   route-specific outcomes to propose a reversible existing-route change under
   that route's normal authority. A route with an applicable Gate B still needs
   it; this rule creates no universal new Gate B.
-- **New Factory projects:** include the shared Jev adapter whenever recurring
+- **New Factory work:** include the shared Jev adapter whenever recurring
   bounded judgement is useful. Ask at intake: "Which existing script, skill,
   library, native automation or connector can filter, diff, dedupe or cache
   this? Can an unchanged run stop with zero model calls? If new code is needed,
@@ -163,12 +163,13 @@ review and next step. Jev is not a mandatory extra model call.
   under the standing Jev authorization in `MEMORY-CONTRACT.md` after the
   provider, permitted input, caller fallback and offline safeguards have been
   verified. Do not ask again for routine per-project or per-call approval.
-  New projects must reuse `projects/jev-decision-gateway` and its `decide()`
-  contract; never create a duplicate Jev integration. If the live route or
-  permitted input is unavailable, use a deterministic/offline path and record
-  the specific gap. A shadow-pilot Gate A record does not expand the standing
-  data scope. A live judgement is an advisory input;
-  code alone retains permissions, actions and mandatory reviews.
+  New work that calls Jev must reuse
+  `projects/jev-decision-gateway` and its `decide()` contract; never create a
+  duplicate Jev integration. If the live route or permitted input is
+  unavailable, use a deterministic/offline path and record the specific gap. A
+  shadow-pilot Gate A record does not expand the standing data scope. A live
+  judgement is an advisory input; code alone retains permissions, actions and
+  mandatory reviews.
 - **Two separate assessments:** difficulty suggests whether to use no model,
   a cheap builder, a stronger implementer or specialists. Risk determines
   mandatory verification/escalation independent of difficulty. A simple but

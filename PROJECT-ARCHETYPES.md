@@ -57,10 +57,10 @@ security, irreversible actions, or user experience.
 ## Recurring-AI architecture
 
 Applies when a project, at any archetype or weight, makes recurring or
-high-volume model calls over sources that repeat or change slowly. Quick tasks
-and one-off work still use the Jev opportunity check in `AGENTS.md`, without
-requiring this whole architecture. Build a recurring project this way from the
-start:
+high-volume model calls over sources that repeat or change slowly. Newly
+started tasks, including work in an existing project, and quick tasks still use
+the Jev opportunity check in `AGENTS.md` without requiring this whole
+architecture. Build a recurring project this way from the start:
 
 ```
 raw sources

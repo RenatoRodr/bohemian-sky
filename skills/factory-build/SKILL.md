@@ -41,15 +41,45 @@ research may run alongside it. Parallel builders require separate worktrees or
 equivalent isolated directories and an explicit integration step, even when
 their declared scopes differ. Never have two coordinators on the same project.
 
-### Optional Jev shadow observation
+### Jev live advice for new Factory builds
 
-The optional Jev observer is telemetry only. It never chooses a runtime, model,
-reasoning effort, agent, permission, review level, acceptance rule, gate, or
-dispatch outcome. Existing coordinator selection and user model inheritance stay
-authoritative. It is not automatic: use it only for an eligible build step when
-the memory/retention rule is active, the caller can attest the minimized summary
-is non-sensitive, and that individual paid call is explicitly authorized. Never
-send source, full prompts, diffs, private details, or credentials.
+At intake for a new project or a newly started task in an existing project,
+follow the Jev opportunity check in `AGENTS.md`.
+When a useful bounded judgment about task difficulty, risk, or role usefulness
+could change the build plan, use the shared live adapter before choosing roles.
+This is the ordinary new-work path under the standing authorization in
+`MEMORY-CONTRACT.md`; do not replace it with shadow telemetry, a Gate A record,
+or repeated per-project or per-call approval.
+
+Use `projects/jev-decision-gateway/code/assess_new_work.py` and its shared
+`decide()` contract. Read its `--help` before use. Supply only a minimized
+task ID and summary in an authorized input category. Attest permitted input and
+account preflight only after those checks are actually complete. Use
+`--include-risk-role` when separate risk and useful-implementer advice can
+affect the plan; the caller bundles those questions in one bounded request.
+
+Make the assessment once for the task-level state. Reassess only when relevant
+state changes and a new bounded judgment could change the decision; do not repeat
+the same call for every build step. If no useful judgment is needed, an exact
+rule decides, or nothing relevant changed, make no Jev call. If the permitted
+input or live route is unavailable, continue deterministically and record the
+specific gap.
+
+Keep valid Jev advice and its confidence visible to the coordinator, including
+low-confidence output. The coordinator selects the actual roles and review;
+deterministic rules preserve mandatory reviews and all permissions. The
+provisional pilot thresholds do not gate ordinary live new-work advice. Record
+the advice, actual role choice and observed outcome in the project's existing
+record when known, using privacy-safe summaries rather than raw prompts.
+
+### Existing Jev shadow telemetry (Gate A pilots only)
+
+This separate observer remains for historical or explicitly approved shadow
+pilots. Its Gate A scope, expiry, budget, opt-in, telemetry contract and
+outcome controls still apply to that observer. Do not invoke it merely to satisfy
+the live new-work advice rule. It never changes role, model, permissions,
+reviews, acceptance rules, or dispatch. Never send source, full prompts, diffs,
+private details, or credentials.
 
 After the coordinator has selected the normal role/runtime/model/effort, make at
 most one observer call before dispatch:
