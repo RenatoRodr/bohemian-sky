@@ -64,7 +64,7 @@ def redact(value):
     return value
 
 
-def prepare(source, record_limit=None):
+def prepare(source, record_limit=None, start_record=1):
     """Return in-memory bytes and content-free receipt; never print content."""
     source = Path(source)
     fd = os.open(str(source), os.O_RDONLY | os.O_NOFOLLOW)
@@ -78,13 +78,17 @@ def prepare(source, record_limit=None):
         os.close(fd)
     if not raw or len(raw) > MAX_SOURCE_BYTES:
         raise CaptureError("source is empty or too large")
+    if not isinstance(start_record, int) or start_record < 1:
+        raise CaptureError("invalid start record")
     if record_limit is not None:
-        if not isinstance(record_limit, int) or record_limit < 1:
+        if not isinstance(record_limit, int) or record_limit < start_record:
             raise CaptureError("invalid record limit")
         lines = raw.splitlines(keepends=True)
         if len(lines) < record_limit or not lines[record_limit - 1].endswith(b"\n"):
-            raise CaptureError("reviewed record prefix is unavailable or incomplete")
-        raw = b"".join(lines[:record_limit])
+            raise CaptureError("reviewed record range is unavailable or incomplete")
+        raw = b"".join(lines[start_record - 1:record_limit])
+    elif start_record != 1:
+        raise CaptureError("a range start requires an end record")
     records = []
     try:
         for line in raw.splitlines():
@@ -101,7 +105,9 @@ def prepare(source, record_limit=None):
         raise CaptureError("known credential pattern remained after redaction")
     return payload, {"source_sha256": sha(raw), "output_sha256": sha(payload),
                      "records": len(records), "bytes": len(payload),
-                     "review_required": True, "source_is_prefix": record_limit is not None}
+                     "review_required": True, "source_is_prefix": record_limit is not None and start_record == 1,
+                     "source_start_record": start_record,
+                     "source_end_record": record_limit if record_limit is not None else len(records)}
 
 
 def verify_destination(metadata, target, now=None):
@@ -121,14 +127,14 @@ def verify_destination(metadata, target, now=None):
         raise CaptureError("destination is not confirmed owner-only")
 
 
-def export(source, target, review, verify_folder, write_direct, now=None, record_limit=None):
+def export(source, target, review, verify_folder, write_direct, now=None, record_limit=None, start_record=1):
     """Write once to the verified folder; no retry or intermediate file.
 
     review must be an explicit human review of the exact native source and
     prepared output. The caller must supply a live verifier and direct writer.
     Neither function may persist the payload outside the restricted folder.
     """
-    payload, receipt = prepare(source, record_limit=record_limit)
+    payload, receipt = prepare(source, record_limit=record_limit, start_record=start_record)
     if not isinstance(review, dict) or review.get("reviewer") != target.owner_email or review.get("decision") != "APPROVED" or review.get("source_sha256") != receipt["source_sha256"] or review.get("output_sha256") != receipt["output_sha256"]:
         raise CaptureError("exact source and output have not been reviewed")
     metadata = verify_folder()
