@@ -136,9 +136,14 @@ For each ready, ungated step:
 1. Record `in_progress` and the owner in PLAN.md. Give each attempt a stable
    number; never reset the total by replanning. Check recorded failures first.
    Before dispatching a factory role, append a `started` event to the local
-   usage ledger with a stable run ID, passing `--model` with the model id you
-   are running as (read it from the session; pass `unknown` only if the runtime
-   does not expose it). After its handback and verification,
+   usage ledger with a stable run ID, passing `--session-id` with the id of the
+   dispatched role's own thread or agent when the runtime returns one (the Codex
+   thread id or the Claude agent id; never the coordinator's own id). If the id
+   is only known after dispatch, run `start` once it arrives. Omit `--model`
+   unless you know it for certain; `finish` reads the observed model, effort and
+   tokens from the session log, and `unknown` is rejected. A `finish` exit code
+   of 3 means no model could be determined: note it and run `usage.py backfill`
+   later. After its handback and verification,
    append `finished` with the result, verification status, and any runtime usage
    values actually available. See `build-agents-v1/codex/README.md`; leave
    unavailable token and cost values unset. Never include prompts, source text,
