@@ -235,6 +235,32 @@ standing authorization in `MEMORY-CONTRACT.md`. Keep writes inside authorized
 project locations and changes reversible/version-controlled. Detailed
 governance applies at later maturity levels.
 
+## Filing durable outputs
+
+This applies to any task, session or scheduled job that leaves a final output
+as a durable file on the owner's computer outside a managed project's own tree.
+Files inside a managed project stay in that project. Scratch and temporary
+files are exempt but must not outlive the task in a shared location.
+
+1. Before writing the final output, read the placement guide named by the
+   private local overlay and choose the location it gives.
+2. Never leave a final output in a downloads folder or on the desktop. A tool
+   may stage a file there; move the result before the task ends.
+3. If no location fits with confidence, use the inbox folder the overlay names
+   and tell the owner. Never overwrite an existing file; on a name clash add a
+   date or a short suffix.
+4. Append one line to the placement log named by the overlay:
+   `YYYY-MM-DD | task | path | why`.
+5. The placement log records facts only. Do not edit the placement guide, its
+   source register or its filing rules; those change only through the owner's
+   recorded decisions. See "The rule that holds it together" in
+   `MEMORY-CONTRACT.md`.
+
+This rule covers files the task created. It does not authorize moving,
+renaming or deleting the owner's existing files. If the overlay names no guide
+or the guide cannot be read, keep the output where the task's instructions put
+it, never in downloads or on the desktop, and report the gap.
+
 ## Sources of truth
 
 For project facts, use this order:
