@@ -343,6 +343,14 @@ Record later clarifications with their source and date; do not silently replace 
 About two weeks after first usable delivery, offer a brief outcome review for an active managed project, then repeat only while a live question warrants it. Reuse an existing project review route. Do not create another schedule, read raw past conversations, or collect hidden telemetry without separate authority. A review proposes changes; it does not alter goals, approval gates, or external systems. Quick tasks retain the compact completion check in their closing response.
 
 
+## Logging findings
+
+File each finding where `FACTORY-BLUEPRINT.md` ("Where each kind of finding goes")
+says, so the existing automations can read it. Tool-private memory or session
+history is never the only record. Register an open loop for any unresolved item,
+including a gap where no store fits. Record facts only; do not promote them into
+shared rules.
+
 ## Standing authority to prepare Factory pull requests
 
 When the user asks Codex to work on a Factory rule, Codex may create a GitHub branch and reviewable pull request for that work without seeking separate conversational approval for the branch or PR. The pull request is the review point. This standing authority does not approve merging, publishing private material, changing access, or bypassing a platform approval gate. If a platform gate rejects the action, report the exact block and wait for the authorization it requires.

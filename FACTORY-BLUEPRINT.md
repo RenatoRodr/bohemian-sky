@@ -111,6 +111,27 @@ Don't wait for a repeated pattern before filing a generic bug; file it the same
 session it's found (mirrors the mid-flight friction rule above, just routed to
 the other log).
 
+### Where each kind of finding goes
+
+Every agent, whichever tool it runs in, files a finding in a shared store that an
+existing automation or review already reads. A tool's private memory or session
+history is not a store. It may help recall, but it is never the only record.
+
+| Finding | Store | Read by |
+|---|---|---|
+| Generic tool, connector or platform bug | The bug log named by the private local overlay | Automation health checks and the cross-project triage |
+| Factory-level pattern (template, skill, prompt, archetype, process) | `LESSONS.md` | Portfolio review and the cross-project triage |
+| Project choice with a reason | The project's `control/DECISIONS.md` | That project's sessions |
+| Project requirement or outcome | The project's linked requirements record | Milestone and completion review |
+| Unresolved item that waits on a decision, an action or a check (an open loop) | The open-loop register named by the private local overlay | Check-ins and the cross-project triage |
+| Reflection (what worked or cost time, no fix proposed yet) | The project's `control/LOG.md`; promoted to `LESSONS.md` only with the lesson evidence fields | Portfolio review |
+
+An open loop named in a lesson or log entry also gets its own register entry, with
+a link back to the source. An agent that finds no matching store registers an open
+loop for the gap instead of inventing a new log. Agents record facts; promotion
+into shared rules follows `MEMORY-CONTRACT.md`. This adds no schedule and no
+automatic edit of shared rules.
+
 ## Auditing the factory
 
 The portfolio review routine (MASTER-PROMPTS.md, briefing prompt) is the audit instrument: cross-project status, stalled projects, claim overlaps, and open lesson patterns, in one pass. PORTFOLIO.md rows against project frontmatter answers "is the register honest"; LESSONS.md against the changelog answers "is the factory learning".
@@ -119,6 +140,7 @@ The portfolio review routine (MASTER-PROMPTS.md, briefing prompt) is the audit i
 
 | Date | Change | Trigger |
 |---|---|---|
+| 2026-10-28 | Added "Where each kind of finding goes": one routing table for bugs, lessons, decisions, requirements, open loops and reflections, and a rule that findings go to shared stores rather than tool-private memory. No schedule or authority added. | Renato asked that everything an agent logs be picked up by the weekly and daily automations, whichever tool wrote it. |
 | 2026-10-23 | Replaced repeated Jev project-use approval with standing authorization for bounded advisory use in new projects and tasks. First uses supply evidence for improving questions and considering existing routes and harder decisions; data and action boundaries remain. | Renato clarified that he wants Jev used across new work without repeated approval or a training phase. |
 | 2026-10-23 | Set the Factory rules refresh design: bounded automatic prefetch outside SessionStart, protected atomic local publication, descriptor-based local consumption, and a 72-hour maximum result age. This is a design rule; it does not install or enable hooks or alter native security controls. | Renato selected the automatic prefetch and local SessionStart consumer design and chose a 72-hour freshness limit. |
 | 2026-10-24 | Allow the SessionStart hook to start the bounded prefetch as a detached process when the verified bundle is older than a refresh threshold. The hook never waits for, reads or retries it, and still does no network access, fetching or composition itself. macOS blocks background launchd jobs from reading the Drive-hosted Factory, so a session-started prefetch replaces the scheduled one. | Renato chose the SessionStart trigger after the S37 attempt-4 LaunchAgent failed on macOS Drive access. |
