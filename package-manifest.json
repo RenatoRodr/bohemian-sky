@@ -37,6 +37,15 @@
     },
     "updater/refresh/source_verifier.py": {
       "sha256": "d14286b3280d67eaa371ee79aabb99eaae809af4833402ade065255c7779d10e"
+    },
+    "tools/build_usage/usage.py": {
+      "sha256": "3cf2a13bde0f8449d1650af1ed239c6fe21b1df70f859f4dbd1991f14e545159"
+    },
+    "tools/build_usage/session_capture.py": {
+      "sha256": "5599f4183e6f355ebc5661c56d10557b021cf897241eef1eef18cb8b49339cd2"
+    },
+    "tools/build_usage/tests/test_usage_capture.py": {
+      "sha256": "a3ab3cce516cf40f5cb2ae535873099d1204f97a720289fea25a2bd29d421fcf"
     }
   }
 }
