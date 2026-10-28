@@ -33,10 +33,10 @@
   },
   "source_only": {
     "updater/refresh/refresh_core.py": {
-      "sha256": "ac3e3ab1e8c091acba4bc0276b06ffe053ace2d3f2519d841bd946d8464f553d"
+      "sha256": "c35dc3791c25438d9a2927afab2150fded1980d37a0798588798599fe423dadd"
     },
     "updater/refresh/source_verifier.py": {
-      "sha256": "d14286b3280d67eaa371ee79aabb99eaae809af4833402ade065255c7779d10e"
+      "sha256": "7f823231381f1cd1bdcf7773fe56e501c1ffbdacbebac998e98a8a9f03f2c21f"
     },
     "tools/build_usage/usage.py": {
       "sha256": "3cf2a13bde0f8449d1650af1ed239c6fe21b1df70f859f4dbd1991f14e545159"
