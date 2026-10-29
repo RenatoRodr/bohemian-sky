@@ -62,14 +62,19 @@ arbitrary expiry solely because the work is new. The standing authorization
 does not create an account, subscription, credential, new billing arrangement,
 or permission to alter an existing automation's execution path.
 
-Permitted inputs are public material, non-sensitive task material, and
-minimized categorical or numeric facts that do not identify a person or reveal
-private source content. Send only fields needed for the question. Do not send
-credentials, health or financial records, personal messages, customer data,
-confidential work material, or private document excerpts under this standing
-authorization. A new sensitive data category or wider disclosure needs Renato's
-explicit approval for that use. Project instructions that prohibit external
-disclosure still control.
+Apply the same data-handling rule to Jev and other Western LLM providers
+already approved for Factory tasks. For a task-relevant judgment, the caller may
+send material when Renato has authority to disclose it, applicable law and
+contractual duties permit the disclosure, provider terms and account controls
+allow the use, and project instructions allow external processing. This may
+include personal messages, health or financial records, customer data,
+confidential work material, and private document excerpts; these categories
+are not prohibited by type. Send only the minimum content needed for the
+judgment. Never send credentials, tokens, API keys, passwords, private keys, or
+recovery codes. If disclosure authority, provider terms, account controls, or
+project rules are unclear, do not send the material until clarified. This
+authorization does not add a provider, account, subscription, credential, or
+new billing arrangement.
 
 Before the first live call, verify the account and model, terms for the
 permitted data, credential path outside the Factory, billing, the live adapter,
