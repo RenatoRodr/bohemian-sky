@@ -21,9 +21,14 @@ RULE_FILES = frozenset({"AGENTS.md", "CHATGPT-SETUP.md", "FACTORY-BLUEPRINT.md",
                         "MASTER-PROMPTS.md", "MEMORY-CONTRACT.md",
                         "PORTFOLIO-SPECIFICATION.md", "PROJECT-ARCHETYPES.md",
                         "SECURITY-AND-AUTHORITY.md"})
-SOURCE_ONLY = frozenset({
+LEGACY_SOURCE_ONLY = frozenset({
     "updater/refresh/refresh_core.py",
     "updater/refresh/source_verifier.py",
+})
+SOURCE_ONLY = LEGACY_SOURCE_ONLY | frozenset({
+    "tools/build_usage/usage.py",
+    "tools/build_usage/session_capture.py",
+    "tools/build_usage/tests/test_usage_capture.py",
 })
 MANIFEST_REQUIRED = frozenset({"schema_version", "selected_repository", "selected_ref",
                                "source_commit", "files"})
@@ -82,7 +87,10 @@ def _manifest(manifest, repository, commit, target_map=None):
     if not isinstance(files, dict) or set(files) != EXPECTED: raise RefreshError("malformed manifest file set")
     source_only = manifest.get("source_only")
     if source_only is not None:
-        if not isinstance(source_only, dict) or set(source_only) != SOURCE_ONLY:
+        # Keep bundles from the pre-build-usage package readable while current
+        # source verification requires the expanded set.
+        if (not isinstance(source_only, dict) or
+                set(source_only) not in (LEGACY_SOURCE_ONLY, SOURCE_ONLY)):
             raise RefreshError("malformed source-only manifest section")
         for name, entry in source_only.items():
             if (not isinstance(entry, dict) or set(entry) != {"sha256"} or
