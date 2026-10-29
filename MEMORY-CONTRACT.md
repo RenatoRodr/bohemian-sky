@@ -62,14 +62,18 @@ arbitrary expiry solely because the work is new. The standing authorization
 does not create an account, subscription, credential, new billing arrangement,
 or permission to alter an existing automation's execution path.
 
-Permitted inputs are public material, non-sensitive task material, and
-minimized categorical or numeric facts that do not identify a person or reveal
-private source content. Send only fields needed for the question. Do not send
-credentials, health or financial records, personal messages, customer data,
-confidential work material, or private document excerpts under this standing
-authorization. A new sensitive data category or wider disclosure needs Renato's
-explicit approval for that use. Project instructions that prohibit external
-disclosure still control.
+Treat Jev under the same data-handling and disclosure rules as other approved
+Western LLM providers used for Factory tasks. Do not impose Jev-specific
+category bans. The standing authorization covers the same task material that
+may be sent to those providers, subject to the same task-specific disclosure
+authority, data minimization, provider terms, and account controls. Credentials
+remain prohibited. Health or financial records, personal messages, customer
+data, confidential work material, and private document excerpts may be sent
+only when those same rules and authorization permit them for other approved
+Western LLM providers. Send only the fields or excerpts needed for the
+judgment. Project instructions that prohibit external disclosure still
+control. If no approved-provider rule covers a material category, get
+Renato's explicit approval before sending it to Jev.
 
 Before the first live call, verify the account and model, terms for the
 permitted data, credential path outside the Factory, billing, the live adapter,
