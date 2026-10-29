@@ -44,6 +44,28 @@ class SafeExportTests(unittest.TestCase):
         self.assertTrue(receipt["review_required"])
         self.assertEqual(set(Path(self.temp.name).iterdir()), {self.source})
 
+    def test_redacts_claude_code_tool_records(self):
+        records = [
+            {"type": "user", "uuid": "u1", "message": {"role": "user", "content": "check auth"}},
+            {"type": "assistant", "uuid": "a1", "parentUuid": "u1", "message": {"role": "assistant", "content": [
+                {"type": "thinking", "thinking": "plan", "signature": "c2lnbmF0dXJl"},
+                {"type": "tool_use", "id": "toolu_1", "name": "Bash",
+                 "input": {"command": "curl -H 'Authorization: Bearer syntheticBearer123456'"}}]}},
+            {"type": "user", "uuid": "u2", "parentUuid": "a1", "message": {"role": "user", "content": [
+                {"type": "tool_result", "tool_use_id": "toolu_1",
+                 "content": "api_key=syntheticClaudeKey99 ok"}]},
+             "toolUseResult": {"stdout": "ghp_" + "a" * 30, "stderr": ""}},
+        ]
+        self.source.write_text("".join(json.dumps(item) + "\n" for item in records))
+        payload, receipt = module.prepare(self.source)
+        items = [json.loads(line) for line in payload.splitlines()]
+        self.assertEqual(receipt["records"], 3)
+        self.assertEqual([item["type"] for item in items], ["user", "assistant", "user"])
+        self.assertEqual(items[1]["message"]["content"][1]["name"], "Bash")
+        self.assertEqual(items[2]["message"]["content"][0]["tool_use_id"], "toolu_1")
+        for secret in (b"syntheticBearer123456", b"syntheticClaudeKey99", b"ghp_aaaa"):
+            self.assertNotIn(secret, payload)
+
     def test_quoted_secret_with_spaces_is_removed_entirely(self):
         self.source.write_text(json.dumps({"text": "password=\"synthetic two words\""}) + "\n")
         payload, _ = module.prepare(self.source)

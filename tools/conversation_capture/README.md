@@ -1,9 +1,15 @@
 # Conversation capture utility
 
-This macOS utility prepares a Codex JSONL conversation in memory, redacts
-recognized credential forms, and preserves the record structure. It never
-writes a transcript to a scratch file. A reviewed export can write directly to
-an owner-only Google Drive folder mounted by Drive for desktop.
+This macOS utility prepares a Codex or Claude Code JSONL conversation in
+memory, redacts recognized credential forms, and preserves the record
+structure. It never writes a transcript to a scratch file. A reviewed export
+can write directly to an owner-only Google Drive folder mounted by Drive for
+desktop.
+
+Claude Code keeps one JSONL file per session and one per subagent run under
+its project history folder. Each file is a separate source with its own
+hashes. Spilled tool-output files and images in that folder are not JSONL
+transcripts and are not covered. Skip sessions that may still be active.
 
 The folder ID, owner address, and mount path belong in a private JSON config
 outside this repository:
