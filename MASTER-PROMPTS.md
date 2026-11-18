@@ -10,6 +10,8 @@ Seven prompts, ready to copy. Once the conductor skill is installed, the short t
 Quick task. Complete this in the current session without creating a managed
 project or portfolio row.
 
+Workspace: use the existing canonical project folder or repository for file work and durable results; a chat/task folder is not a second project home. Keep one authoritative copy, preserve runtime paths, and update the project's control/handoff with the saved path and next action. For another LLM, verify access to the exact source; if the source or home is unavailable, ask before writing or handing it off.
+
 Task: <the result I need>
 Constraints: <boundaries, tools, format, or approaches to avoid>
 Verification: <how to tell it is done>
@@ -26,6 +28,8 @@ optional until a later maturity stage warrants it.
 ```
 Build this outcome: <what should work for me>
 Constraints: <material boundaries, if any>
+
+Workspace: use the existing canonical project folder or repository for file work and durable results; a chat/task folder is not a second project home. Keep one authoritative copy, preserve runtime paths, and update the project's control/handoff with the saved path and next action. For another LLM, verify access to the exact source; if the source or home is unavailable, ask before writing or handing it off.
 
 Choose routine implementation details yourself. Ask me only if a choice
 materially affects functionality, cost, security, irreversible actions, or
@@ -49,6 +53,8 @@ What already exists: <files, folders, email threads, prior chats — or "nothing
 Sensitivity: <anything that must not leave my machine or reach a third-party
 LLM; or "none">
 
+Workspace: use the existing canonical project folder or repository for file work and durable results; a chat/task folder is not a second project home. Keep one authoritative copy, preserve runtime paths, and update the project's control/handoff with the saved path and next action. For another LLM, verify access to the exact source; if the source or home is unavailable, ask before writing or handing it off.
+
 Do, in order:
 1. Check my proposed scope against the Claims column of the portfolio and
    name any overlap before proceeding.
@@ -63,7 +69,9 @@ Do, in order:
 ## 3. Resume — optional continuity
 
 ```
-Resume <project>. Read the control files, verify registered paths, and give
+Resume <project>.
+Workspace: use the existing canonical project folder or repository for file work and durable results; a chat/task folder is not a second project home. Keep one authoritative copy, preserve runtime paths, and update the project's control/handoff with the saved path and next action. For another LLM, verify access to the exact source; if the source or home is unavailable, ask before writing or handing it off.
+Read the control files, verify registered paths, and give
 me the restart brief: goal, next action and owner, current position, plan,
 blockers, last two log entries, authoritative resources. Flag anything
 stale, missing, or contradicting the portfolio row. Then wait.
@@ -72,7 +80,9 @@ stale, missing, or contradicting the portfolio row. Then wait.
 ## 4. Delegate — hand a step to another LLM
 
 ```
-Delegate step <N> to <tool>. Build the handoff as a self-contained prompt:
+Delegate step <N> to <tool>.
+Workspace: use the existing canonical project folder or repository for file work and durable results; a chat/task folder is not a second project home. Keep one authoritative copy, preserve runtime paths, and update the project's control/handoff with the saved path and next action. For another LLM, verify access to the exact source; if the source or home is unavailable, ask before writing or handing it off.
+Build the handoff as a self-contained prompt:
 the task; the goal in one line; the binding decisions by number, quoted;
 the input material itself (inline or attached — the delegate has no file
 access); required output format and exact filename; and the return
@@ -89,6 +99,8 @@ You are reviewing work you had no part in producing. Attached: the
 deliverable and the requirements it must meet. You do not get the drafting
 conversation, on purpose.
 
+Review only the supplied or attached files; do not assume access to other paths. If this review must be saved, return it to the owning project's canonical review location.
+
 Report only findings: numbered, each with severity (blocker / should-fix /
 note), the exact location, and the smallest fix. Judge against the
 requirements and against internal consistency. Do not rewrite the work, do
@@ -99,7 +111,9 @@ what you checked to earn that.
 ## 6. Retro — optional at later maturity stages
 
 ```
-Retro for <project>, milestone <name or "final">. From LOG.md and your own
+Retro for <project>, milestone <name or "final">.
+Use that project's canonical folder and controls. If they are not accessible, ask before writing.
+From LOG.md and your own
 observation of this project: what cost time or attention that the system
 should have prevented? For each item, tag it — template, skill, prompt,
 archetype, or process — and state the smallest factory change that would
@@ -112,7 +126,7 @@ review, with my approval.
 
 ```
 Portfolio review. Read PORTFOLIO.md and LESSONS.md in my Project factory
-folder. Report, in this order and nothing else:
+folder. Keep the portfolio as the cross-project index; do not create another project register. Report, in this order and nothing else:
 1. Needs my attention today: blockers, waiting-on items now overdue,
    approvals I owe.
 2. Stalled: active rows whose Updated date is 7+ days old — name the
@@ -130,7 +144,7 @@ Nothing to report in a section: say "clear" and move on.
 ## Supplement. Managed-project outcome review
 
 ```text
-Review <project> against its authoritative requirements record. Read the
+Review <project> against its authoritative requirements record. Use its canonical project folder; do not create a second copy. Read the
 project decisions, accepted outputs, tests or evaluations, and authorized
 automation-run evidence since the last review. Do not read raw past chats or
 collect new telemetry without a separate scoped decision.
