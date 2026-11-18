@@ -337,6 +337,19 @@ authorization or change the user's model setting without the applicable
 authority. Evaluate total task cost, including handoffs,
 retries and verification—not model list price alone.
 
+**Cheap tier first for low-risk text work.** For summaries, formatting, first
+drafts, triage and simple classification of public or internal,
+non-confidential text, call the Factory cheap-tier tool
+(`tools/cheap-tier/cheap_tier.py`: Codex `gpt-6-luna`, low effort, read-only)
+before a frontier model, and prefer it over a full Codex thread when delegating
+such a step. Exit 3 means use the current model without retrying; exit 2 means
+the task or sensitivity is not allowed there. Never send email content,
+confidential client or employer work, finance, or family and personal data to
+the cheap tier. A Jev route may use the cheap-tier provider only for the
+low-risk routes it lists, and only in shadow until that route's own activation
+is approved. Revisit an outside provider only when the weekly usage summary
+flags Codex weekly use above 80% two weeks running.
+
 Use the **full build crew** only for genuinely complex coordination,
 material/high-risk operations, repeated unresolved failure, explicitly requested
 formal governance, or MAKE IT ROBUST. Security-sensitive changes may need an
