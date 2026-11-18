@@ -10,12 +10,9 @@ Seven prompts, ready to copy. Once the conductor skill is installed, the short t
 Quick task. Complete this in the current session without creating a managed
 project or portfolio row.
 
-Workspace: use the existing canonical project or area for file work and durable
-results; a chat/task folder is not a second home. Keep one authoritative copy
-and preserve established runtime paths. For cross-assistant work, verify access
-to the exact source; if the source or home is unavailable, ask before writing
-or handing it off. When a project has a control or handoff record, update it
-with the saved path and next action.
+Workspace: per AGENTS.md "Canonical project home". Save durable results in the
+existing project home, keep one authoritative copy, and verify you can open the
+exact source before handing off.
 
 Task: <the result I need>
 Constraints: <boundaries, tools, format, or approaches to avoid>
@@ -34,12 +31,9 @@ optional until a later maturity stage warrants it.
 Build this outcome: <what should work for me>
 Constraints: <material boundaries, if any>
 
-Workspace: use the existing canonical project or area for file work and durable
-results; a chat/task folder is not a second home. Keep one authoritative copy
-and preserve established runtime paths. For cross-assistant work, verify access
-to the exact source; if the source or home is unavailable, ask before writing
-or handing it off. When a project has a control or handoff record, update it
-with the saved path and next action.
+Workspace: per AGENTS.md "Canonical project home". Save durable results in the
+existing project home, keep one authoritative copy, and verify you can open the
+exact source before handing off.
 
 Choose routine implementation details yourself. Ask me only if a choice
 materially affects functionality, cost, security, irreversible actions, or
@@ -63,12 +57,9 @@ What already exists: <files, folders, email threads, prior chats — or "nothing
 Sensitivity: <anything that must not leave my machine or reach a third-party
 LLM; or "none">
 
-Workspace: use the existing canonical project or area for file work and durable
-results; a chat/task folder is not a second home. Keep one authoritative copy
-and preserve established runtime paths. For cross-assistant work, verify access
-to the exact source; if the source or home is unavailable, ask before writing
-or handing it off. When a project has a control or handoff record, update it
-with the saved path and next action.
+Workspace: per AGENTS.md "Canonical project home". Save durable results in the
+existing project home, keep one authoritative copy, and verify you can open the
+exact source before handing off.
 
 Do, in order:
 1. Check my proposed scope against the Claims column of the portfolio and
@@ -84,14 +75,7 @@ Do, in order:
 ## 3. Resume — optional continuity
 
 ```
-Resume <project>.
-Workspace: use the existing canonical project or area for file work and durable
-results; a chat/task folder is not a second home. Keep one authoritative copy
-and preserve established runtime paths. For cross-assistant work, verify access
-to the exact source; if the source or home is unavailable, ask before writing
-or handing it off. When a project has a control or handoff record, update it
-with the saved path and next action.
-Read the control files, verify registered paths, and give
+Resume <project>. Read the control files, verify registered paths, and give
 me the restart brief: goal, next action and owner, current position, plan,
 blockers, last two log entries, authoritative resources. Flag anything
 stale, missing, or contradicting the portfolio row. Then wait.
@@ -100,14 +84,7 @@ stale, missing, or contradicting the portfolio row. Then wait.
 ## 4. Delegate — hand a step to another LLM
 
 ```
-Delegate step <N> to <tool>.
-Workspace: use the existing canonical project or area for file work and durable
-results; a chat/task folder is not a second home. Keep one authoritative copy
-and preserve established runtime paths. For cross-assistant work, verify access
-to the exact source; if the source or home is unavailable, ask before writing
-or handing it off. When a project has a control or handoff record, update it
-with the saved path and next action.
-Build the handoff as a self-contained prompt:
+Delegate step <N> to <tool>. Build the handoff as a self-contained prompt:
 the task; the goal in one line; the binding decisions by number, quoted;
 the input material itself (inline or attached — the delegate has no file
 access); required output format and exact filename; and the return

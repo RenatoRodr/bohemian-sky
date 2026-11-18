@@ -265,6 +265,11 @@ Where the project has a control or handoff record, close the work by recording
 the authoritative location, output path, status, and next action. Update the
 portfolio only through its owner procedure.
 
+Precedence: this section decides where project work lives. "Filing durable
+outputs" below decides only where a final output goes when it is created
+outside a managed project's own tree. If both appear to apply, the project's
+home wins for project files and the placement guide wins for everything else.
+
 ## Filing durable outputs
 
 This applies to any task, session or scheduled job that leaves a final output
