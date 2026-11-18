@@ -124,7 +124,9 @@ You are reviewing work you had no part in producing. Attached: the
 deliverable and the requirements it must meet. You do not get the drafting
 conversation, on purpose.
 
-Review only the supplied or attached files; do not assume access to other paths. If this review must be saved, return it to the owning project's canonical review location.
+Review only the supplied or attached files; do not assume access to other paths.
+If this review must be saved, return it to the owning project's canonical review
+location.
 
 Report only findings: numbered, each with severity (blocker / should-fix /
 note), the exact location, and the smallest fix. Judge against the
@@ -137,7 +139,8 @@ what you checked to earn that.
 
 ```
 Retro for <project>, milestone <name or "final">.
-Use that project's canonical folder and controls. If they are not accessible, ask before writing.
+Use that project's canonical folder and controls. If they are not accessible,
+ask before writing.
 From LOG.md and your own
 observation of this project: what cost time or attention that the system
 should have prevented? For each item, tag it — template, skill, prompt,
@@ -151,7 +154,8 @@ review, with my approval.
 
 ```
 Portfolio review. Read PORTFOLIO.md and LESSONS.md in my Project factory
-folder. Keep the portfolio as the cross-project index; do not create another project register. Report, in this order and nothing else:
+folder. Keep the portfolio as the cross-project index; do not create another
+project register. Report, in this order and nothing else:
 1. Needs my attention today: blockers, waiting-on items now overdue,
    approvals I owe.
 2. Stalled: active rows whose Updated date is 7+ days old — name the
@@ -169,7 +173,8 @@ Nothing to report in a section: say "clear" and move on.
 ## Supplement. Managed-project outcome review
 
 ```text
-Review <project> against its authoritative requirements record. Use its canonical project folder; do not create a second copy. Read the
+Review <project> against its authoritative requirements record. Use its
+canonical project folder; do not create a second copy. Read the
 project decisions, accepted outputs, tests or evaluations, and authorized
 automation-run evidence since the last review. Do not read raw past chats or
 collect new telemetry without a separate scoped decision.
