@@ -36,10 +36,10 @@ policy. Clear store boundaries reduce both errors.
 A standing pilot is valid only after this rule change is merged and verified in
 the local runtime, and Renato explicitly approves a Gate A record naming its
 owner, provider and model, permitted minimized data categories, expiry date,
-maximum number of calls, total spend ceiling, and immediate kill switch.
-The runner must check that record and the remaining call and spend budgets
-before each request,
-record the resulting usage, and stop when any limit is reached. A failed call is
+and immediate kill switch. Jev pilots have no call or spend ceiling.
+The runner must check that record before each request,
+record the resulting usage, and stop when the kill switch is used or the
+record expires. A failed call is
 not retried automatically. The `--paid-call-opt-in` flag attests to an applicable
 individual approval or valid standing record; it does not create approval.
 
@@ -79,9 +79,9 @@ new billing arrangement.
 Before the first live call, verify the account and model, terms for the
 permitted data, credential path outside the Factory, billing, the live adapter,
 and a tested offline fallback. Repeat a check when its underlying condition
-changes, not for every project. Each caller must bound its batch, make no
-unbounded retries, observe usage and stop on an account limit or anomalous
-spend. A provider failure must not suppress a required item. Jev returns
+changes, not for every project. Jev use has no call or spend limit and needs no
+usage-based stop. Each caller must make no unbounded retries and must stop when
+the provider reports an account limit. A provider failure must not suppress a required item. Jev returns
 advice, never an action or permission; code and humans retain mandatory gates.
 
 Use existing project records for the decision type, minimized input category,
