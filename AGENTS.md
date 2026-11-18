@@ -237,15 +237,33 @@ governance applies at later maturity levels.
 
 ## Canonical project home and cross-assistant handoffs
 
-Before starting file work, identify the existing project or area and its canonical home from the current instructions, register, or location supplied by the owner. For Factory-managed work, use `PORTFOLIO.md` and the named project's control files. Do not inspect unrelated project paths just because they appear in a register.
+Before starting file work, identify the existing project or area and its
+canonical home from the current instructions, register, or location supplied
+by the owner. For Factory-managed work, use `PORTFOLIO.md` and the named
+project's control files. Do not inspect unrelated project paths just because
+they appear in a register.
 
-Work in that canonical folder or repository. Treat a chat, task workspace, or downloaded copy as temporary staging, not a second project home. Quick tasks do not need a managed project or portfolio row, but any durable result still belongs in the existing project or area, or in the location given by the applicable placement guide. If no home can be established, ask before creating a persistent copy.
+Work in that canonical folder or repository. Treat a chat, task workspace, or
+downloaded copy as temporary staging, not a second project home. Quick tasks
+do not need a managed project or portfolio row, but any durable result still
+belongs in the existing project or area, or in the location given by the
+applicable placement guide. If no home can be established, ask before creating
+a persistent copy.
 
-Keep one authoritative copy. Follow the project's structure for inputs, drafts, outputs, code, handoffs, and archives. Keep live code, configuration, state, and logs at the established runtime paths; this rule does not move existing files or override project-specific storage controls.
+Keep one authoritative copy. Follow the project's structure for inputs,
+drafts, outputs, code, handoffs, and archives. Keep live code, configuration,
+state, and logs at the established runtime paths; this rule does not move
+existing files or override project-specific storage controls.
 
-For cross-assistant work, use the project-owned shared location and verify that the receiving assistant can open the exact source. If access is missing, ask for the source or authorized access before dependent work. Do not assume a local path is visible or create a parallel source of truth. Share only the material needed.
+For cross-assistant work, use the project-owned shared location and verify
+that the receiving assistant can open the exact source. If access is missing,
+ask for the source or authorized access before dependent work. Do not assume a
+local path is visible or create a parallel source of truth. Share only the
+material needed.
 
-Where the project has a control or handoff record, close the work by recording the authoritative location, output path, status, and next action. Update the portfolio only through its owner procedure.
+Where the project has a control or handoff record, close the work by recording
+the authoritative location, output path, status, and next action. Update the
+portfolio only through its owner procedure.
 
 ## Filing durable outputs
 
