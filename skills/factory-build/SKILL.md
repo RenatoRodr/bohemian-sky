@@ -75,7 +75,7 @@ record when known, using privacy-safe summaries rather than raw prompts.
 ### Existing Jev shadow telemetry (Gate A pilots only)
 
 This separate observer remains for historical or explicitly approved shadow
-pilots. Its Gate A scope, expiry, budget, opt-in, telemetry contract and
+pilots. Its Gate A scope, expiry, opt-in, telemetry contract and
 outcome controls still apply to that observer. Do not invoke it merely to satisfy
 the live new-work advice rule. It never changes role, model, permissions,
 reviews, acceptance rules, or dispatch. Never send source, full prompts, diffs,

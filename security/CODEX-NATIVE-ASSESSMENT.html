@@ -126,7 +126,7 @@
 
   <h2>Terminal diagnostic</h2>
   <p>The script creates a disposable workspace and temp fixture under <code>$TMPDIR</code>, plus one uniquely named fixture under the existing <code>~/Library/Caches</code>. It removes those exact fixtures on exit. The profile explicitly denies <code>:tmpdir</code> and <code>:slash_tmp</code> while granting the workspace root. It writes an isolated profile file and never touches <code>~/.codex/config.toml</code>. Permission profiles do not compose with legacy <code>sandbox_mode</code> settings; this isolated configuration selects the new profile without copying the live config. The current version was rerun in normal Terminal: workspace read/write and child execution passed; tested temp and external-home reads/writes, including child writes, were denied. The matched network test succeeded outside Codex and returned <code>Operation not permitted</code> inside the sandbox. No matching audit event appeared in either log source, so this is profile-correlated but not an audited denial.</p>
-  <pre>cd "/Users/renato/Documents/Codex/2026-10-15/continue-existing-build-security-v3-sandbox/work/project-factory-security-simplification"
+  <pre>cd "<factory-security-work-folder>"
 ./security/diagnostics/test_codex_workspace_profile.sh</pre>
 
   <h2>Sources</h2>

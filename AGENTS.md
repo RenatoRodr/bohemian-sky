@@ -119,8 +119,9 @@ For every newly started Factory task, whether in a new or existing project
 (including quick tasks), identify any useful bounded Jev judgment (choice,
 score, or probability). Use live advice under the standing authorization in
 `MEMORY-CONTRACT.md` when the provider route and permitted input are ready.
-A call is unnecessary when no useful judgment is needed, no relevant state has
-changed, or an exact rule decides the answer. No per-project approval or shadow
+Default to calling Jev whenever a bounded judgment could help; skip it only when
+an exact rule already decides the answer. Jev use has no call or spend limit,
+and cost is never a reason to skip a Jev call. No per-project approval or shadow
 period is required for covered use. Keep permissions and actions in code or
 with the human owner.
 
@@ -147,22 +148,24 @@ disclosure and action authority stay under `SECURITY-AND-AUTHORITY.md`.
 
 Jev is the preferred *inexpensive first-pass advisor* for eligible, bounded
 judgements about **task difficulty, risk/uncertainty and useful agent roles**.
-Apply deterministic rules first (including no-change and no-model short circuits);
-the Factory coordinator remains accountable for choosing the actual role, model,
-review and next step. Jev is not a mandatory extra model call.
+Apply deterministic rules first (including no-change short circuits for frontier
+models); the Factory coordinator remains accountable for choosing the actual
+role, model, review and next step. Prefer Jev over any more expensive model
+whenever Jev can answer the question.
 
 - **Existing automations and approved pilots:** make no change to their execution
   paths merely because this policy changes. Existing Gate A pilots retain their
-  exact scope, expiry and budget. Use results from new work and representative
+  exact scope and expiry. Use results from new work and representative
   route-specific outcomes to propose a reversible existing-route change under
   that route's normal authority. A route with an applicable Gate B still needs
   it; this rule creates no universal new Gate B.
 - **New Factory work:** include the shared Jev adapter whenever recurring
   bounded judgement is useful. Ask at intake: "Which existing script, skill,
   library, native automation or connector can filter, diff, dedupe or cache
-  this? Can an unchanged run stop with zero model calls? If new code is needed,
+  this? Can an unchanged run stop with zero frontier-model calls? If new code is needed,
   does expected recurrence and reuse justify building, testing and maintaining it?"
-  When there is no new relevant state, stop without a model call. Otherwise,
+  When there is no new relevant state, stop without a frontier-model call; a
+  Jev call remains allowed. Otherwise,
   **use Jev live from the first authorised operational run, not in shadow**,
   under the standing Jev authorization in `MEMORY-CONTRACT.md` after the
   provider, permitted input, caller fallback and offline safeguards have been
@@ -183,7 +186,8 @@ review and next step. Jev is not a mandatory extra model call.
   risk >= 0.95 and difficulty >= 0.80; these are *not calibrated safety claims*
   and cannot waive mandatory review. If risk confidence is below its threshold,
   missing or conflicting, request a second independent judgement from an
-  appropriately capable model **only within existing budget and data authority**.
+  appropriately capable model **only within data authority and, for models other
+than Jev, existing budget**. Jev itself may be asked again without a budget check.
   If that is unavailable or materially uncertain, retain required review and
   seek a human decision only for consequential actions. Do not escalate trivial
   work into bureaucracy.
@@ -325,8 +329,9 @@ against the user goal and agreed criteria; an auditor cannot certify work they
 implemented. Architecture review, builders, and audits are available roles, not
 mandatory gates. Use the smallest set of roles that fits the task.
 
-**Cost-aware execution:** prefer deterministic code and checks over model calls
-when possible. For model work, select the least expensive capable model/tier
+**Cost-aware execution:** prefer deterministic code and checks over frontier
+model calls when possible. Use Jev first wherever it can do the job: it is the
+cheapest available model and its use has no call or spend limit. For other model work, select the least expensive capable model/tier
 *only where the active runtime and existing budget/authority support selecting
 it*. Escalate capability for difficult reasoning or repeated failure; use
 stronger verification for authentication, permissions, secrets, tenant isolation

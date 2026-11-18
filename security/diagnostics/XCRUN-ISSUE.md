@@ -72,7 +72,7 @@ For reference, rerun the filesystem profile from normal macOS Terminal only
 after changing the profile or host:
 
 ```sh
-cd "/Users/renato/Documents/Codex/2026-10-15/continue-existing-build-security-v3-sandbox/work/project-factory-security-simplification"
+cd "<factory-security-work-folder>"
 ./security/diagnostics/test_codex_workspace_profile.sh
 ```
 

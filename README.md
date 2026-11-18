@@ -42,6 +42,10 @@ mentioned in `AGENTS.md` are local build-crew components. Install them from the
 private factory before using that workflow. The public rules alone do not
 provide the skill or agents.
 
+## Starter rules
+
+`starter/` holds a short generic subset for people starting with an AI assistant, versioned with `starter-vX.Y` tags and its own changelog. See `starter/README.md`.
+
 ## Optional capture utility
 
 `tools/conversation_capture/` contains a macOS utility for reviewed conversation export. It is not installed or enabled by this repository. Private target configuration, transcripts, and review decisions remain outside GitHub.

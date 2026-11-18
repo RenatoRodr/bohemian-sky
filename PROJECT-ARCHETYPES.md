@@ -160,7 +160,7 @@ an approval or override an existing human-only gate.
 **New project = live; existing automation = unchanged until evaluated.** At project
 intake, first look for existing off-the-shelf scripts, automations and tools
 that can filter, diff, dedupe or cache inputs. Check whether an unchanged
-run can stop with **zero** model calls, and apply the reuse-before-build
+run can stop with **zero** frontier-model calls (Jev calls remain allowed), and apply the reuse-before-build
 trade-off above before writing a dedicated preprocessor. Use exact code for
 rules and must-surface conditions. For every new recurring-AI project with
 useful bounded judgement, integrate the shared `decide()` contract and
