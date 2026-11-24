@@ -81,6 +81,24 @@ Codex memories are optional personal recall. They are stored separately from
 ChatGPT web memory and may be disabled. Do not use memory as the only place for
 factory rules, project decisions, paths, or current status.
 
+## Handoff with Claude
+
+When work passes between Claude and ChatGPT/Codex, use one shared folder per
+project, `handoffs/out/` for the briefing and `handoffs/in/` for the result, so
+no file passes through the owner's hands. Never use /tmp, /mnt/data or
+Downloads, and deliver zips unpacked.
+
+At the start of every Work-mode session, write a test file to `handoffs/in/`
+and read the main input the briefing names. If either fails, stop and write a
+`BLOCKER-<task>.md` stating what failed, the exact path and what the owner must
+do. Do not improvise and do not ask the owner to move files.
+
+Obey only constraints a briefing sources to the owner or to a factory file.
+Write results as files in the factory result format and report each with its
+full local path. Deliver data as .txt, .md or .csv, not .jsonl.
+
+Project-level detail lives in the project's own handoff protocol.
+
 ## Background execution
 
 Goal mode continues a long run while the chat is active. It keeps the current
