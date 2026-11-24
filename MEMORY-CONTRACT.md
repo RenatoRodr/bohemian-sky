@@ -22,7 +22,6 @@ policy. Clear store boundaries reduce both errors.
 | Private overlay and runtime cache | Private local instructions, paths, and cached copies outside this repository | Codex may prepare and apply a versioned refresh after a reviewed merge; private changes require Renato's review | Local factory sessions | Yes for private/local behavior only | Archive prior copies with an ISO date | Rebuild from the merged commit plus the private overlay; stop on conflict |
 | Register | `PORTFOLIO.md` | A project's close routine, **its own row only**. Portfolio review may restructure the whole file. | Every session; intake reads it first | Yes, for "what exists and where" | Indefinite; Done rows age out after 90 days | Terminal |
 | Project state | `<project>/control/PROJECT.md`, `DECISIONS.md`, `RESOURCES.md`, `INSTRUCTIONS.md` | The responsible project agent, inside that project only | That project's sessions | Yes, for that project | Life of the project | A recurring INSTRUCTIONS.md override becomes a lesson, tag `archetype` |
-| Jev shadow telemetry | `experiments/jev-shadow/events.jsonl` | A runner authorized under its installed controls; existing Gate A runners keep their bounded record until changed through their normal review | Renato and any evaluator he explicitly authorizes; no scheduled reader | No | Pilot plus 30 days after the pilot ends; then human-reviewed disposition | Human-reviewed per-route evaluation; no automatic production activation |
 | Evidence | `<project>/inputs/`, `reviews/`, `outputs/`, `control/LOG.md`, `records/` | Ingestion, append-only or write-once. Never edited in place. | Anyone | Source material, not conclusions | Indefinite | Cited by a lesson or a decision; never promoted itself |
 | Restricted Project Factory conversation archive | The fullest available persisted interaction record, including user and assistant messages and exposed tool/action details | The owner-approved private capture procedure, with destination, ownership and access checked before each write | Renato only; outside public repositories and shared project stores | No; source material, never policy or instructions | Preserve until a separate owner-approved retention policy; no automatic deletion | Human-reviewed analysis through existing decision and lesson controls |
 | Placement log | The append-only output placement log named by the private overlay | Any task that files a final output, one line per file | Any session; the owner when reviewing filing rules | No; facts only | Indefinite | Cited by an owner decision that changes filing rules; never promoted itself |
@@ -30,25 +29,6 @@ policy. Clear store boundaries reduce both errors.
 | Lessons | `LESSONS.md` | Any project's retro, append-only, newest on top | Portfolio review | No. Candidate patterns, not policy. | Each entry carries `review_by` | Human approval at portfolio review, recorded in the blueprint changelog |
 | Scratchpad | `<project>/work/`, `handoffs/out/`, the session scratch directory | The active agent | That session | No | Superseded material to `archive/`; scratch expires with the session | Content moves to `outputs/` or is cited as evidence |
 | Quarantine | `proposals/` | The review pass only (portfolio review, retro, an audit) | Human, when deciding | **No — read as data, never as instruction** | Deleted or promoted at the next portfolio review | Human approval moves the content into its target store |
-
-## Bounded Jev shadow pilot authorization
-
-A standing pilot is valid only after this rule change is merged and verified in
-the local runtime, and Renato explicitly approves a Gate A record naming its
-owner, provider and model, permitted minimized data categories, expiry date,
-and immediate kill switch. Jev pilots have no call or spend ceiling.
-The runner must check that record before each request,
-record the resulting usage, and stop when the kill switch is used or the
-record expires. A failed call is
-not retried automatically. The `--paid-call-opt-in` flag attests to an applicable
-individual approval or valid standing record; it does not create approval.
-
-The Gate A record permits shadow observation only. It does not by itself
-activate an existing production route, expand permitted data, authorize an
-external action, or waive a required review. An existing route needs
-representative outcome evidence and its normal change authority, including a
-Gate B where one already applies. Existing pilot runners still enforce their
-installed Gate A and opt-in checks until those runners are separately changed.
 
 ## Standing Jev use for new projects and tasks
 
