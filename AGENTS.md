@@ -144,7 +144,7 @@ avoid one model call: assess likely recurrence, saved work, reuse elsewhere,
 build/test effort and maintenance first. This adds no approval: spending, data
 disclosure and action authority stay under `SECURITY-AND-AUTHORITY.md`.
 
-## Jev pilot learning and advisory role assignment
+## Jev learning and advisory role assignment
 
 Jev is the preferred *inexpensive first-pass advisor* for eligible, bounded
 judgements about **task difficulty, risk/uncertainty and useful agent roles**.
@@ -153,9 +153,8 @@ models); the Factory coordinator remains accountable for choosing the actual
 role, model, review and next step. Prefer Jev over any more expensive model
 whenever Jev can answer the question.
 
-- **Existing automations and approved pilots:** make no change to their execution
-  paths merely because this policy changes. Existing Gate A pilots retain their
-  exact scope and expiry. Use results from new work and representative
+- **Existing automations:** make no change to their execution
+  paths merely because this policy changes. Use results from new work and representative
   route-specific outcomes to propose a reversible existing-route change under
   that route's normal authority. A route with an applicable Gate B still needs
   it; this rule creates no universal new Gate B.
@@ -173,8 +172,7 @@ whenever Jev can answer the question.
   New work that calls Jev must reuse
   `projects/jev-decision-gateway` and its `decide()` contract; never create a
   duplicate Jev integration. If the live route or permitted input is
-  unavailable, use a deterministic/offline path and record the specific gap. A
-  shadow-pilot Gate A record does not expand the standing data scope. A live
+  unavailable, use a deterministic/offline path and record the specific gap. A live
   judgement is an advisory input; code alone retains permissions, actions and
   mandatory reviews.
 - **Two separate assessments:** difficulty suggests whether to use no model,
@@ -201,8 +199,7 @@ Current Jev shadow classifiers and historic D0-D4 records remain observational.
 A new two-axis schema may be introduced alongside the old one. This rule does
 not itself promote an existing route, switch models automatically, grant action
 authority, or waive required review. Caller code owns actions and hard rules.
-Use the standing Jev authorization and the separate limits of any existing
-pilot in `MEMORY-CONTRACT.md`.
+Use the standing Jev authorization in `MEMORY-CONTRACT.md`.
 
 ## Goal execution
 

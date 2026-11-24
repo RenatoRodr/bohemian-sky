@@ -48,8 +48,7 @@ follow the Jev opportunity check in `AGENTS.md`.
 When a useful bounded judgment about task difficulty, risk, or role usefulness
 could change the build plan, use the shared live adapter before choosing roles.
 This is the ordinary new-work path under the standing authorization in
-`MEMORY-CONTRACT.md`; do not replace it with shadow telemetry, a Gate A record,
-or repeated per-project or per-call approval.
+`MEMORY-CONTRACT.md`; do not replace it with repeated per-project or per-call approval.
 
 Use `projects/jev-decision-gateway/code/assess_new_work.py` and its shared
 `decide()` contract. Read its `--help` before use. Supply only a minimized
@@ -68,68 +67,9 @@ specific gap.
 Keep valid Jev advice and its confidence visible to the coordinator, including
 low-confidence output. The coordinator selects the actual roles and review;
 deterministic rules preserve mandatory reviews and all permissions. The
-provisional pilot thresholds do not gate ordinary live new-work advice. Record
+provisional thresholds do not gate ordinary live new-work advice. Record
 the advice, actual role choice and observed outcome in the project's existing
 record when known, using privacy-safe summaries rather than raw prompts.
-
-### Existing Jev shadow telemetry (Gate A pilots only)
-
-This separate observer remains for historical or explicitly approved shadow
-pilots. Its Gate A scope, expiry, opt-in, telemetry contract and
-outcome controls still apply to that observer. Do not invoke it merely to satisfy
-the live new-work advice rule. It never changes role, model, permissions,
-reviews, acceptance rules, or dispatch. Never send source, full prompts, diffs,
-private details, or credentials.
-
-After the coordinator has selected the normal role/runtime/model/effort, make at
-most one observer call before dispatch:
-
-```sh
-python3 build-agents-v1/codex/jev_shadow.py classify \
-  --record experiments/jev-shadow/events.jsonl --task-id TASK-ID --step-id S1 \
-  --role builder --runtime codex --model SELECTED-MODEL --effort SELECTED-EFFORT \
-  --attempts 1 --summary 'Short non-sensitive task description' \
-  --non-sensitive --paid-call-opt-in
-```
-
-The local script reads the key from the macOS login Keychain service
-`project-factory-jev`. Record the returned classification event ID. Whether Jev
-returns a class, reports low confidence, fails, or cannot write telemetry, carry
-on with the already planned dispatch unchanged. A missing attestation or paid
-call opt-in means skip Jev and proceed normally. Never retry automatically.
-
-After step completion, append a separate outcome event. Reuse the exact task,
-step, role and record path; pass the event ID from classification when one was
-recorded. For `available` or `uncertain`, the script requires the classification
-event ID and predicted class, then checks the stored classification matches the
-task, step, role, and prediction. `unavailable` may be unlinked. Optionally,
-assign a human D0–D4 label before viewing Jev's prediction and pass it with
-`--human-label-before-jev`; this label is written only in the outcome event.
-Use only known runtime metadata. Outcome Score is categorical or null when
-unrated; Pattern ID remains null unless its proposal is implemented. Before
-viewing any Jev result for an evaluation cohort, select and freeze a
-representative task/step set, assign each task a human D0–D4 difficulty label,
-and keep that label blinded from Jev. At outcome capture, require the
-preassigned label and `--human-label-before-jev` attestation for every cohort
-task. Outside that preselected cohort, human labels remain optional.
-
-```sh
-python3 build-agents-v1/codex/jev_shadow.py outcome \
-  --record experiments/jev-shadow/events.jsonl --task-id TASK-ID --step-id S1 \
-  --role builder --runtime codex --model SELECTED-MODEL --effort SELECTED-EFFORT \
-  --attempts 1 --classification-event-id EVENT-ID --jev-status available \
-  --predicted D2 --no-review-required --verified pass
-```
-
-The script uses only Python's standard library. It sends one request to Jev's
-documented System One endpoint when explicitly invoked and appends JSONL under
-`experiments/jev-shadow/`. Before reading the key, calling Jev, or appending an
-event, it requires exactly one complete seven-column `Jev shadow telemetry`
-row under `## The stores` in `MEMORY-CONTRACT.md`, with the exact path
-`experiments/jev-shadow/events.jsonl` in its Files cell. A proposal or prose
-mention, duplicate row, or incomplete row does not enable use. Until the human
-applies that rule, it fails closed with no call and no event file. Tests use
-mocked transport and keychain access; they never contact Jev.
 
 For each ready, ungated step:
 
